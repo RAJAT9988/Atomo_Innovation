@@ -1,0 +1,93 @@
+#smart-home-section {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: transparent;
+    flex: 1;
+    max-width: 56%;
+    margin: 0;
+    padding: 0;
+}
+
+#smart-home-section .devices-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 61px;
+    box-sizing: border-box;
+    gap: 20px;
+}
+
+.device-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    background-color: #ffffff;
+    border: 2px solid #cecaca;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+}
+
+.device-item:hover {
+    transform: translateY(-5px);
+}
+
+.device-item.grey {
+    background-color: #d3d3d3;
+}
+
+/* custom added start */
+.device-item.grey .device-icon {
+    /* Add styles for the "off" state, if needed */
+    opacity: 0.5;
+}
+.device-item .device-icon {
+    /* Add styles for the "on" state, if needed */
+    opacity: 1;
+}
+/* custom added end */
+
+
+
+.device-item img.device-icon {
+    width: 69px;
+    height: 72px;
+    object-fit: contain;
+    margin-bottom: 13px;
+    margin-left: 13px;
+}
+
+.device-item p {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
+    margin-left: 11px;
+    text-align: center;
+}
+
+.status-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #smart-home-section {
+        max-width: 100%;
+    }
+}
