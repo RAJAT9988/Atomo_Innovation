@@ -461,7 +461,7 @@ body {
 /* Styles for third-page */
 #third-page {
     position: relative;
-    height: 145vh;
+    height: 114vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -513,25 +513,17 @@ body {
     /* Ensure text aligns left */
 }
 
-
-
-.product-image {
-    margin-bottom: 20px;
-}
-
 .product-logo {
-    width: 276px;
-    height: 188px;
-    background-color: #333333;
-    /* Dark background for the logo */
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    bottom: 345px;
+    width: 903px;
+    height: 550px;
+
 }
 
 .price-section {
-    margin-bottom: 20px;
+    position: inherit;
+    margin-top: -420px;
 }
 
 .price-button {
@@ -1331,16 +1323,6 @@ body {
     color: #fff;
 }
 
-.spec-icon {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
 .spec-labels {
     display: flex;
     justify-content: center;
@@ -1352,10 +1334,10 @@ body {
     list-style: none;
     padding: 0;
     display: flex;
-    font-weight: 500;
+    margin-bottom: -198px;
     flex-direction: column;
-    gap: 52px;
-    align-items: center;
+    gap: 22px;
+    align-items: flex-start;
 }
 
 .spec-label-list li {
@@ -1364,6 +1346,7 @@ body {
     font-size: 1rem;
     color: #333;
     margin: 0;
+    width: 100%; /* Ensure all list items take the same width for alignment */
 }
 
 .spec-icon {
@@ -1371,7 +1354,49 @@ body {
     width: 24px;
     height: 24px;
     margin-right: 10px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    flex-shrink: 0; /* Prevent the icon from shrinking */
+}
+
+.spec-icon img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+/* Style for the label (e.g., "CPU") */
+.spec-label {
+    font-weight: 500;
+    color: #333;
+    min-width: 80px; /* Ensures consistent spacing between label and description */
+}
+
+/* Style for the description (e.g., "2.4 GHz hex-core CPU") */
+.spec-desc {
+    font-weight: 400;
+    color: #666; /* Lighter color to distinguish from the label */
+    margin-left: 141px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .spec-label-list {
+        gap: 18px; /* Slightly smaller gap on mobile */
+    }
+
+    .spec-label-list li {
+        font-size: 0.9rem; /* Slightly smaller font on mobile */
+    }
+
+    .spec-icon img {
+        width: 20px;
+        height: 20px; /* Adjust icon size for mobile */
+    }
+
+    .spec-label {
+        min-width: 70px; /* Adjust spacing for smaller screens */
+    }
+
+    .spec-desc {
+        margin-left: 8px; /* Adjust spacing for smaller screens */
+    }
 }
