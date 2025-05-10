@@ -1013,9 +1013,16 @@ body {
         font-size: 20px;
     }
 
+    .logo1 {
+        display: block;
+        position: absolute;
+    }
+
 }
 
 @media (max-width: 480px) {
+
+    
     #fourth-page {
         padding: 40px 10px;
     }
@@ -1421,6 +1428,8 @@ body {
 
     .logo1 {
         display: block;
+        position: absolute;
+
     }
 
     #logo {
@@ -1429,6 +1438,8 @@ body {
 
     #hamburger {
         display: block;
+        position: absolute;
+
     }
 
     #navbar ul {
@@ -1592,7 +1603,7 @@ body {
 /* ========== RESPONSIVE STYLES for 480px ========== */
 @media (max-width: 533px) {
     #first-page {
-        min-height: 50vh;
+        min-height: 74vh;
         padding: 60px 8px 8px 8px;
     }
 

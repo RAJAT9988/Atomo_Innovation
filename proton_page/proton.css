@@ -24,6 +24,8 @@
 
 /* ========== BASE STYLES ========== */
 body {
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    box-sizing: border-box; /* Ensure padding/margins are included in width */
     margin: 0;
     padding: 0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -31,6 +33,11 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
     line-height: 1.6;
+}
+
+/* Ensure all elements respect box-sizing */
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 /* ========== LOGO STYLES ========== */
@@ -195,11 +202,11 @@ body {
 }
 
 #electron-video {
-    width: 163%;
+    width: 85%;
     margin-top: 112px;
     /* max-width: 1126px; */
     height: 119%;
-    display: block; 
+    display: block;
     z-index: 10;
 }
 
@@ -209,7 +216,7 @@ body {
     height: 100px;
     max-width: 90%;
     /* margin-bottom: -135px; */
-    top: 26%;
+    top: 14%;
 }
 
 #main-title {
@@ -228,8 +235,8 @@ body {
     position: absolute;
     /* bottom: 100%; */
     left: 83%;
-    /* right: -27%; */
     top: 20px;
+    /* right: -27%; */
     font-size: 1.2rem;
     font-weight: 400;
     width: 17%;
@@ -242,6 +249,8 @@ body {
 
 /* Responsive adjustments for first page */
 @media (max-width: 1670px) {
+
+
     #main-title {
         font-size: 3.5rem;
     }
@@ -269,8 +278,8 @@ body {
 }
 
 .slider-container {
-    position: relative;
-    height: 110%;
+    position: static;
+    height: 100%;
     width: 100%;
     /* margin: -34px auto; */
     margin-top: 34px;
@@ -278,7 +287,7 @@ body {
 }
 
 .slider-container1 {
-    position: relative;
+    position: static;
     margin: 0 auto;
     top: 12px;
     overflow: hidden;
@@ -305,7 +314,7 @@ body {
     display: flex;
     justify-content: flex-end;
     padding-right: 20px;
-    margin-top: 2%;
+    margin-top: 0%;
 }
 
 .slider-controls {
@@ -332,8 +341,16 @@ body {
     color: #fff;
 }
 
+.headingg {
+   padding-left: 3vh;
+   font-size: 3rem;
+}
+
+
+
 /* Remove any conflicting button styles */
-.prev-btn, .next-btn {
+.prev-btn,
+.next-btn {
     display: none !important;
 }
 
@@ -382,9 +399,11 @@ body {
 }
 
 /* Remove the old absolute positioned buttons */
-.prev-btn, .next-btn {
+.prev-btn,
+.next-btn {
     display: none;
 }
+
 .next-btn {
     right: 20px;
 }
@@ -468,7 +487,7 @@ body {
     align-items: center;
     padding: 40px 20px;
     box-sizing: border-box;
-    margin-bottom: 10px;
+    margin-top: -66px;
 }
 
 /* Styles for the heading */
@@ -572,83 +591,25 @@ body {
     gap: 23px;
 }
 
-.spec-labels {
+.spec-item {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    /* Icon and text side by side */
     align-items: center;
-    padding: 20px 0;
-}
-
-.spec-label-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    margin-bottom: -198px;
-    flex-direction: column;
-    gap: 22px;
-    align-items: flex-start;
-}
-
-.spec-label-list li {
-    display: flex;
-    align-items: center;
+    /* Vertically center icon and text */
+    gap: 10px;
+    /* Space between icon and text */
     font-size: 1rem;
-    color: #333;
-    margin: 0;
-    width: 100%; /* Ensure all list items take the same width for alignment */
+    color: #333333;
 }
 
-.spec-icon {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-    flex-shrink: 0; /* Prevent the icon from shrinking */
+.spec-item img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0;
+    /* Remove margin since no longer stacked */
 }
 
-.spec-icon img {
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-}
-
-/* Style for the label (e.g., "CPU") */
-.spec-label {
-    font-weight: 500;
-    color: #333;
-    min-width: 80px; /* Ensures consistent spacing between label and description */
-}
-
-/* Style for the description (e.g., "2.4 GHz hex-core CPU") */
-.spec-desc {
-    font-weight: 400;
-    color: #666; /* Lighter color to distinguish from the label */
-    margin-left: 141px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 480px) {
-    .spec-label-list {
-        gap: 18px; /* Slightly smaller gap on mobile */
-    }
-
-    .spec-label-list li {
-        font-size: 0.9rem; /* Slightly smaller font on mobile */
-    }
-
-    .spec-icon img {
-        width: 20px;
-        height: 20px; /* Adjust icon size for mobile */
-    }
-
-    .spec-label {
-        min-width: 70px; /* Adjust spacing for smaller screens */
-    }
-
-    .spec-desc {
-        margin-left: 8px; /* Adjust spacing for smaller screens */
-    }
-}
 /* Responsive adjustments */
 @media (max-width: 480px) {
     .product-container h2 {
@@ -658,8 +619,9 @@ body {
     }
 
     .product-logo {
-        width: 274px;
-        height: 169px;
+        width: 50vh;
+        height: 37vh;
+        padding-bottom: 4vh;
     }
 
     .price-button,
@@ -683,12 +645,15 @@ body {
         width: 40px;
         height: 40px;
     }
+
+    
+   
 }
 
 /* ========== FOURTH PAGE (SLIDER) ========== */
 #fourth-page {
     position: relative;
-    height: 67vh;
+    height: 59vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -835,12 +800,12 @@ body {
         max-width: 300px;
     }
 
+
 }
 
 
 /* ========== RESPONSIVE STYLES ========== */
-@media (max-width: 1172px) {
-
+@media (max-width: 1180px) {
     #main-title {
         font-size: 3rem;
     }
@@ -859,12 +824,42 @@ body {
     }
 
     #electron-video {
-        width: 213%;
+        width: 155%;
         margin-top: -89px;
         max-width: 1254px;
-        height: 119%;
+        height: 100vh;
         display: block;
         z-index: 10;
+        padding-right: 6vh;
+    }
+
+    .slider-container {
+        position: static;
+        height: 110%;
+        width: 100%;
+        /* margin: -34px auto; */
+        margin-top: 34px;
+        overflow: hidden;
+    }
+
+    #second-page {
+        position: relative;
+        padding-top: 80px;
+        height: 72vh;
+    }
+
+    .slider-controls {
+        display: flex;
+        gap: 20px;
+        padding-top: 3vh;
+    }
+
+    #third-page {
+        height:114vh;
+    }
+
+    #fourth-page {
+        height: 58vh;
     }
 
     #sixth-page {
@@ -957,6 +952,15 @@ body {
 
 @media (max-width: 768px) {
 
+    .slider-controls-container {
+        width: 96%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 20px;
+        margin-top: 28%;
+    }
+
+
     #main-title {
         font-size: 2.5rem;
     }
@@ -969,7 +973,12 @@ body {
     #electron-video {
         max-width: 135%;
         /* Full width on smaller screens */
-        margin: 15px 10px;
+        margin-top: 23vh;
+    }
+
+    .section-header1 h2 {
+        font-size: 35px;
+        font-weight: bold;
     }
 
     #first-page {
@@ -985,6 +994,13 @@ body {
         align-items: center;
         gap: 24px;
         text-align: center;
+    }
+
+    .slider-container1 {
+        position: static;
+        /* margin: 0 auto; */
+        top: 12px;
+        padding-top: 2vh;
     }
 
     .footer-brand {
@@ -1085,7 +1101,27 @@ body {
     }
 
     #navbar ul.active {
-        max-height: 400px;
+        max-height: 386px;
+        padding: 10px 0;
+    }
+
+    #navbar ul {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: #ffffff;
+        padding: 0;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        border: none;
+    }
+
+    #navbar ul.active {
+        max-height: 389px;
         padding: 10px 0;
         background-color: white;
         /* Ensure solid white background when active */
@@ -1093,21 +1129,9 @@ body {
         /* Reinforce full opacity when active */
     }
 
-    #navbar li {
-        width: 100%;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
-    }
-
-    #navbar ul.active li {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
     #navbar a {
         font-size: 1rem;
-        padding: 18px 1px;
+        padding: 15px 1px;
         line-height: normal;
         border-bottom: none;
         margin: 0;
@@ -1148,10 +1172,18 @@ body {
         max-width: 300px;
     }
 
-
+    .headingg {
+        padding-left: 1vh;
+        font-size: 2rem;
+     }
+     
 }
 
 @media (max-width: 480px) {
+    .slider-controls-container {
+       
+        margin-top: -4%;
+    }
 
 
     #main-title {
@@ -1165,15 +1197,26 @@ body {
 
     #electron-video {
         max-width: 163%;
-        margin: 10px 5px;
+        padding-right: 18px;
         border-radius: 8px;
         /* Smaller radius for small screens */
     }
 }
 
 @media (max-width: 480px) {
+   .slider-controls{
+    padding-bottom: 1vh;
+   }
+
+   .slider-container1 {
+    position: static;
+    /* margin: 0 auto; */
+    top: 12px;
+    padding-top: 2vh;
+}
+
     #main-title {
-        font-size: 3rem;
+        font-size: 2rem;
         /* Adjusted for better fit */
         position: static;
         /* Remove absolute positioning */
@@ -1219,6 +1262,7 @@ body {
 
     #first-page {
         padding: 50px 5px 5px;
+        height: 73vh;
     }
 
 
@@ -1313,12 +1357,25 @@ body {
         font-size: 0.75rem;
     }
 
+    /* Second Page Header Styles */
+#second-page {
+    position: relative;
+    padding-top: 0px;
+    height: 96vh;
+    /* Creates space for the header */
+}
+
+#fourth-page {
+    height: 63vh;
+}
+
 }
 
 /* Second Page Header Styles */
 #second-page {
     position: relative;
-    padding-top: 80px; /* Creates space for the header */
+    padding-top: 0px;
+    /* Creates space for the header */
 }
 
 .section-header {
@@ -1380,3 +1437,107 @@ body {
     background-color: #000;
     color: #fff;
 }
+
+.spec-labels {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.spec-label-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin-bottom: -198px;
+    flex-direction: column;
+    gap: 22px;
+    align-items: flex-start;
+}
+
+.spec-label-list li {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #333;
+    margin: 0;
+    width: 100%;
+    /* Ensure all list items take the same width for alignment */
+}
+
+.spec-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    /* Prevent the icon from shrinking */
+}
+
+.spec-icon img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+/* Style for the label (e.g., "CPU") */
+.spec-label {
+    font-weight: 500;
+    color: #333;
+    min-width: 80px;
+    /* Ensures consistent spacing between label and description */
+}
+
+/* Style for the description (e.g., "2.4 GHz hex-core CPU") */
+.spec-desc {
+    font-weight: 400;
+    color: #666;
+    /* Lighter color to distinguish from the label */
+    margin-left: 141px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .spec-label-list {
+        gap: 18px;
+        /* Slightly smaller gap on mobile */
+    }
+
+    .spec-label-list li {
+        font-size: 0.9rem;
+        /* Slightly smaller font on mobile */
+    }
+
+    .spec-icon img {
+        width: 20px;
+        height: 20px;
+        /* Adjust icon size for mobile */
+    }
+
+    .spec-label {
+        min-width: 70px;
+        /* Adjust spacing for smaller screens */
+    }
+
+    .spec-desc {
+        margin-left: 8px;
+        /* Adjust spacing for smaller screens */
+    }
+}
+
+/* 
+@media (max-width: 480px) {
+    #main-title {
+        font-size: rem;
+        position: static;
+        margin: 0;
+        max-width: 100%;
+    }
+
+    #subtitle {
+        font-size: 16px;
+        margin-top: 5px;
+        max-width: 100%;
+    }
+
+} */

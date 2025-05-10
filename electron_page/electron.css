@@ -24,6 +24,8 @@
 
 /* ========== BASE STYLES ========== */
 body {
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    box-sizing: border-box; /* Ensure padding/margins are included in width */
     margin: 0;
     padding: 0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -31,6 +33,11 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
     line-height: 1.6;
+}
+
+/* Ensure all elements respect box-sizing */
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 /* ========== LOGO STYLES ========== */
@@ -271,8 +278,8 @@ body {
 }
 
 .slider-container {
-    position: relative;
-    height: 110%;
+    position: static;
+    height: 100%;
     width: 100%;
     /* margin: -34px auto; */
     margin-top: 34px;
@@ -280,7 +287,7 @@ body {
 }
 
 .slider-container1 {
-    position: relative;
+    position: static;
     margin: 0 auto;
     top: 12px;
     overflow: hidden;
@@ -307,7 +314,7 @@ body {
     display: flex;
     justify-content: flex-end;
     padding-right: 20px;
-    margin-top: 2%;
+    margin-top: 0%;
 }
 
 .slider-controls {
@@ -333,6 +340,13 @@ body {
     background-color: #000;
     color: #fff;
 }
+
+.headingg {
+   padding-left: 3vh;
+   font-size: 3rem;
+}
+
+
 
 /* Remove any conflicting button styles */
 .prev-btn,
@@ -473,7 +487,7 @@ body {
     align-items: center;
     padding: 40px 20px;
     box-sizing: border-box;
-    margin-bottom: 10px;
+    margin-top: -66px;
 }
 
 /* Styles for the heading */
@@ -605,8 +619,9 @@ body {
     }
 
     .product-logo {
-        width: 274px;
-        height: 169px;
+        width: 50vh;
+        height: 37vh;
+        padding-bottom: 4vh;
     }
 
     .price-button,
@@ -630,12 +645,15 @@ body {
         width: 40px;
         height: 40px;
     }
+
+    
+   
 }
 
 /* ========== FOURTH PAGE (SLIDER) ========== */
 #fourth-page {
     position: relative;
-    height: 67vh;
+    height: 59vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -782,7 +800,7 @@ body {
         max-width: 300px;
     }
 
-    
+
 }
 
 
@@ -816,7 +834,7 @@ body {
     }
 
     .slider-container {
-        position: relative;
+        position: static;
         height: 110%;
         width: 100%;
         /* margin: -34px auto; */
@@ -837,11 +855,11 @@ body {
     }
 
     #third-page {
-        height: 98vh;
+        height:114vh;
     }
 
     #fourth-page {
-        height: 35vh;
+        height: 58vh;
     }
 
     #sixth-page {
@@ -881,6 +899,8 @@ body {
     .link-group a {
         font-size: 0.85rem;
     }
+
+    
 
     #navbar ul {
         gap: 8px;
@@ -934,6 +954,13 @@ body {
 
 @media (max-width: 768px) {
 
+    .slider-controls-container {
+        width: 96%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 20px;
+        margin-top: 28%;
+    }
 
 
     #main-title {
@@ -948,12 +975,12 @@ body {
     #electron-video {
         max-width: 135%;
         /* Full width on smaller screens */
-        margin-top: auto;
+        margin-top: 23vh;
     }
-    
+
     .section-header1 h2 {
         font-size: 35px;
-        font-weight: bold; 
+        font-weight: bold;
     }
 
     #first-page {
@@ -972,7 +999,7 @@ body {
     }
 
     .slider-container1 {
-        position: relative;
+        position: static;
         /* margin: 0 auto; */
         top: 12px;
         padding-top: 2vh;
@@ -1076,7 +1103,27 @@ body {
     }
 
     #navbar ul.active {
-        max-height: 400px;
+        max-height: 386px;
+        padding: 10px 0;
+    }
+
+    #navbar ul {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: #ffffff;
+        padding: 0;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        border: none;
+    }
+
+    #navbar ul.active {
+        max-height: 389px;
         padding: 10px 0;
         background-color: white;
         /* Ensure solid white background when active */
@@ -1084,21 +1131,9 @@ body {
         /* Reinforce full opacity when active */
     }
 
-    #navbar li {
-        width: 100%;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
-    }
-
-    #navbar ul.active li {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
     #navbar a {
         font-size: 1rem;
-        padding: 18px 1px;
+        padding: 15px 1px;
         line-height: normal;
         border-bottom: none;
         margin: 0;
@@ -1139,10 +1174,18 @@ body {
         max-width: 300px;
     }
 
-
+    .headingg {
+        padding-left: 1vh;
+        font-size: 2rem;
+     }
+     
 }
 
 @media (max-width: 480px) {
+    .slider-controls-container {
+       
+        margin-top: -4%;
+    }
 
 
     #main-title {
@@ -1163,6 +1206,17 @@ body {
 }
 
 @media (max-width: 480px) {
+   .slider-controls{
+    padding-bottom: 1vh;
+   }
+
+   .slider-container1 {
+    position: static;
+    /* margin: 0 auto; */
+    top: 12px;
+    padding-top: 2vh;
+}
+
     #main-title {
         font-size: 2rem;
         /* Adjusted for better fit */
@@ -1210,6 +1264,7 @@ body {
 
     #first-page {
         padding: 50px 5px 5px;
+        height: 73vh;
     }
 
 
@@ -1304,12 +1359,24 @@ body {
         font-size: 0.75rem;
     }
 
+    /* Second Page Header Styles */
+#second-page {
+    position: relative;
+    padding-top: 0px;
+    height: 96vh;
+    /* Creates space for the header */
+}
+
+#fourth-page {
+    height: 63vh;
+}
+
 }
 
 /* Second Page Header Styles */
 #second-page {
     position: relative;
-    padding-top: 80px;
+    padding-top: 0px;
     /* Creates space for the header */
 }
 
