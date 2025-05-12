@@ -306,7 +306,7 @@ body {
     display: flex;
     justify-content: flex-end;
     padding-right: 20px;
-    margin-top: 16%;
+    margin-top: 2%;
 }
 
 .slider-controls-container1 {
@@ -363,7 +363,7 @@ body {
 
 .slide img {
     width: 97%;
-    height: 159%;
+    height: 100%;
     object-fit: cover;
     border-radius: 11px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -650,24 +650,136 @@ body {
    
 }
 
-/* ========== FOURTH PAGE (SLIDER) ========== */
+/* ========== FOURTH PAGE (FEATURES SLIDER) ========== */
 #fourth-page {
     position: relative;
-    height: 59vh;
+    height: auto;
+    min-height: 500px;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding: 40px 20px;
     box-sizing: border-box;
     margin-bottom: 10px;
+    background-color: white;
 }
 
-#fourth-page .slide img {
-    width: 97%;
-    height: 97%;
-
+.features-slider-container {
+    width: 100%;
+    position: relative;
 }
+
+.features-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.feature-slide {
+    flex: 0 0 calc(25% - 30px);
+    margin: 0 15px;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 30px 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
+    height: 43vh;
+}
+
+.feature-icon {
+    display: flex;
+    align-items: center;
+}
+
+
+.feature-icon img {
+    width: 70px;
+    height: 76px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.feature-title {
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+    transition: color 0.3s ease;
+}
+
+.feature-slide:hover .feature-title {
+    color: #19528f;
+}
+
+.feature-desc {
+    font-size: 22px;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Slider Controls */
+.slider-controls-container1 {
+    width: 96%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    margin-top: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .feature-slide {
+        flex: 0 0 calc(33.33% - 30px);
+    }
+}
+
+@media (max-width: 768px) {
+    #fourth-page {
+        padding: 30px 15px;
+    }
+
+    .feature-slide {
+        flex: 0 0 calc(50% - 30px);
+        min-height: 230px;
+    }
+}
+
+@media (max-width: 480px) {
+    #fourth-page {
+        padding: 20px 10px;
+    }
+
+    .feature-slide {
+        flex: 0 0 calc(100% - 30px);
+        min-height: 200px;
+    }
+
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+
+    .feature-icon img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .feature-title {
+        font-size: 21px;
+    }
+
+    .feature-desc {
+        font-size: 17px;
+    }
+}
+
 
 /* ========== SIXTH PAGE (FOOTER) ========== */
 #sixth-page {
@@ -1541,3 +1653,101 @@ body {
     }
 
 } */
+
+
+/* ========== POPUP STYLES ========== */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup.active {
+    display: flex;
+}
+
+.popup-content {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.popup-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.popup-content p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0 0 20px 0;
+}
+
+.popup-content input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f5f5f5;
+    color: #666;
+    box-sizing: border-box;
+}
+
+.subscribe-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.subscribe-button:hover {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+/* Responsive Adjustments for Popup */
+@media (max-width: 480px) {
+    .popup-content {
+        padding: 20px;
+        max-width: 300px;
+    }
+
+    .popup-content h2 {
+        font-size: 1.25rem;
+    }
+
+    .popup-content p {
+        font-size: 0.9rem;
+    }
+
+    .popup-content input[type="email"] {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .subscribe-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}

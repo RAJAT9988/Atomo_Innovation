@@ -543,3 +543,93 @@ document.addEventListener('DOMContentLoaded', () => {
         video.currentTime = video.duration; // Ensure it stays on the last frame
     });
 });
+
+// Add this to your electron.js file
+document.addEventListener('DOMContentLoaded', function() {
+    // Feature Slider Functionality
+    const featureSlider = document.querySelector('.features-slider');
+    const featureSlides = document.querySelectorAll('.feature-slide');
+    const prevFeatureBtn = document.querySelector('.prev-feature');
+    const nextFeatureBtn = document.querySelector('.next-feature');
+    
+    let currentFeatureIndex = 0;
+    const slidesToShow = 4; // Default number of slides to show
+    
+    function updateFeatureSlider() {
+        const slideWidth = featureSlides[0].offsetWidth + 30; // width + margin
+        const translateX = -currentFeatureIndex * slideWidth;
+        featureSlider.style.transform = `translateX(${translateX}px)`;
+        
+        // Disable buttons at boundaries
+        prevFeatureBtn.disabled = currentFeatureIndex === 0;
+        nextFeatureBtn.disabled = currentFeatureIndex >= featureSlides.length - slidesToShow;
+    }
+    
+    prevFeatureBtn.addEventListener('click', () => {
+        if (currentFeatureIndex > 0) {
+            currentFeatureIndex--;
+            updateFeatureSlider();
+        }
+    });
+    
+    nextFeatureBtn.addEventListener('click', () => {
+        if (currentFeatureIndex < featureSlides.length - slidesToShow) {
+            currentFeatureIndex++;
+            updateFeatureSlider();
+        }
+    });
+    
+    // Handle responsive slides count
+    function updateSlidesToShow() {
+        if (window.innerWidth <= 480) {
+            return 1;
+        } else if (window.innerWidth <= 768) {
+            return 2;
+        } else if (window.innerWidth <= 1024) {
+            return 3;
+        } else {
+            return 4;
+        }
+    }
+    
+    window.addEventListener('resize', () => {
+        slidesToShow = updateSlidesToShow();
+        updateFeatureSlider();
+    });
+    
+    // Initialize
+    updateFeatureSlider();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const buyButtons = document.querySelectorAll('.buy-button');
+    const popup = document.getElementById('subscription-popup');
+    const subscribeButton = document.getElementById('subscribe-button');
+    const emailInput = document.getElementById('email-input');
+
+    // Show popup when any Buy button is clicked
+    buyButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            popup.classList.add('active');
+        });
+    });
+
+    // Hide popup when clicking outside the popup content
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            popup.classList.remove('active');
+        }
+    });
+
+    // Handle subscription (placeholder action)
+    subscribeButton.addEventListener('click', () => {
+        const email = emailInput.value.trim();
+        if (email) {
+            alert(`Thank you for subscribing with ${email}!`);
+            emailInput.value = '';
+            popup.classList.remove('active');
+        } else {
+            alert('Please enter a valid email address.');
+        }
+    });
+});

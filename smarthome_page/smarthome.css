@@ -1786,15 +1786,28 @@ device-item {
         max-width: 100%;
         max-height: 100%;
     }
+     #eight-page {
+            height: 162vh;
+    }
 }
 
 @media (max-width: 480px) {
+   
+    .unified-interface-desc {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    margin-bottom: 2px;
+}
     #ninth-page {
         padding: 50px 15px;
     }
 
     .unified-interface-title {
         font-size: 1.7rem;
+                margin-bottom: -27vh;
+
     }
 
     .unified-interface-desc {
@@ -2770,6 +2783,7 @@ device-item {
 
     .text-content .subtitle {
         font-size: 0.85rem;
+                padding-bottom: 24vh;
     }
 
     .graph-container {
@@ -2798,5 +2812,50 @@ device-item {
    
     .link-group {
         min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    #ninth-page {
+        padding: 40px 15px; /* Slightly reduce padding for smaller screens */
+        min-height: 70vh; /* Reduce min-height to fit smaller screens better */
+    }
+
+    .unified-interface-container {
+        flex-direction: column; /* Already set at 768px, ensuring it remains */
+        padding: 0 10px; /* Reduce padding for tighter fit on small screens */
+        gap: 20px; /* Add gap between stacked elements */
+    }
+
+    .unified-interface-content {
+        max-width: 100%; /* Ensure full width */
+        padding-right: 0; /* Remove padding to maximize space */
+        margin-bottom: 20px; /* Adjust margin for better spacing */
+        text-align: center; /* Center-align text for better readability */
+    }
+
+    .unified-interface-title {
+        font-size: 1.5rem; /* Slightly smaller font size for better fit */
+        width: 100%; /* Reset width to fit container */
+        left: 0; /* Reset positioning */
+        bottom: 0; /* Reset positioning */
+        margin-bottom: 10px; /* Adjust spacing below title */
+        position: relative; /* Ensure proper stacking */
+    }
+
+    .unified-interface-desc {
+        font-size: 0.85rem; /* Smaller font size for better readability */
+        line-height: 1.5; /* Adjust line height for better text flow */
+        margin-bottom: 20px; /* Reduce margin to fit content better */
+    }
+
+    .unified-interface-image-container {
+        height: 30vh; /* Reduce height to fit smaller screens */
+        width: 100%; /* Ensure full width */
+    }
+
+    .unified-interface-image {
+        max-width: 90%; /* Slightly reduce max-width to avoid overflow */
+        max-height: 100%; /* Ensure image fits within container */
     }
 }
