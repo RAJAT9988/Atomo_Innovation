@@ -1004,6 +1004,22 @@ body {
     margin-top: 24px;
 }
 
+/* ========== DEVICE CONTAINER STYLING ========== */
+.device-container2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 600px;
+    /* Professional size, not too large */
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 8;
+    margin-top: 24px;
+}
+
 .device-image {
     width: 180%;
     height: auto;
@@ -1011,7 +1027,19 @@ body {
     transition: transform 0.3s ease;
 }
 
+.device-image1 {
+    width: 57%;
+    height: auto;
+    margin-top: -3vh;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
 .device-container:hover .device-image {
+    transform: scale(1.02);
+}
+
+.device-container2:hover .device-image {
     transform: scale(1.02);
 }
 
@@ -1189,7 +1217,7 @@ body {
     /* Modify the ul styles */
     #navbar ul {
         position: fixed;
-        top: 60px; /* Changed from 64px to match navbar height exactly */
+        top: -6px; /* Changed from 64px to match navbar height exactly */
         left: 0;
         width: 100%;
         flex-direction: column;
@@ -1204,8 +1232,8 @@ body {
 
     /* Add padding only when menu is active */
     #navbar ul.active {
-        max-height: 400px;
-        padding: 10px 0; /* Reduced from 16px to minimize spacing */
+        max-height: 318px;
+        padding: 92px 0;
     }
 
     /* Keep your existing li styles */
@@ -1224,7 +1252,7 @@ body {
     /* Modify link styles */
     #navbar a {
         font-size: 1rem;
-        padding: 18px 1px;
+        padding: 14px 1px;
         line-height: normal;
         border-bottom: none;
         margin: 0;

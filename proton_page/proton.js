@@ -449,25 +449,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Define sliders with their respective containers and controls
     const sliders = [
         {
             container: document.querySelector('#second-page .slider'),
             controls: document.querySelector('#second-page .slider-controls'),
             currentIndex: 0,
-            maxSlides: 12 // Total number of slides in second-page slider
+            maxSlides: 8
         },
         {
             container: document.querySelector('#fourth-page .slider'),
             controls: document.querySelector('#fourth-page .slider-controls'),
             currentIndex: 0,
-            maxSlides: 12 // Total number of slides in fourth-page slider
+            maxSlides: 8
         }
     ];
 
-    // Initialize each slider
     sliders.forEach((slider) => {
-        // Check if slider container and controls exist
         if (!slider.container || !slider.controls) {
             console.warn('Slider container or controls not found:', slider);
             return;
@@ -479,38 +476,34 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Get the width of the first slide, including margins/padding
+        slider.maxSlides = Math.min(slider.maxSlides, slides.length);
         const slideWidth = slides[0].offsetWidth + parseInt(getComputedStyle(slides[0]).marginLeft || 0) + parseInt(getComputedStyle(slides[0]).marginRight || 0);
         const prevButton = slider.controls.querySelector('.round-button:first-child');
         const nextButton = slider.controls.querySelector('.round-button:last-child');
 
-        // Function to move slider
         function moveSlider() {
             slider.container.style.transition = 'transform 0.5s ease-in-out';
             slider.container.style.transform = `translateX(-${slider.currentIndex * slideWidth}px)`;
         }
 
-        // Next slide function
         function nextSlide() {
             if (slider.currentIndex < slider.maxSlides - 1) {
                 slider.currentIndex++;
             } else {
-                slider.currentIndex = 0; // Loop back to first slide
+                slider.currentIndex = 0;
             }
             moveSlider();
         }
 
-        // Previous slide function
         function prevSlide() {
             if (slider.currentIndex > 0) {
                 slider.currentIndex--;
             } else {
-                slider.currentIndex = slider.maxSlides - 1; // Loop to last slide
+                slider.currentIndex = slider.maxSlides - 1;
             }
             moveSlider();
         }
 
-        // Event listeners for buttons
         if (nextButton) {
             nextButton.addEventListener('click', nextSlide);
         } else {
@@ -523,17 +516,14 @@ document.addEventListener('DOMContentLoaded', function() {
             console.warn('Previous button not found for slider:', slider);
         }
 
-        // Handle window resize to recalculate slide width
         window.addEventListener('resize', () => {
             const newSlideWidth = slides[0].offsetWidth + parseInt(getComputedStyle(slides[0]).marginLeft || 0) + parseInt(getComputedStyle(slides[0]).marginRight || 0);
             slider.container.style.transform = `translateX(-${slider.currentIndex * newSlideWidth}px)`;
         });
 
-        // Initialize slider position
         moveSlider();
     });
 });
-
 document.addEventListener('DOMContentLoaded', () => {
     const video = document.getElementById('electron-video');
     
@@ -543,64 +533,259 @@ document.addEventListener('DOMContentLoaded', () => {
         video.currentTime = video.duration; // Ensure it stays on the last frame
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const featureSlider2 = document.querySelector('.features-slider2');
+    const featureSlides2 = document.querySelectorAll('.feature-slide2');
+    const prevFeatureBtn2 = document.querySelector('#second-page .prev-feature');
+    const nextFeatureBtn2 = document.querySelector('#second-page .next-feature');
+    const secondPageSection = document.querySelector('#second-page');
 
-// Add this to your electron.js file
-document.addEventListener('DOMContentLoaded', function() {
-    // Feature Slider Functionality
+    let currentFeatureIndex2 = 0;
+    const autoSlideInterval2 = 10000; // 10 seconds interval for regular sliding
+    const restartDelay = 1000; // 1 second delay for restart
+    let autoSlideTimer2 = null;
+    let isAutoSliding2 = false;
+
+    function updateSlidesToShow2() {
+        if (window.innerWidth <= 480) return 1;
+        if (window.innerWidth <= 768) return 2;
+        if (window.innerWidth <= 1024) return 3;
+        return 4;
+    }
+
+    function updateFeatureSlider2() {
+        const slidesToShow = updateSlidesToShow2();
+        const slideWidth = featureSlides2[0].offsetWidth + 30; // Width + margin
+        const translateX = -currentFeatureIndex2 * slideWidth;
+        featureSlider2.style.transform = `translateX(${translateX}px)`;
+
+        // Disable buttons at boundaries
+        prevFeatureBtn2.disabled = currentFeatureIndex2 === 0;
+        nextFeatureBtn2.disabled = currentFeatureIndex2 >= featureSlides2.length - slidesToShow;
+    }
+
+    function autoSlide2() {
+        const slidesToShow = updateSlidesToShow2();
+        // Check if the current index is at the last visible slide
+        if (currentFeatureIndex2 >= featureSlides2.length - slidesToShow) {
+            // Wait for 1 second before restarting
+            setTimeout(() => {
+                currentFeatureIndex2 = 0; // Reset to the first slide
+                updateFeatureSlider2();
+                // Resume with the normal 10-second interval if still in view
+                if (isAutoSliding2) {
+                    autoSlideTimer2 = setTimeout(autoSlide2, autoSlideInterval2);
+                }
+            }, restartDelay);
+        } else {
+            // Move to the next slide
+            currentFeatureIndex2++;
+            updateFeatureSlider2();
+            // Continue with the normal 10-second interval if still in view
+            if (isAutoSliding2) {
+                autoSlideTimer2 = setTimeout(autoSlide2, autoSlideInterval2);
+            }
+        }
+    }
+
+    // Intersection Observer to detect when the second page is in view
+    const observer2 = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Start auto-sliding when the section comes into view
+                    if (!isAutoSliding2) {
+                        isAutoSliding2 = true;
+                        autoSlideTimer2 = setTimeout(autoSlide2, autoSlideInterval2);
+                    }
+                } else {
+                    // Stop auto-sliding when the section is out of view
+                    if (isAutoSliding2) {
+                        isAutoSliding2 = false;
+                        clearTimeout(autoSlideTimer2);
+                    }
+                }
+            });
+        },
+        {
+            threshold: 0.3, // Start when 30% of the section is visible
+        }
+    );
+
+    // Start observing the second page section
+    observer2.observe(secondPageSection);
+
+    // Pause auto-sliding on button click and resume after a delay
+    prevFeatureBtn2.addEventListener('click', () => {
+        clearTimeout(autoSlideTimer2); // Pause auto-sliding
+        if (currentFeatureIndex2 > 0) {
+            currentFeatureIndex2--; // Move one slide backward
+            updateFeatureSlider2();
+        }
+        // Resume auto-sliding after 10 seconds if the section is still in view
+        if (isAutoSliding2) {
+            autoSlideTimer2 = setTimeout(autoSlide2, autoSlideInterval2);
+        }
+    });
+
+    nextFeatureBtn2.addEventListener('click', () => {
+        clearTimeout(autoSlideTimer2); // Pause auto-sliding
+        const slidesToShow = updateSlidesToShow2();
+        if (currentFeatureIndex2 < featureSlides2.length - slidesToShow) {
+            currentFeatureIndex2++; // Move one slide forward
+            updateFeatureSlider2();
+            // Resume with the normal 10-second interval if still in view
+            if (isAutoSliding2) {
+                autoSlideTimer2 = setTimeout(autoSlide2, autoSlideInterval2);
+            }
+        } else {
+            // At the last slide, wait 1 second before restarting
+            setTimeout(() => {
+                currentFeatureIndex2 = 0; // Reset to the first slide
+                updateFeatureSlider2();
+                // Resume with the normal 10-second interval if still in view
+                if (isAutoSliding2) {
+                    autoSlideTimer2 = setTimeout(autoSlide2, autoSlideInterval2);
+                }
+            }, restartDelay);
+        }
+    });
+
+    // Responsive handling for the second page slider
+    window.addEventListener('resize', () => {
+        updateFeatureSlider2();
+    });
+
+    // Initialize the second page slider
+    updateFeatureSlider2();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
     const featureSlider = document.querySelector('.features-slider');
     const featureSlides = document.querySelectorAll('.feature-slide');
-    const prevFeatureBtn = document.querySelector('.prev-feature');
-    const nextFeatureBtn = document.querySelector('.next-feature');
-    
+    const prevFeatureBtn = document.querySelector('#fourth-page .prev-feature');
+    const nextFeatureBtn = document.querySelector('#fourth-page .next-feature');
+    const fourthPageSection = document.querySelector('#fourth-page');
+
     let currentFeatureIndex = 0;
-    const slidesToShow = 4; // Default number of slides to show
-    
+    const autoSlideInterval = 10000; // 10 seconds interval for regular sliding
+    const restartDelay = 1000; // 1 second delay for restart
+    let autoSlideTimer = null;
+    let isAutoSliding = false;
+
+    function updateSlidesToShow() {
+        if (window.innerWidth <= 480) return 1;
+        if (window.innerWidth <= 768) return 2;
+        if (window.innerWidth <= 1024) return 3;
+        return 4;
+    }
+
     function updateFeatureSlider() {
-        const slideWidth = featureSlides[0].offsetWidth + 30; // width + margin
+        const slidesToShow = updateSlidesToShow();
+        const slideWidth = featureSlides[0].offsetWidth + 30; // Width + margin
         const translateX = -currentFeatureIndex * slideWidth;
         featureSlider.style.transform = `translateX(${translateX}px)`;
-        
+
         // Disable buttons at boundaries
         prevFeatureBtn.disabled = currentFeatureIndex === 0;
         nextFeatureBtn.disabled = currentFeatureIndex >= featureSlides.length - slidesToShow;
     }
-    
-    prevFeatureBtn.addEventListener('click', () => {
-        if (currentFeatureIndex > 0) {
-            currentFeatureIndex--;
-            updateFeatureSlider();
-        }
-    });
-    
-    nextFeatureBtn.addEventListener('click', () => {
-        if (currentFeatureIndex < featureSlides.length - slidesToShow) {
+
+    function autoSlide() {
+        const slidesToShow = updateSlidesToShow();
+        // Check if the current index is at the last visible slide
+        if (currentFeatureIndex >= featureSlides.length - slidesToShow) {
+            // Wait for 1 second before restarting
+            setTimeout(() => {
+                currentFeatureIndex = 0; // Reset to the first slide
+                updateFeatureSlider();
+                // Resume with the normal 10-second interval if still in view
+                if (isAutoSliding) {
+                    autoSlideTimer = setTimeout(autoSlide, autoSlideInterval);
+                }
+            }, restartDelay);
+        } else {
+            // Move to the next slide
             currentFeatureIndex++;
             updateFeatureSlider();
-        }
-    });
-    
-    // Handle responsive slides count
-    function updateSlidesToShow() {
-        if (window.innerWidth <= 480) {
-            return 1;
-        } else if (window.innerWidth <= 768) {
-            return 2;
-        } else if (window.innerWidth <= 1024) {
-            return 3;
-        } else {
-            return 4;
+            // Continue with the normal 10-second interval if still in view
+            if (isAutoSliding) {
+                autoSlideTimer = setTimeout(autoSlide, autoSlideInterval);
+            }
         }
     }
-    
+
+    // Intersection Observer to detect when the fourth page is in view
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Start auto-sliding when the section comes into view
+                    if (!isAutoSliding) {
+                        isAutoSliding = true;
+                        autoSlideTimer = setTimeout(autoSlide, autoSlideInterval);
+                    }
+                } else {
+                    // Stop auto-sliding when the section is out of view
+                    if (isAutoSliding) {
+                        isAutoSliding = false;
+                        clearTimeout(autoSlideTimer);
+                    }
+                }
+            });
+        },
+        {
+            threshold: 0.3, // Start when 30% of the section is visible
+        }
+    );
+
+    // Start observing the fourth page section
+    observer.observe(fourthPageSection);
+
+    // Pause auto-sliding on button click and resume after a delay
+    prevFeatureBtn.addEventListener('click', () => {
+        clearTimeout(autoSlideTimer); // Pause auto-sliding
+        if (currentFeatureIndex > 0) {
+            currentFeatureIndex--; // Move one slide backward
+            updateFeatureSlider();
+        }
+        // Resume auto-sliding after 10 seconds if the section is still in view
+        if (isAutoSliding) {
+            autoSlideTimer = setTimeout(autoSlide, autoSlideInterval);
+        }
+    });
+
+    nextFeatureBtn.addEventListener('click', () => {
+        clearTimeout(autoSlideTimer); // Pause auto-sliding
+        const slidesToShow = updateSlidesToShow();
+        if (currentFeatureIndex < featureSlides.length - slidesToShow) {
+            currentFeatureIndex++; // Move one slide forward
+            updateFeatureSlider();
+            // Resume with the normal 10-second interval if still in view
+            if (isAutoSliding) {
+                autoSlideTimer = setTimeout(autoSlide, autoSlideInterval);
+            }
+        } else {
+            // At the last slide, wait 1 second before restarting
+            setTimeout(() => {
+                currentFeatureIndex = 0; // Reset to the first slide
+                updateFeatureSlider();
+                // Resume with the normal 10-second interval if still in view
+                if (isAutoSliding) {
+                    autoSlideTimer = setTimeout(autoSlide, autoSlideInterval);
+                }
+            }, restartDelay);
+        }
+    });
+
+    // Responsive handling for the fourth page slider
     window.addEventListener('resize', () => {
-        slidesToShow = updateSlidesToShow();
         updateFeatureSlider();
     });
-    
-    // Initialize
+
+    // Initialize the fourth page slider
     updateFeatureSlider();
 });
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const buyButtons = document.querySelectorAll('.buy-button');

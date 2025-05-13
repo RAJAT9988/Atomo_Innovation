@@ -343,57 +343,66 @@ body {
 }
 
 #navbar ul {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    background-color: white;
-    /* Ensure base background is white */
-    padding: 0;
-    margin: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    border: none;
-    z-index: 100;
-    opacity: 1;
-    /* Ensure full opacity */
-}
+        position: fixed;
+        top: -6px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: white;
+        /* Ensure base background is white */
+        padding: 0;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        border: none;
+        z-index: 100;
+        opacity: 1;
+        /* Ensure full opacity */
+    }
 
-#navbar ul.active {
-    max-height: 400px;
-    padding: 10px 0;
-    background-color: white;
-    /* Ensure solid white background when active */
-    opacity: 1;
-    /* Reinforce full opacity when active */
-}
+    #navbar ul.active {
+        max-height: 318px;
+        padding: 92px 0;
+    }
 
-#navbar li {
-    width: 100%;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
-}
+    #navbar ul {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: #ffffff;
+        padding: 0;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        border: none;
+    }
 
-#navbar ul.active li {
-    opacity: 1;
-    transform: translateY(0);
-}
+    #navbar ul.active {
+        max-height: 474px;
+        padding: 10px 0;
+        
+        background-color: white;
+        /* Ensure solid white background when active */
+        opacity: 1;
+        /* Reinforce full opacity when active */
+    }
 
-#navbar a {
-    font-size: 1rem;
-    padding: 18px 1px;
-    line-height: normal;
-    border-bottom: none;
-    margin: 0;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #181818;
-}
+    #navbar a {
+        font-size: 1rem;
+        padding: 13px 1px;
+        line-height: normal;
+        border-bottom: none;
+        margin: 0;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #181818;
+    }
 
 #navbar a:hover {
     color: var(--accent-color);
