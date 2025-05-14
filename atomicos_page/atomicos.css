@@ -1,5 +1,5 @@
 /* ========== COLOR PALETTE ========== */
-/* Keep your existing color palette */
+/* Existing color palette remains unchanged */
 :root {
     --primary-color: #2b6cb0;
     --secondary-color: #1a4971;
@@ -13,7 +13,7 @@
 }
 
 /* ========== BASE STYLES ========== */
-/* Keep your existing body styles */
+/* Existing body styles remain unchanged */
 body {
     margin: 0;
     padding: 0;
@@ -24,7 +24,163 @@ body {
     line-height: 1.6;
 }
 
-/* ========== LOGO STYLES ========== */
+/* ========== FIRST PAGE (HERO SECTION) ========== */
+#first-page {
+    position: relative;
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.hero-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 69%;
+    background-color: transparent;
+    object-fit: cover;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.hero-image:hover {
+    opacity: 1;
+}
+
+.matter-content {
+    position: relative;
+    width: 90%;
+    height: auto;
+    max-width: 1200px;
+    top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#main-title {
+    position: relative;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #333333;
+    margin: 0;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#subtitle {
+    position: relative;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #666666;
+    margin: 14px 0 0 0;
+    text-align: center;
+    max-width: 403px;
+}
+
+/* ========== RESPONSIVE STYLES FOR FIRST PAGE ========== */
+@media (max-width: 1024px) {
+    #first-page {
+        height: 75vh;
+    }
+
+    .hero-image {
+        width: 80%;
+        top: 120px;
+    }
+
+    #main-title {
+        font-size: 3.5rem;
+    }
+
+    #subtitle {
+        font-size: 1.1rem;
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    #first-page {
+        height: 70vh;
+        padding: 0 16px;
+    }
+
+    .hero-container {
+        height: 80%;
+    }
+
+    .hero-image {
+        width: 90%;
+        top: 100px;
+    }
+
+    .matter-content {
+        width: 100%;
+        top: 3%;
+    }
+
+    #main-title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+
+    #subtitle {
+        font-size: 1rem;
+        max-width: 300px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #first-page {
+        height: 60vh;
+        padding: 0 12px;
+    }
+
+    .hero-container {
+        height: 70%;
+    }
+
+    .hero-image {
+        width: 100%;
+        top: 80px;
+                padding-right: 4vh;
+
+    }
+
+    .matter-content {
+        width: 100%;
+        top: 2%;
+    }
+
+    #main-title {
+        font-size: 1.75rem;
+                padding-top: 10vh;
+    }
+
+    #subtitle {
+        font-size: 0.9rem;
+        max-width: 250px;
+        margin-top: 8px;
+    }
+}
+
+/* Existing styles for other sections remain unchanged */
+/* Include the rest of your CSS here to ensure the file is complete */
 .navbar-logo {
     position: relative;
     top: 50%;
@@ -61,7 +217,6 @@ body {
     transform: scale(1.05);
 }
 
-/* ========== NAVBAR ========== */
 #navbar {
     position: absolute;
     top: 0;
@@ -69,9 +224,7 @@ body {
     right: 0;
     background-color: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    /* Light bottom border */
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    /* Simple bottom shadow */
     height: 60px;
     z-index: 100;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
@@ -132,123 +285,6 @@ body {
     left: 25%;
 }
 
-/* ========== HAMBURGER MENU ========== */
-#hamburger {
-    display: none;
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    width: 28px;
-    height: 20px;
-    z-index: 1000;
-    cursor: pointer;
-}
-
-#hamburger span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: #181818;
-    margin: 4px 0;
-    transition: all 0.3s ease;
-    transform-origin: center;
-}
-
-#hamburger:hover span {
-    background-color: var(--accent-color);
-}
-
-#hamburger.open span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-    background-color: var(--accent-color);
-}
-
-#hamburger.open span:nth-child(2) {
-    opacity: 0;
-}
-
-#hamburger.open span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-    background-color: var(--accent-color);
-}
-
-/* ========== RESPONSIVE STYLES ========== */
-@media (max-width: 1024px) {
-    #navbar ul {
-        gap: 8px;
-    }
-
-    #navbar a {
-        font-size: 0.9rem;
-        padding: 8px 12px;
-    }
-}
-
-@media (max-width: 768px) {
-    #navbar {
-        border-bottom: none;
-        box-shadow: none;
-    }
-
-    .navbar-logo {
-        display: none;
-    }
-
-    .logo1 {
-        display: block;
-    }
-
-    #hamburger {
-        display: block;
-    }
-
-    #navbar ul {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background-color: #ffffff;
-        padding: 0;
-        margin: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        border: none;
-    }
-
-    #navbar ul.active {
-        max-height: 400px;
-        padding: 10px 0;
-    }
-
-    #navbar li {
-        width: 100%;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
-    }
-
-    #navbar ul.active li {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    #navbar a {
-        font-size: 1rem;
-        padding: 18px 1px;
-        line-height: normal;
-        border-bottom: none;
-        margin: 0;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #181818;
-    }
-}
-
-/* ========== HAMBURGER MENU ========== */
 #hamburger {
     display: none;
     position: fixed;
@@ -288,7 +324,6 @@ body {
     background-color: var(--accent-color);
 }
 
-/* ========== RESPONSIVE STYLES FOR NAVBAR ========== */
 @media (max-width: 1024px) {
     #navbar ul {
         gap: 8px;
@@ -301,8 +336,6 @@ body {
 }
 
 @media (max-width: 768px) {
-
-    /* Updated navbar styles to ensure logo is above */
     #navbar {
         position: absolute;
         top: 0;
@@ -311,9 +344,7 @@ body {
         height: auto;
         background-color: white;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        /* Light bottom border */
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        /* Simple bottom shadow */
         border-bottom: none;
         box-shadow: none;
         padding-top: 60px;
@@ -350,7 +381,6 @@ body {
         width: 100%;
         flex-direction: column;
         background-color: white;
-        /* Ensure base background is white */
         padding: 0;
         margin: 0;
         max-height: 0;
@@ -359,37 +389,11 @@ body {
         border: none;
         z-index: 100;
         opacity: 1;
-        /* Ensure full opacity */
     }
 
     #navbar ul.active {
         max-height: 318px;
         padding: 92px 0;
-    }
-
-    #navbar ul {
-        position: absolute;
-        top: 10px;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background-color: #ffffff;
-        padding: 0;
-        margin: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        border: none;
-    }
-
-    #navbar ul.active {
-        max-height: 474px;
-        padding: 10px 0;
-
-        background-color: white;
-        /* Ensure solid white background when active */
-        opacity: 1;
-        /* Reinforce full opacity when active */
     }
 
     #navbar a {
@@ -408,101 +412,10 @@ body {
     #navbar a:hover {
         color: var(--accent-color);
     }
-
 }
 
 @media (max-width: 480px) {
     /* No additional navbar-specific changes needed here */
-}
-
-/* ========== REST OF YOUR CSS ========== */
-/* Keep the rest of your CSS unchanged (from #first-page to the end) */
-
-/* ========== FIRST PAGE (HERO SECTION) ========== */
-#first-page {
-    position: relative;
-    height: 85vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    margin-bottom: 10px;
-}
-
-.hero-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.hero-image {
-    width: 69%;
-    background-color: #ffffff00;
-    object-fit: cover;
-    position: absolute;
-    top: 150px;
-    left: 267px;
-    z-index: 1;
-    opacity: 0.9;
-    transition: opacity 0.3s ease;
-}
-
-.hero-image:hover {
-    opacity: 1;
-}
-
-.matter-content {
-    position: relative;
-    width: 112%;
-    height: 100px;
-    max-width: 90%;
-    /* margin-bottom: -135px; */
-    top: 7%;
-}
-
-#main-title {
-    position: absolute;
-    /* bottom: 100%; */
-    /* right: 104%; */
-    font-size: 4rem;
-    font-weight: 700;
-    color: #333333;
-    margin: 0;
-    /* line-height: 1; */
-    letter-spacing: 2px;
-}
-
-#subtitle {
-    position: absolute;
-    /* bottom: 100%; */
-    left: 83%;
-    /* right: -27%; */
-    font-size: 1.2rem;
-    font-weight: 400;
-    top: 20px;
-    width: 17%;
-    color: #666666;
-    /* margin: 0; */
-    max-width: 403px;
-    /* line-height: 1.5; */
-    text-align: right;
-}
-
-/* Responsive adjustments for first page */
-@media (max-width: 1670px) {
-    #main-title {
-        font-size: 3.5rem;
-    }
-
-    #subtitle {
-        font-size: 1.1rem;
-        max-width: 350px;
-    }
-
-
 }
 
 /* ========== SECOND PAGE ========== */
@@ -645,13 +558,10 @@ body {
 #eighth-page {
     position: relative;
     min-height: 62vh;
-    /* Changed from height to min-height */
     width: 100%;
     display: flex;
     justify-content: center;
-    /* Changed from flex-start to center */
     align-items: center;
-    /* Changed from flex-start to center */
     padding: 40px 20px;
     box-sizing: border-box;
     margin-bottom: 10px;
@@ -660,10 +570,8 @@ body {
 .section-content {
     width: 100%;
     max-width: 100%;
-    /* Changed from 1200px to 100% */
     margin: 0;
     padding: 0 20px;
-    /* Added padding for better spacing on sides */
 }
 
 .section-title {
@@ -673,7 +581,6 @@ body {
     padding-right: 141vh;
     margin-bottom: 24px;
     text-align: center;
-    /* Changed from left to center */
     animation: fadeInUp 1s ease-out;
 }
 
@@ -686,14 +593,11 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.05);
     min-height: 36vh;
-    /* Changed from height to min-height */
     width: 96%;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin: 0 auto;
-    /* Center the container */
 }
-
 
 .section-description {
     font-size: 2.125rem;
@@ -703,7 +607,6 @@ body {
     margin-top: 79px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 1024px) {
     .section-title {
         font-size: 2.25rem;
@@ -720,7 +623,6 @@ body {
 }
 
 @media (max-width: 768px) {
-
     #third-page,
     #fourth-page,
     #fifth-page,
@@ -752,6 +654,8 @@ body {
 
     .section-text-container {
         padding: 16px;
+        display: flex;
+        flex-direction: column;
         min-height: 35vh;
     }
 
@@ -780,38 +684,27 @@ body {
     text-align: center;
 }
 
-/* Step Header Container */
 .step-header {
     display: flex;
     align-items: center;
-    /* Vertically center the icon and heading */
     margin-bottom: 12px;
-    /* Space below the header */
 }
 
-/* Step Icon Styles */
 .step-icon {
     width: 32px;
-    /* Keep the size as before */
     height: 32px;
     padding-right: 4vh;
     margin-right: 12px;
-    /* Space between icon and heading */
     filter: brightness(0) saturate(100%) invert(15%) sepia(5%) saturate(1355%) hue-rotate(202deg) brightness(95%) contrast(88%);
-    /* Keep the color filter */
 }
 
-/* Adjust the Heading Style */
 .step-box h3 {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-dark);
     margin: 0;
     padding-right: 8vh;
-
-    /* Remove default margins */
     text-align: left;
-    /* Align text to the left */
 }
 
 .section-title1 {
@@ -831,18 +724,6 @@ body {
     margin-bottom: 32px;
 }
 
-/* Step Icon Styles */
-.step-icon {
-    display: block;
-    width: 32px;
-    /* Adjust size to match the image */
-    height: 32px;
-    margin: 0 auto 12px;
-    /* Center the icon and add spacing below */
-    filter: brightness(0) saturate(100%) invert(15%) sepia(5%) saturate(1355%) hue-rotate(202deg) brightness(95%) contrast(88%);
-    /* Match the icon color from the image */
-}
-
 .step-box {
     background-color: #ffffff;
     border-radius: 12px;
@@ -853,7 +734,6 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: left;
     position: relative;
-    /* Add this to contain the absolute positioning of .para */
 }
 
 .step-box:hover {
@@ -868,7 +748,6 @@ body {
     text-align: center;
     margin-bottom: 12px;
     margin-top: 0;
-    /* Ensure no extra space above the heading */
 }
 
 .step-box p {
@@ -882,13 +761,9 @@ body {
     font-weight: 500;
     color: #4a5568;
     position: absolute;
-    /* Position it absolutely within the step-box */
     bottom: 16px;
-    /* Distance from the bottom */
     right: 16px;
-    /* Distance from the right */
     margin: 0;
-    /* Remove any default margins */
 }
 
 .sdk-button {
@@ -989,7 +864,6 @@ body {
     gap: 48px;
 }
 
-/* ========== RESPONSIVE DESIGN FOR FOOTER ========== */
 @media (max-width: 1024px) {
     #sixth-page {
         padding: 48px 16px 24px;
@@ -1140,7 +1014,6 @@ body {
     filter: brightness(1);
 }
 
-
 .link-group {
     flex: 1;
     min-width: 160px;
@@ -1254,10 +1127,6 @@ body {
         display: block;
     }
 
-    #hamburger {
-        display: block;
-    }
-
     #navbar ul {
         position: fixed;
         top: 60px;
@@ -1297,10 +1166,6 @@ body {
         border-bottom: none;
         margin: 0;
         text-align: center;
-    }
-
-    #first-page {
-        height: 70vh;
     }
 
     #second-page,
@@ -1377,17 +1242,12 @@ body {
         font-size: 1rem;
     }
 
-
     .social-icons {
         justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
-    #first-page {
-        height: 60vh;
-    }
-
     #second-title {
         font-size: 1.5rem;
     }
@@ -1448,8 +1308,6 @@ body {
     .tagline {
         font-size: 0.875rem;
     }
-
-
 
     .social-icons img {
         width: 20px;
