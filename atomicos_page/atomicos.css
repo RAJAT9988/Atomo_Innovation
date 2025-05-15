@@ -413,6 +413,8 @@ body {
     #navbar a:hover {
         color: var(--accent-color);
     }
+
+    
 }
 
 @media (max-width: 480px) {
@@ -501,6 +503,11 @@ body {
         max-width: 700px;
         text-align: center;
     }
+
+    .feature-desc {
+    font-size: 12px;
+   
+}
 }
 
 @media (max-width: 768px) {
