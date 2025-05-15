@@ -45,11 +45,11 @@ body {
 }
 
 .hero-image {
-    width: 69%;
+   width: 37%;
     background-color: transparent;
     object-fit: cover;
     position: absolute;
-    top: 150px;
+    top: 90px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -120,12 +120,13 @@ body {
     }
 
     .hero-container {
-        height: 80%;
+        height: 63%;
     }
 
     .hero-image {
         width: 90%;
         top: 100px;
+                padding-right: 3vh;
     }
 
     .matter-content {
@@ -437,6 +438,7 @@ body {
     margin: 0 auto;
 }
 
+/* ========== SECOND PAGE HEADINGS, DESCRIPTION, AND TEXT ========== */
 #second-title {
     font-size: 2.25rem;
     font-weight: 700;
@@ -471,10 +473,78 @@ body {
     color: #4a5568;
     max-width: 800px;
     text-align: left;
-    width: 300vh;
+    width: 100%;
     line-height: 1.7;
     animation: fadeInUp 1s ease-out 0.6s forwards;
     opacity: 0;
+    overflow-wrap: break-word;
+}
+
+/* ========== RESPONSIVE STYLES FOR SECOND PAGE HEADINGS, DESCRIPTION, AND TEXT ========== */
+@media (max-width: 1024px) {
+    #second-title {
+        font-size: 2rem;
+    }
+
+    #second-subtitle {
+        font-size: 2.5rem;
+    }
+
+    #second-description {
+        font-size: 1.25rem;
+        margin-top: 60px;
+        text-align: center;
+    }
+
+    #second-text {
+        font-size: 1rem;
+        max-width: 700px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    #second-title {
+        font-size: 1.75rem;
+    }
+
+    #second-subtitle {
+        font-size: 2rem;
+    }
+
+    #second-description {
+        font-size: 1.125rem;
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    #second-text {
+        font-size: 0.95rem;
+        max-width: 600px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #second-title {
+        font-size: 1.5rem;
+    }
+
+    #second-subtitle {
+        font-size: 1.75rem;
+    }
+
+    #second-description {
+        font-size: 1rem;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    #second-text {
+        font-size: 0.875rem;
+        max-width: 500px;
+        text-align: center;
+    }
 }
 
 .box-container {
@@ -719,7 +789,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 24px;
-    height: 716px;
+    height: auto;
     flex-wrap: wrap;
     margin-bottom: 32px;
 }
@@ -754,6 +824,8 @@ body {
     font-size: 1.25rem;
     font-weight: 500;
     color: #4a5568;
+    line-height: 1.6;
+    overflow-wrap: break-word;
 }
 
 .para {
@@ -813,6 +885,165 @@ body {
     margin-top: 67px;
     animation: fadeInUp 1s ease-out 0.8s forwards;
     opacity: 0;
+    overflow-wrap: break-word;
+}
+
+/* ========== RESPONSIVE STYLES FOR NINTH PAGE ========== */
+@media (max-width: 1024px) {
+    .section-title1 {
+        font-size: 2.25rem;
+    }
+
+    .steps-container {
+        gap: 16px;
+        height: auto;
+    }
+
+    .step-box {
+        width: 220px;
+        height: auto;
+        min-height: 300px;
+        padding: 20px;
+    }
+
+    .step-box h3 {
+        font-size: 1.4rem;
+    }
+
+    .step-box p {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+
+    .step-icon {
+        width: 28px;
+        height: 28px;
+        padding-right: 2vh;
+    }
+
+    .para {
+        font-size: 1.1rem;
+    }
+
+    .sdk-button {
+        width: 280px;
+        padding: 20px;
+    }
+
+    .tagline {
+        font-size: 2.5rem;
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title1 {
+        font-size: 2rem;
+    }
+
+    .steps-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        height: auto;
+    }
+
+    .step-box {
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        min-height: 280px;
+        padding: 20px;
+    }
+
+    .step-box h3 {
+        font-size: 1.3rem;
+    }
+
+    .step-box p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .step-icon {
+        width: 24px;
+        height: 24px;
+        padding-right: 1vh;
+        margin-right: 8px;
+    }
+
+    .para {
+        font-size: 1rem;
+    }
+
+    .sdk-button {
+        width: 100%;
+        max-width: 300px;
+        padding: 18px;
+    }
+
+    .sdk-button h3 {
+        font-size: 1.6rem;
+    }
+
+    .tagline {
+        font-size: 1.8rem;
+        margin-top: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title1 {
+        font-size: 1.75rem;
+    }
+
+    .steps-container {
+        gap: 12px;
+    }
+
+    .step-box {
+        width: 100%;
+        max-width: 300px;
+        min-height: 260px;
+        padding: 16px;
+    }
+
+    .step-box h3 {
+        font-size: 1.2rem;
+    }
+
+    .step-box p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .step-icon {
+        width: 20px;
+        height: 20px;
+        padding-right: 0.5vh;
+        margin-right: 6px;
+    }
+
+    .para {
+        font-size: 0.9rem;
+        bottom: 12px;
+        right: 12px;
+    }
+
+    .sdk-button {
+        width: 100%;
+        max-width: 260px;
+        padding: 16px;
+    }
+
+    .sdk-button h3 {
+        font-size: 1.5rem;
+    }
+
+    .tagline {
+        font-size: 1.5rem;
+        margin-top: 24px;
+    }
 }
 
 /* ========== TENTH PAGE (FOOTER) ========== */
@@ -1217,6 +1448,8 @@ body {
 
     .section-text-container {
         padding: 20px;
+                display: contents;
+
     }
 
     .section-description {
