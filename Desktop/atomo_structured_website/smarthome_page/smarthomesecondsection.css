@@ -1,0 +1,829 @@
+@media (max-width: 480px) {
+
+    /* Second Page - Devices Section */
+    #second-page .devices-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 96%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0px 0px;
+        box-sizing: border-box;
+        gap: 1px;
+    }
+
+    #smart-home-section {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        background-color: transparent;
+        flex: 1;
+        max-width: 56%;
+        margin: 0;
+        padding: 0;
+    }
+
+
+
+    .device-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+        width: 29vw;
+        height: 13vh;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    .device-item img.device-icon {
+        width: 69px;
+        height: 72px;
+        object-fit: contain;
+        margin-bottom: 29px;
+        margin-left: 13px;
+    }
+
+    .devices-right {
+        flex: 1;
+        max-width: 100vw;
+        text-align: left;
+    }
+
+
+
+    .devices-tagline {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 20px;
+        font-style: normal;
+        line-height: 1.2;
+    }
+
+    .devices-text {
+        font-size: 1.5rem;
+        color: #555;
+        line-height: 1.6;
+        font-style: normal;
+        text-align: justify;
+
+    }
+
+
+    #smart-home-section {
+        position: relative;
+        width: 1vw;
+        min-height: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        background-color: transparent;
+        flex: 1;
+    }
+
+    #smart-home-section .devices-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 25vw;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        gap: 20px;
+    }
+
+    .device-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .device-item.grey {
+        background-color: #d3d3d3;
+    }
+
+    /* custom added start */
+    .device-item.grey .device-icon {
+        /* Add styles for the "off" state, if needed */
+        opacity: 0.5;
+    }
+
+    .device-item .device-icon {
+        /* Add styles for the "on" state, if needed */
+        opacity: 1;
+    }
+
+    /* custom added end */
+
+
+
+    .device-item img.device-icon {
+        width: 15vw;
+        height: 7vh;
+        object-fit: contain;
+        margin-bottom: -25px;
+        margin-left: 13px;
+    }
+
+    .device-item p {
+        font-size: 0.9rem;
+        color: #333;
+        font-weight: 600;
+        padding-top: 26px;
+        padding-left: 5px;
+        margin: 0;
+        text-align: left;
+    }
+
+    .status-icon {
+        position: absolute;
+        top: 10px;
+        right: 2px;
+        width: 2px;
+        height: 2px;
+        cursor: pointer;
+    }
+}
+
+/* smarthomeresponsivecode.css */
+/* Fourth Page - Device Compatibility Section */
+
+/* Debug border to confirm CSS application */
+#fourth-page .device-compatibility-container {
+    border: 0px solid rgb(0, 0, 0); /* Remove after testing */
+}
+
+/* Base styles */
+#fourth-page .device-compatibility-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 20px;
+    box-sizing: border-box;
+}
+
+#fourth-page .device-compatibility-content h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#fourth-page .device-compatibility-content .tagline {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#fourth-page .device-comparison {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    align-items: stretch;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#fourth-page .device-card {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#fourth-page .device-specs-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#fourth-page .device-card h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 10px;
+}
+
+#fourth-page .device-logo {
+    width: 200px;
+    height: 164px;
+    object-fit: contain;
+    margin: 0 auto 20px;
+}
+
+#fourth-page .device-icon-placeholder {
+    display: none;
+}
+
+#fourth-page .device-specs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+ 
+#fourth-page .device-specs li {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    text-align: left;
+    padding-left: 10px;
+}
+
+#fourth-page .device-specs .spec-icon {
+    display: none;
+}
+
+#fourth-page .spec-labels {
+    text-align: left;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+#fourth-page .spec-label-list {
+    list-style: none;
+    padding: 0;
+    padding-top: 240px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#fourth-page .spec-label-list li {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+#fourth-page .spec-label-list .spec-icon img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+/* Highlight "Not Compatible" items */
+#fourth-page .device-specs li:not(:first-child):not(:nth-child(3)):not(:nth-child(4)):not(:nth-child(5)):not(:nth-child(6)):not(:nth-child(7)) {
+    color: #888;
+    opacity: 0.7;
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    #fourth-page .device-comparison {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+    #fourth-page .device-card {
+        width: 320px;
+    }
+    #fourth-page .spec-labels {
+        width: 320px;
+    }
+   
+    #fourth-page .device-specs li:hover {
+        color: var(--accent-color, #007bff);
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    #fourth-page .device-compatibility-container {
+        padding: 30px 10px;
+    }
+    #fourth-page .device-comparison {
+        flex-direction: row; /* Three columns */
+        flex-wrap: nowrap; /* No wrapping */
+        gap: 10px;
+        overflow-x: visible; /* No horizontal scrolling */
+        scroll-snap-type: none; /* No snapping */
+        justify-content: center;
+        max-width: 100%;
+    }
+    #fourth-page .device-card {
+        width: 100px; /* Narrow columns */
+        padding: 10px;
+    }
+    #fourth-page .spec-labels {
+        width: 100px;
+        padding: 10px;
+    }
+    #fourth-page .device-card h3 {
+        font-size: 1rem;
+    }
+    #fourth-page .device-logo {
+        width: 60px;
+        height: 50px;
+    }
+    #fourth-page .device-specs li {
+        font-size: 0.7rem;
+        padding-left: 5px;
+    }
+    #fourth-page .spec-label-list li {
+        font-size: 0.7rem;
+    }
+    #fourth-page .spec-label-list .spec-icon img {
+        width: 14px;
+        height: 14px;
+        margin-right: 5px;
+    }
+    #fourth-page .device-compatibility-content h2 {
+        font-size: 1.8rem;
+    }
+    #fourth-page .device-compatibility-content .tagline {
+        font-size: 0.9rem;
+    }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+    #fourth-page .device-compatibility-container {
+        padding: 20px 8px;
+    }
+    #fourth-page .device-comparison {
+        gap: 6px;
+    }
+    #fourth-page .device-card {
+        width: 137px; /* Narrower for small screens */
+        padding: 8px;
+    }
+    #fourth-page .spec-labels {
+        width: 84px;
+        padding: 0px;
+        padding-top: 125px;
+    }
+    #fourth-page .device-card h3 {
+        font-size: 0.9rem;
+    }
+    #fourth-page .device-logo {
+        width: 100px;
+        height: 75px;
+    }
+    #fourth-page .anmolcode {
+        padding-bottom: 9px;
+    }
+    #fourth-page .device-specs li {
+        font-size: 0.65rem;
+        padding-left: 4px;
+    }
+    #fourth-page .spec-label-list li {
+        font-size: 0.65rem;
+    }
+    #fourth-page .spec-label-list .spec-icon img {
+        width: 12px;
+        height: 12px;
+    }
+    #fourth-page .device-compatibility-content h2 {
+        font-size: 1.6rem;
+    }
+    #fourth-page .device-compatibility-content .tagline {
+        font-size: 0.85rem;
+    }
+    #fourth-page .spec-label-list {
+        list-style: none;
+        padding: 0;
+        padding-top: 12px;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+}
+
+
+@media (max-width: 768px) {
+
+    .app-icon1 {
+        border-radius: 10px;
+        position: relative;
+        right: 227px;
+        top: 177px;
+        height: 317px;
+        width: 195px;
+    }
+
+    .app-icon2 {
+        border-radius: 10px;
+        position: relative;
+        top: 182px;
+        height: 261px;
+        width: 173px;
+        right: 318px;
+    }
+
+    .app-icon3 {
+        border-radius: 10px;
+        height: 316px;
+        width: 196px;
+        top: 157px;
+        right: 223px;
+        position: relative;
+    }
+
+    .app-icon4 {
+        border-radius: 10px;
+        position: relative;
+        height: 261px;
+        top: 108px;
+        right: 316px;
+        width: 170px;
+    }
+}
+
+
+
+/* css from anmolok */
+/* Sixth Page - App Store Section (Text Only) */
+#sixth-page .app-store-content {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 100%; /* Prevent overflow */
+    box-sizing: border-box;
+}
+
+#sixth-page .app-store-title {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    overflow-wrap: break-word; /* Wrap long words */
+    word-break: break-word;
+}
+
+#sixth-page .app-store-desc {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-wrap: break-word; /* Wrap long words */
+    word-break: break-word;
+}
+
+/* Tablet devices (max-width: 1024px) */
+@media (max-width: 1024px) {
+    #sixth-page .app-store-content {
+        width: 40%;
+    }
+
+    #sixth-page .app-store-title {
+        font-size: 2.2rem;
+    }
+
+    #sixth-page .app-store-desc {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+    #sixth-page .app-store-content {
+        width: 100%;
+        max-width: 100%; /* Ensure text fits viewport */
+        align-items: center;
+        text-align: center;
+        padding: 0 15px; /* Prevent text from touching edges */
+        box-sizing: border-box;
+    }
+
+    #sixth-page .app-store-title {
+        font-size: 2rem;
+    }
+
+    #sixth-page .app-store-desc {
+        font-size: 1rem;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* Small mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+    #sixth-page .app-store-content {
+        width: 100%;
+        padding: 0 10px; /* Tighter padding for small screens */
+    }
+
+    #sixth-page .app-store-title {
+        font-size: 1.8rem;
+    }
+
+    #sixth-page .app-store-desc {
+        font-size: 1rem;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* @media (min-width: 1025px) {
+    #sixth-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 80px 20px;
+    }
+
+    .app-store-container {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        width: 100%;
+        max-width: 90%;
+        margin: 0 auto;
+        flex-direction: row;
+    }
+
+    .app-store-content {
+        align-self: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .app-grid {
+        align-self: flex-end;
+        position: static;
+        left: auto;
+        bottom: auto;
+        margin-top: auto;
+    }
+} */
+
+@media (min-width: 1025px) {
+    #sixth-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 80px 20px;
+        min-height: 100vh;
+        height: auto;
+        overflow: hidden; /* Prevent scrollbar */
+    }
+
+    .app-store-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 100%;
+        width: 100%;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .app-store-content {
+        align-self: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .app-grid {
+        align-self: flex-end;
+        position: static;
+        left: auto;
+        bottom: auto;
+        margin-top: auto;
+    }
+}
+
+
+/* css for 7th 8th and bulb section start */
+
+@media (max-width: 768px) {
+/* Eighth Page */
+    #eighth-page {
+        display: flex;
+        flex-direction: column;
+        padding: 40px 16px;
+        min-height: 100vh;
+        height: auto;
+        overflow: hidden;
+    }
+
+    #eighth-page .flex.flex-col.md\:flex-row {
+        flex-direction: column;
+        gap: 16px;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .text-content { /* Matches HTML class */
+        order: 1;
+        width: 100%;
+        text-align: center;
+    }
+
+    .socket-container {
+        order: 2;
+        width: 100%;
+        transform: scale(0.85); /* Reduce size to fit */
+        max-height: 200px; /* Limit height to fit */
+    }
+
+    .graph-section {
+        order: 3;
+        width: 100%;
+        transform: scale(0.85); /* Reduce size to fit */
+    }
+
+    /* Bulb Power Section */
+    .bulb-power-section {
+        padding: 40px 16px !important; /* Override embedded padding */
+        min-height: auto; /* Allow content-driven height */
+        height: auto;
+        overflow: hidden;
+        background-color: #000000; /* Maintain background */
+    }
+
+    .bulb-power-section .power-container {
+        flex-direction: column !important; /* Override embedded flex-direction */
+        justify-content: flex-start !important;
+        align-items: center !important;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        gap: 16px !important; /* Override embedded gap */
+    }
+
+    .bulb-power-section .text-container {
+        order: 1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .bulb-power-section .text-container p {
+        width: 100% !important; /* Override embedded width */
+        font-size: 1.2rem !important; /* Adjust font size for mobile */
+    }
+
+    .bulb-power-section .bulb-and-slider {
+        order: 2;
+        width: 100%;
+        transform: scale(0.8); /* Reduce size to fit */
+        margin-bottom: 20px;
+    }
+
+    .bulb-power-section .bulb-container {
+        width: 200px !important; /* Reduce size for mobile */
+        height: 150px !important;
+        margin: 0 auto;
+    }
+
+    .bulb-power-section .bulb-image {
+        width: 300px !important; /* Adjust bulb size */
+        top: -187px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important; /* Center image */
+    }
+
+    .bulb-power-section .light-effect {
+        width: 180px !important;
+        height: 145px !important;
+        top: 4vw !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+
+    .bulb-power-section .slider-container {
+        width: 100% !important; /* Adjust slider width */
+        padding-top: 10vh !important;
+        padding-left: 0 !important; /* Center slider */
+    }
+
+    .bulb-power-section .mockup-container {
+        order: 3;
+        width: 100%;
+        transform: scale(0.8); /* Reduce size to fit */
+    }
+
+    .bulb-power-section .iphone-mockup {
+        width: 200px !important; /* Reduce mockup size */
+        height: 400px !important;
+        border-radius: 30px !important;
+    }
+
+    .bulb-power-section .iphone-notch {
+        width: 100px !important;
+        height: 20px !important;
+        left: 50px !important;
+    }
+
+    .bulb-power-section .graph-container {
+        margin-top: 60px !important;
+        height: 200px !important; /* Adjust graph height */
+    }
+}
+
+
+
+
+/* responsive code for 9th page by rajat kuchara  */
+@media (max-width: 480px) {
+    #ninth-page {
+        padding: 40px 15px; /* Slightly reduce padding for smaller screens */
+        min-height: 70vh; /* Reduce min-height to fit smaller screens better */
+    }
+
+    .unified-interface-container {
+        flex-direction: column; /* Already set at 768px, ensuring it remains */
+        padding: 0 10px; /* Reduce padding for tighter fit on small screens */
+        gap: 20px; /* Add gap between stacked elements */
+    }
+
+    .unified-interface-content {
+        max-width: 100%; /* Ensure full width */
+        padding-right: 0; /* Remove padding to maximize space */
+        margin-bottom: 20px; /* Adjust margin for better spacing */
+        text-align: center; /* Center-align text for better readability */
+    }
+
+    .unified-interface-title {
+        font-size: 1.5rem; /* Slightly smaller font size for better fit */
+        width: 100%; /* Reset width to fit container */
+        left: 0; /* Reset positioning */
+        bottom: 0; /* Reset positioning */
+        margin-bottom: 10px; /* Adjust spacing below title */
+        position: relative; /* Ensure proper stacking */
+    }
+
+    .unified-interface-desc {
+        font-size: 0.85rem; /* Smaller font size for better readability */
+        line-height: 1.5; /* Adjust line height for better text flow */
+        margin-bottom: 20px; /* Reduce margin to fit content better */
+    }
+
+    .unified-interface-image-container {
+        height: 30vh; /* Reduce height to fit smaller screens */
+        width: 100%; /* Ensure full width */
+    }
+
+    .unified-interface-image {
+        max-width: 90%; /* Slightly reduce max-width to avoid overflow */
+        max-height: 100%; /* Ensure image fits within container */
+    }
+}
+@media (max-width: 480px) {
+    #ninth-page {
+        padding: 40px 15px; /* Slightly reduce padding for smaller screens */
+        min-height: 70vh; /* Reduce min-height to fit smaller screens better */
+    }
+
+    .unified-interface-container {
+        flex-direction: column; /* Already set at 768px, ensuring it remains */
+        padding: 0 10px; /* Reduce padding for tighter fit on small screens */
+        gap: 20px; /* Add gap between stacked elements */
+    }
+
+    .unified-interface-content {
+        max-width: 100%; /* Ensure full width */
+        padding-right: 0; /* Remove padding to maximize space */
+        margin-bottom: 20px; /* Adjust margin for better spacing */
+        text-align: center; /* Center-align text for better readability */
+    }
+
+    .unified-interface-title {
+        font-size: 1.5rem; /* Slightly smaller font size for better fit */
+        width: 100%; /* Reset width to fit container */
+        left: 0; /* Reset positioning */
+        bottom: 0; /* Reset positioning */
+        margin-bottom: 10px; /* Adjust spacing below title */
+        position: relative; /* Ensure proper stacking */
+    }
+
+    .unified-interface-desc {
+        font-size: 0.85rem; /* Smaller font size for better readability */
+        line-height: 1.5; /* Adjust line height for better text flow */
+        margin-bottom: 20px; /* Reduce margin to fit content better */
+    }
+
+    .unified-interface-image-container {
+        height: 30vh; /* Reduce height to fit smaller screens */
+        width: 100%; /* Ensure full width */
+    }
+
+    .unified-interface-image {
+        max-width: 90%; /* Slightly reduce max-width to avoid overflow */
+        max-height: 100%; /* Ensure image fits within container */
+    }
+}

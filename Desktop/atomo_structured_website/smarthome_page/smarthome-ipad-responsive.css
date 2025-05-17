@@ -1,0 +1,949 @@
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+    /* General Fixes */
+    html,
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+        max-width: 100%;
+    }
+
+    body {
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+    }
+
+    /* Specific Element Fixes */
+    .smart-home-container {
+        max-width: 100vw;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    /* .smart-home-image-container {
+        max-width: 50%;
+        overflow: hidden;
+    } */
+
+    .smart-home-image {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .plug {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .socket-container {
+        max-width: 45%;
+        overflow: hidden;
+    }
+
+    .bulb-power-section .bulb-image {
+        width: 300px !important;
+        max-width: 100% !important;
+        left: 10vw !important;
+        top: -120px !important;
+    }
+
+    .bulb-power-section .light-effect {
+        width: 200px !important;
+        max-width: 100% !important;
+        left: 12vw !important;
+        top: 5vw !important;
+    }
+
+    .bulb-power-section .slider-container {
+        width: 40% !important;
+        padding-left: 30vw !important;
+    }
+
+    .app-grid {
+        max-width: 90%;
+        left: 5%;
+        bottom: 120px;
+        transform: translateX(0);
+    }
+
+    .app-icon1,
+    .app-icon2,
+    .app-icon3,
+    .app-icon4 {
+        width: 350px;
+    }
+
+    .unified-interface-title {
+        font-size: 36px;
+        width: 982px;
+        max-width: 215vh;
+        left: 29px;
+        bottom: 141px;
+    }
+
+    .energy-insights-container,
+    .family-sharing-container,
+    .unified-interface-container,
+    .bulb-power-section .power-container {
+        max-width: 100vw !important;
+        padding: 0 20px !important;
+        overflow-x: hidden !important;
+    }
+
+
+
+    /* ========== General Adjustments ========== */
+
+
+    body {
+        font-size: 0.95rem;
+        /* Slightly smaller base font size for tablets */
+    }
+
+    /* ========== Navbar ========== */
+    #navbar {
+        height: 56px;
+        /* Slightly reduce navbar height */
+    }
+
+    #navbar ul {
+        gap: 12px;
+        /* Reduce gap between nav items */
+    }
+
+    #navbar a {
+        font-size: 0.9rem;
+        /* Smaller font size for nav links */
+        padding: 10px 14px;
+        /* Adjust padding */
+    }
+
+    .navbar-logo {
+        height: 28px;
+        z-index: 30;
+        /* Slightly smaller logo */
+    }
+
+    /* ========== First Page ========== */
+    #first-page {
+        height: auto;
+        /* Allow flexible height */
+        min-height: 80vh;
+        /* Ensure content fits */
+        padding: 60px 0;
+        /* Adjust padding */
+    }
+
+    .hero-section {
+        padding: 60px 20px;
+        /* Reduce padding */
+        min-height: 100px;
+        /* Adjust minimum height */
+    }
+
+    .hero-content {
+        flex-direction: row;
+        /* Maintain row layout */
+        gap: 10px;
+        /* Add gap for spacing */
+    }
+
+    .hero-headline {
+        font-size: 2rem;
+        /* Slightly smaller headline */
+        text-align: left;
+        /* Align left for balance */
+    }
+
+    .hero-quote {
+        font-size: 1rem;
+        /* Smaller quote size */
+        text-align: right;
+        /* Maintain right alignment */
+    }
+
+    .smart-home-container {
+        flex-direction: row;
+        /* Keep row layout */
+        padding: 0 70px;
+        /* Adjust padding */
+        height: auto;
+        /* Flexible height */
+        margin-top: 70px;
+        /* Adjust margin */
+    }
+
+    .smart-home-content {
+        max-width: 50%;
+        /* Slightly reduce width */
+        padding-right: 20px;
+        /* Adjust padding */
+    }
+
+    .smart-home-content h1 {
+        font-size: 3.2rem;
+        /* Smaller heading */
+    }
+
+    .atomic-os-section {
+        width: 100%;
+        /* Full width within container */
+    }
+
+    .atomic-os-section h2 {
+        font-size: 3rem;
+        /* Smaller heading */
+        width: 100%;
+        /* Full width */
+    }
+
+    .atomic-os-section .tagline {
+        font-size: 1.3rem;
+        /* Smaller tagline */
+    }
+
+    .atomic-os-section .quote {
+        font-size: 1.8rem;
+        /* Smaller quote */
+    }
+
+    .smart-home-image-container {
+        max-width: 50%;
+        /* Adjust image container width */
+        height: auto;
+        /* Flexible height */
+    }
+
+    .smart-home-image {
+        width: 100%;
+        /* Full width within container */
+        height: auto;
+        /* Maintain aspect ratio */
+    }
+
+    /* ========== Second Page - Devices Section ========== */
+    #second-page .devices-container {
+        flex-direction: row;
+        /* Maintain row layout */
+        padding: 60px 30px;
+        /* Adjust padding */
+        gap: 40px;
+        /* Reduce gap */
+    }
+
+    #smart / #smart-home-section {
+        max-width: 60%;
+        /* Slightly larger than mobile */
+    }
+
+    #smart-home-section .devices-container {
+        grid-template-columns: repeat(3, 1fr);
+        /* Maintain 3-column grid */
+        gap: 15px;
+        /* Slightly smaller gap */
+        width: 100%;
+        /* Full width */
+    }
+
+    .device-item {
+        width: 120px;
+        /* Smaller device items */
+        height: 120px;
+        /* Maintain square aspect */
+    }
+
+    .device-item img.device-icon {
+        width: 50px;
+        /* Smaller icons */
+        height: 50px;
+        margin-bottom: 20px;
+        /* Adjust margin */
+        margin-left: 10px;
+        /* Adjust alignment */
+    }
+
+    .device-item p {
+        font-size: 0.9rem;
+        /* Smaller text */
+    }
+
+    .status-icon {
+        width: 24px;
+        /* Smaller status icon */
+        height: 24px;
+        top: 8px;
+        /* Adjust positioning */
+        right: 8px;
+    }
+
+    .devices-right {
+        max-width: 35%;
+        /* Adjust width */
+        text-align: left;
+        /* Maintain alignment */
+    }
+
+    .devices-title {
+        font-size: 2.5rem;
+        /* Smaller title */
+        text-align: center;
+        /* Center for balance */
+    }
+
+    .devices-tagline {
+        font-size: 2.8rem;
+        /* Smaller tagline */
+    }
+
+    .devices-text {
+        font-size: 1.8rem;
+        /* Smaller text */
+    }
+
+    /* ========== Third Page - App Compatibility Section ========== */
+    #third-page {
+        padding: 60px 20px;
+        /* Adjust padding */
+        min-height: 70vh;
+        /* Flexible height */
+    }
+
+    .app-compatibility-container {
+        padding: 0 20px;
+        /* Adjust padding */
+    }
+
+    .app-compatibility-content {
+        margin-bottom: 40px;
+        /* Reduce margin */
+    }
+
+    .app-title {
+        font-size: 2.2rem;
+        /* Smaller title */
+    }
+
+    .app-text {
+        font-size: 1rem;
+        /* Smaller text */
+    }
+
+    .phone-grid {
+        gap: 15px;
+        /* Smaller gap */
+        padding: 15px 0;
+        /* Adjust padding */
+    }
+
+    .phone-item {
+        min-width: 180px;
+        /* Smaller items */
+        max-width: 220px;
+        /* Limit max width */
+        margin-left: 5vh;
+        /* Adjust margin */
+    }
+
+    .phone-item img {
+                width: 149vh;
+        max-width: 557%; 
+    }
+
+    /* ========== Fourth Page - Device Compatibility Section ========== */
+    #fourth-page .device-compatibility-container {
+        padding: 60px 20px;
+        /* Adjust padding */
+    }
+
+    #fourth-page .device-compatibility-content h2 {
+        font-size: 2.2rem;
+        /* Smaller heading */
+    }
+
+    #fourth-page .device-compatibility-content .tagline {
+        font-size: 1rem;
+        /* Smaller tagline */
+    }
+
+    #fourth-page .device-comparison {
+        gap: 20px;
+        /* Smaller gap */
+    }
+
+    #fourth-page .device-card {
+        width: 280px;
+        /* Slightly smaller cards */
+        padding: 15px;
+        /* Adjust padding */
+    }
+
+    #fourth-page .spec-labels {
+        width: 280px;
+        /* Match card width */
+        padding: 15px;
+        /* Adjust padding */
+    }
+
+    #fourth-page .device-card h3 {
+        font-size: 1.6rem;
+        /* Smaller heading */
+    }
+
+    #fourth-page .device-logo {
+        width: 160px;
+        /* Smaller logo */
+        height: 130px;
+    }
+
+    #fourth-page .device-specs li {
+        font-size: 0.9rem;
+        /* Smaller text */
+    }
+
+    #fourth-page .spec-label-list {
+        padding-top: 200px;
+        /* Adjust for alignment */
+        gap: 15px;
+        /* Smaller gap */
+    }
+
+    #fourth-page .spec-label-list li {
+        font-size: 0.9rem;
+        /* Smaller text */
+    }
+
+    #fourth-page .spec-label-list .spec-icon img {
+        width: 20px;
+        /* Smaller icons */
+        height: 20px;
+    }
+
+    /* ========== Fifth Page - Graph Section ========== */
+    #fifth-page {
+        padding: 60px 20px;
+        /* Adjust padding */
+        height: auto;
+        /* Flexible height */
+        min-height: 70vh;
+    }
+
+    .graph-section-container {
+        max-width: 1000px;
+        /* Slightly smaller container */
+    }
+
+    .graph-content {
+        margin-bottom: 40px;
+        /* Reduce margin */
+    }
+
+    .graph-content h2 {
+        font-size: 2.2rem;
+        /* Smaller heading */
+    }
+
+    .graph-subtitle {   
+        font-size: 1rem;
+        /* Smaller subtitle */
+    }
+
+    .graph-image-container {
+        max-width: 90%;
+        /* Slightly smaller image */
+    }
+
+    /* ========== Sixth Page - App Store Section ========== */
+    #sixth-page {
+        padding: 60px 20px;
+        height: 100vh;
+    }
+
+    .app-store-container {
+        flex-direction: row;
+        /* Maintain row layout */
+        max-width: 90%;
+        /* Slightly smaller container */
+    }
+
+    .app-store-content {
+        width: 45%;
+        /* Adjust width */
+        padding: 0 15px;
+        /* Adjust padding */
+    }
+
+    .app-store-title {
+        font-size: 2.2rem;
+        /* Smaller title */
+    }
+
+    .app-store-desc {
+        font-size: 1rem;
+        /* Smaller description */
+        width: 85%;
+        /* Adjust width */
+    }
+
+    .app-grid {
+        max-width: 600px;
+        left: 35%;
+        bottom: 357px;
+        gap: 13px;
+    }
+
+    .app-icon1,
+    .app-icon2,
+    .app-icon3,
+    .app-icon4 {
+        height: 350px;
+        /* Smaller icons */
+        width: 260px;
+    }
+
+        .app-icon1 {
+
+        bottom: 1vh;
+        }
+
+    .app-icon2 {
+       top: 56px;
+        left: -57px;
+    }
+
+    .app-icon3 {
+               right: 34px;
+        bottom: 1vh;
+    }
+
+    .app-icon4 {
+              top: 70px;
+        right: 5vh;
+    }
+
+    /* ========== Seventh Page - Energy Insights Section ========== */
+    #seventh-page {
+        padding: 60px 20px;
+        /* Adjust padding */
+        min-height: 80vh;
+        /* Flexible height */
+    }
+
+    .energy-insights-container {
+        flex-direction: row;
+        /* Maintain row layout */
+        padding: 0 20px;
+        /* Adjust padding */
+        gap: 20px;
+        /* Add gap */
+    }
+
+    .energy-insights-content {
+        max-width: 45%;
+        /* Adjust width */
+    }
+
+    .insights-title {
+        font-size: 2.5rem;
+        /* Smaller title */
+    }
+
+    .insights-subtitle {
+        font-size: 1.8rem;
+        /* Smaller subtitle */
+    }
+
+    .insights-desc {
+        font-size: 1rem;
+        /* Smaller description */
+    }
+
+    .energy-insights-slider {
+        max-width: 50%;
+        /* Adjust width */
+        height: 45vh;
+        /* Slightly smaller height */
+        margin-left: 15px;
+        /* Adjust margin */
+    }
+
+    .slider-dots {
+        gap: 10px;
+        /* Smaller gap */
+    }
+
+    .dot {
+        width: 10px;
+        /* Smaller dots */
+        height: 10px;
+    }
+
+    /* ========== Eighth Page - Plug Section ========== */
+    #eighth-page {
+        padding: 60px 20px;
+        /* Adjust padding */
+        min-height: 80vh;
+        /* Flexible height */
+    }
+
+    #eighth-page .flex.flex-col.md\:flex-row {
+        flex-direction: row;
+        /* Maintain row layout */
+        gap: 20px;
+        /* Smaller gap */
+    }
+
+    .socket-container {
+        max-width: 45%;
+        /* Adjust width */
+        max-height: 350px;
+        /* Limit height */
+    }
+
+    .plug {
+        width: 110%;
+        /* Slightly smaller plug */
+        height: 85%;
+    }
+
+    .plugged-in {
+        transform: translate(-45%, -50%) translateX(-12%);
+        /* Adjust for iPad */
+    }
+
+    .plugged-out {
+        transform: translate(-50%, -50%) translateX(-45%);
+        /* Adjust for iPad */
+    }
+
+    .graph-section {
+        max-width: 30%;
+        /* Adjust width */
+    }
+
+    .mobile-mockup {
+        width: 220px;
+        /* Smaller mockup */
+        height: 450px;
+        border-radius: 35px;
+        /* Adjust border radius */
+    }
+
+    .mobile-mockup::before {
+        width: 120px;
+        /* Smaller notch */
+        height: 30px;
+    }
+
+    .text-content {
+        max-width: 25%;
+        /* Adjust width */
+    }
+
+    .text-content h2 {
+        font-size: 2rem;
+        /* Smaller heading */
+    }
+
+    .text-content .subtitle {
+        font-size: 0.95rem;
+        /* Smaller subtitle */
+    }
+
+    /* ========== Bulb Power Section ========== */
+    .bulb-power-section {
+        padding: 60px 20px !important;
+        /* Adjust padding */
+    }
+
+    .bulb-power-section .power-container {
+        flex-direction: row !important;
+        /* Maintain row layout */
+        gap: 0px !important;
+        /* Smaller gap */
+        padding-top: 200px !important;
+        /* Adjust padding */
+    }
+
+    .bulb-power-section .text-container {
+        max-width: 35% !important;
+                margin-top: -21vh;
+
+        /* Adjust width */
+    }
+
+    .bulb-power-section .text-container h2 {
+        font-size: 3.5rem !important;
+        /* Smaller heading */
+    }
+
+    .bulb-power-section .text-container p {
+        font-size: 1.5rem !important;
+        /* Smaller text */
+        width: 100% !important;
+        
+        /* Full width */
+    }
+
+    .bulb-power-section .bulb-and-slider {
+        max-width: 27% !important;
+        /* Adjust width */
+    }
+
+    .bulb-power-section .bulb-container {
+        width: 300px !important;
+        /* Smaller bulb */
+        height: 200px !important;
+    }
+
+    .bulb-power-section .bulb-image {
+       top: -203px !important;
+        width: 400px !important;
+        left: 2vw !important;
+    }
+
+    .bulb-power-section .light-effect {
+             width: 336px !important;
+        height: 200px !important;
+        top: -10vw !important;
+        left: 2vw !important;
+    }
+
+    .bulb-power-section .slider-container {
+        display: contents;
+        width: 50% !important;
+        /* Adjust slider width */
+        padding-top: 20vh !important;
+        /* Adjust padding */
+        padding-left: 50vw !important;
+        /* Adjust positioning */
+    }
+
+    .bulb-power-section .slider-box{
+            margin-top: 19vh;
+                    margin-right: 15vh;
+
+    }
+
+    .bulb-power-section .mockup-container {
+        max-width: 38% !important;
+        /* Adjust width */
+    }
+
+    .bulbACON iPhone-mockup {
+        width: 220px !important;
+        /* Smaller mockup */
+        height: 450px !important;
+        border-radius: 35px !important;
+        /* Adjust border radius */
+    }
+
+    .bulb-power-section .iPhone-notch {
+        width: 120px !important;
+        /* Smaller notch */
+        height: 20px !important;
+        left: 50px !important;
+        /* Adjust positioning */
+    }
+
+    .bulb-power-section .graph-container {
+        height: 220px !important;
+        /* Smaller graph */
+        margin-top: 70px !important;
+        /* Adjust margin */
+    }
+
+    /* ========== Ninth Page - Unified Interface Section ========== */
+    #ninth-page {
+        padding: 60px 20px;
+        /* Adjust padding */
+        min-height: 80vh;
+        /* Flexible height */
+    }
+
+    .unified-interface-container {
+        flex-direction: row;
+        /* Maintain row layout */
+        padding: 0 20px;
+                height: 76vh;
+
+        /* Adjust padding */
+        gap: 20px;
+        /* Add gap */
+    }
+
+    .unified-interface-content {
+        max-width: 45%;
+        /* Adjust width */
+        padding-right: 20px;
+        /* Adjust padding */
+    }
+
+    .unified-interface-title {
+        font-size: 2.5rem;
+        /* Smaller title */
+        width: 200%;
+        /* Adjust width */
+        left: 120px;
+        /* Adjust positioning */
+        bottom: 150px;
+        /* Adjust positioning */
+    }
+
+    .unified-interface-desc {
+        font-size: 1rem;
+        /* Smaller description */
+        margin-bottom: 200px;
+        /* Adjust margin */
+    }
+
+    .unified-interface-image-container {
+        max-width: 50%;
+        /* Adjust width */
+    }
+
+    .unified-interface-image {
+        max-width: 100%;
+        /* Full width */
+        max-height: 90%;
+        /* Limit height */
+    }
+
+    /* ========== Tenth Page - Family Sharing Section ========== */
+    #tenth-page {
+        padding: 60px 20px;
+        /* Adjust padding */
+        min-height: 80vh;
+        /* Flexible height */
+                margin-top: -24vh;
+
+    }
+
+    .privacy-features-container {
+        padding: 0 20px;
+        /* Adjust padding */
+    }
+
+    .privacy-title {
+        font-size: 2.5rem;
+        /* Smaller title */
+    }
+
+    .privacy-features {
+        gap: 15px;
+        /* Smaller gap */
+        max-width: 700px;
+        /* Smaller container */
+    }
+
+    .feature-number {
+        width: 45px;
+        /* Smaller number circle */
+        height: 45px;
+        font-size: 1.4rem;
+        /* Smaller font */
+    }
+
+    .feature-text {
+        font-size: 1.1rem;
+        /* Smaller text */
+    }
+
+    .family-sharing-container {
+        flex-direction: row;
+        /* Maintain row layout */
+        padding: 0 20px;
+        /* Adjust padding */
+        margin-top: 60px;
+        /* Adjust margin */
+    }
+
+    .family-sharing-content {
+        max-width: 45%;
+        /* Adjust width */
+        padding-right: 20px;
+        /* Adjust padding */
+    }
+
+    .family-sharing-title {
+        font-size: 2.5rem;
+        /* Smaller title */
+    }
+
+    .family-sharing-graph {
+        max-width: 50%;
+        /* Adjust width */
+    }
+
+    .graph-image {
+        max-width: 100%;
+        /* Full width */
+    }
+
+    /* ========== Eleventh Page - Footer ========== */
+    #eleventh-page {
+        padding: 60px 0 0;
+        /* Adjust padding */
+    }
+
+    #footer {
+        max-width: 1000px;
+        /* Smaller container */
+    }
+
+    .footer-top {
+        gap: 32px;
+        /* Smaller gap */
+    }
+
+    .footer-brand {
+        min-width: 220px;
+        /* Slightly smaller */
+    }
+
+    .footer-tagline {
+        font-size: 0.9rem;
+        /* Smaller text */
+    }
+
+    .footer-social {
+        gap: 12px;
+        /* Smaller gap */
+    }
+
+    .social-link img {
+        width: 22px;
+        /* Smaller icons */
+        height: 22px;
+    }
+
+    .footer-links {
+        gap: 32px;
+        /* Smaller gap */
+    }
+
+    .link-group {
+        min-width: 150px;
+        /* Slightly smaller */
+    }
+
+    .link-title {
+        font-size: 0.95rem;
+        /* Smaller title */
+    }
+
+    .link-group a {
+        font-size: 0.85rem;
+        /* Smaller links */
+    }
+}
