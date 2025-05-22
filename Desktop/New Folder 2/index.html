@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSP 27 Library - Police Family Members</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .form-section {
+            transition: all 0.3s ease;
+        }
+        .photo-preview {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+        }
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .user-card {
+            transition: transform 0.2s ease;
+        }
+        .user-card:hover {
+            transform: translateY(-5px);
+        }
+        #searchResults {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-blue-900 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <img src="/dsp.png" alt="Library Logo" class="h-20 w-20 rounded-full border-2:[opx] border-white">
+                    <div>
+                        <h1 class="text-2xl font-bold">DSP 27 Library</h1>
+                        <p class="text-blue-200">For Police Officers and Their Family Members</p>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <p class="text-blue-300">Government Approved Library</p>
+                    <p class="text-sm text-blue-200">Established 2023</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Tabs Navigation -->
+        <div class="flex border-b border-gray-300 mb-8">
+            <button id="registrationTab" class="px-6 py-3 font-medium text-blue-900 border-b-2 border-blue-900">Registration</button>
+            <button id="searchTab" class="px-6 py-3 font-medium text-gray-600">Search Members</button>
+        </div>
+
+        <!-- Registration Form Section -->
+        <section id="registrationSection" class="form-section">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-bold text-blue-900 mb-6">Member Registration Form</h2>
+                
+                <!-- User Type Selection -->
+                <div class="mb-8">
+                    <label class="block text-gray-700 font-medium mb-2">Member Type</label>
+                    <div class="flex space-x-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="memberType" value="student" class="form-radio text-blue-600" checked>
+                            <span class="ml-2">Student</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="memberType" value="police" class="form-radio text-blue-600">
+                            <span class="ml-2">Police Officer</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Registration Form -->
+                <form id="registrationForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Personal Information -->
+                    <div class="col-span-2">
+                        <h3 class="text-lg font-semibold text-blue-800 border-b border-blue-200 pb-2 mb-4">Personal Information</h3>
+                    </div>
+                    
+                    <div>
+                        <label for="fullName" class="block text-gray-700 font-medium mb-2">Full Name*</label>
+                        <input type="text" id="fullName" name="fullName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="dob" class="block text-gray-700 font-medium mb-2">Date of Birth*</label>
+                        <input type="date" id="dob" name="dob" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="age" class="block text-gray-700 font-medium mb-2">Age*</label>
+                        <input type="number" id="age" name="age" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="education" class="block text-gray-700 font-medium mb-2">Education Level*</label>
+                        <select id="education" name="education" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Select Education</option>
+                            <option value="High School">High School</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Graduate">Graduate</option>
+                            <option value="Post Graduate">Post Graduate</option>
+                            <option value="PhD">PhD</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number*</label>
+                        <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="aadhar" class="block text-gray-700 font-medium mb-2">Aadhar Card Number*</label>
+                        <input type="text" id="aadhar" name="aadhar" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="address" class="block text-gray-700 font-medium mb-2">Address*</label>
+                        <textarea id="address" name="address" rows="2" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    
+                    <!-- Photo Upload -->
+                    <div>
+                        <label for="photo" class="block text-gray-700 font-medium mb-2">Passport Size Photo*</label>
+                        <div class="flex items-center space-x-4">
+                            <div class="relative">
+                                <img id="photoPreview" src="https://via.placeholder.com/150" alt="Photo Preview" class="photo-preview">
+                                <input type="file" id="photo" name="photo" accept="image/*" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Upload a passport size photo (Max 2MB)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reference Member Information -->
+                    <div class="col-span-2 mt-4">
+                        <h3 class="text-lg font-semibold text-blue-800 border-b border-blue-200 pb-2 mb-4">Reference Member Information</h3>
+                    </div>
+                    
+                    <div>
+                        <label for="referenceName" class="block text-gray-700 font-medium mb-2">Reference Name (Father/Mother)*</label>
+                        <input type="text" id="referenceName" name="referenceName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="referenceRelation" class="block text-gray-700 font-medium mb-2">Relationship*</label>
+                        <select id="referenceRelation" name="referenceRelation" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Select Relationship</option>
+                            <option value="Father">Father</option>
+                            <option value="Mother">Mother</option>
+                            <option value="Spouse">Spouse</option>
+                            <option value="Guardian">Guardian</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="referencePost" class="block text-gray-700 font-medium mb-2">Post/Rank*</label>
+                        <input type="text" id="referencePost" name="referencePost" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="referencePhone" class="block text-gray-700 font-medium mb-2">Phone Number*</label>
+                        <input type="tel" id="referencePhone" name="referencePhone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <!-- Police ID Card Upload -->
+                    <div class="col-span-2">
+                        <label for="policeId" class="block text-gray-700 font-medium mb-2">Police ID Card Photo*</label>
+                        <div class="flex items-center space-x-4">
+                            <div class="relative">
+                                <img id="idPreview" src="https://via.placeholder.com/300x150" alt="ID Preview" class="w-64 h-32 object-contain border-2 border-dashed border-gray-300 rounded-lg">
+                                <input type="file" id="policeId" name="policeId" accept="image/*" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Upload a clear photo of Police ID Card (Max 2MB)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="col-span-2 mt-6">
+                        <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                            Register Member
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section id="searchSection" class="form-section hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-bold text-blue-900 mb-6">Search Library Members</h2>
+                
+                <div class="relative mb-8">
+                    <input type="text" id="searchInput" placeholder="Search by member number, name or phone..." class="w-full px-4 py-3 border border-gray-300 rounded-lg pl-12 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <div class="absolute left-3 top-3 text-gray-400">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                
+                <div id="searchResults" class="space-y-4">
+                    <!-- Search results will appear here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Member Count Display -->
+        <div class="bg-blue-50 rounded-lg shadow p-4 text-center">
+            <p class="text-blue-900 font-medium">Total Registered Members: <span id="memberCount" class="font-bold text-xl">0</span></p>
+        </div>
+    </main>
+
+    <!-- Member Details Modal -->
+    <div id="memberModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold text-blue-900">Member Details - #<span id="modalMemberNumber"></span></h3>
+                    <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Photo and Basic Info -->
+                    <div class="space-y-4">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <img id="modalPhoto" src="" alt="Member Photo" class="w-32 h-32 object-cover rounded-full mx-auto border-4 border-white shadow">
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 border-b border-blue-200 pb-2 mb-2">Basic Information</h4>
+                            <p><span class="font-medium">Name:</span> <span id="modalName"></span></p>
+                            <p><span class="font-medium">Type:</span> <span id="modalType"></span></p>
+                            <p><span class="font-medium">Age:</span> <span id="modalAge"></span></p>
+                            <p><span class="font-medium">DOB:</span> <span id="modalDob"></span></p>
+                            <p><span class="font-medium">Education:</span> <span id="modalEducation"></span></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-800 border-b border-blue-200 pb-2 mb-2">Contact Information</h4>
+                        <p><span class="font-medium">Phone:</span> <span id="modalPhone"></span></p>
+                        <p><span class="font-medium">Aadhar:</span> <span id="modalAadhar"></span></p>
+                        <p><span class="font-medium">Address:</span> <span id="modalAddress"></span></p>
+                    </div>
+                    
+                    <!-- Reference Info -->
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 border-b border-blue-200 pb-2 mb-2">Reference Information</h4>
+                            <p><span class="font-medium">Name:</span> <span id="modalRefName"></span></p>
+                            <p><span class="font-medium">Relationship:</span> <span id="modalRefRelation"></span></p>
+                            <p><span class="font-medium">Post/Rank:</span> <span id="modalRefPost"></span></p>
+                            <p><span class="font-medium">Phone:</span> <span id="modalRefPhone"></span></p>
+                        </div>
+                        
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 border-b border-blue-200 pb-2 mb-2">Police ID Card</h4>
+                            <img id="modalIdCard" src="" alt="Police ID Card" class="w-full h-auto max-h-40 object-contain">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 flex justify-end space-x-4">
+                    <button id="editMember" class="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+                        <i class="fas fa-edit mr-2"></i> Edit
+                    </button>
+                    <button id="deleteMember" class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+                        <i class="fas fa-trash-alt mr-2"></i> Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Member Modal -->
+    <div id="editModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold text-blue-900">Edit Member - #<span id="editMemberNumber"></span></h3>
+                    <button id="closeEditModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                
+                <form id="editForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="hidden" id="editId" name="editId">
+                    
+                    <div>
+                        <label for="editFullName" class="block text-gray-700 font-medium mb-2">Full Name*</label>
+                        <input type="text" id="editFullName" name="editFullName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    
+                    <div>
+                        <label for="editDob" class="block text-gray-700 font-medium mb-2">Date of Birth*</label>
+                        <input type="date" id="editDob" name="editDob" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    
+                    <div>
+                        <label for="editAge" class="block text-gray-700 font-medium mb-2">Age*</label>
+                        <input type="number" id="editAge" name="editAge" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    
+                    <div>
+                        <label for="editEducation" class="block text-gray-700 font-medium mb-2">Education Level*</label>
+                        <select id="editEducation" name="editEducation" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                            <option value="">Select Education</option>
+                            <option value="High School">High School</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Graduate">Graduate</option>
+                            <option value="Post Graduate">Post Graduate</option>
+                            <option value="PhD">PhD</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="editPhone" class="block text-gray-700 font-medium mb-2">Phone Number*</label>
+                        <input type="tel" id="editPhone" name="editPhone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    
+                    <div>
+                        <label for="editAadhar" class="block text-gray-700 font-medium mb-2">Aadhar Card Number*</label>
+                        <input type="text" id="editAadhar" name="editAadhar" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <label for="editAddress" class="block text-gray-700 font-medium mb-2">Address*</label>
+                        <textarea id="editAddress" name="editAddress" rows="2" required class="w-full px-4 py-2 border border-gray-300 rounded-lg"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label for="editReferenceName" class="block text-gray-700 font-medium mb-2">Reference Name*</label>
+                        <input type="text" id="editReferenceName" name="editReferenceName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    
+                    <div>
+                        <label for="editReferenceRelation" class="block text-gray-700 font-medium mb-2">Relationship*</label>
+                        <select id="editReferenceRelation" name="editReferenceRelation" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                            <option value="">Select Relationship</option>
+                            <option value="Father">Father</option>
+                            <option value="Mother">Mother</option>
+                            <option value="Spouse">Spouse</option>
+                            <option value="Guardian">Guardian</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="editReferencePost" class="block text-gray-700 font-medium mb-2">Post/Rank*</label>
+                        <input type="text" id="editReferencePost" name="editReferencePost" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    
+                    <div>
+                        <label for="editReferencePhone" class="block text-gray-700 font-medium mb-2">Phone Number*</label>
+                        <input type="tel" id="editReferencePhone" name="editReferencePhone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    
+                    <div class="md:col-span-2 flex justify-end space-x-4 mt-6">
+                        <button type="button" id="cancelEdit" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-6 rounded-lg transition duration-300">
+                            Cancel
+                        </button>
+                        <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-6 rounded-lg transition duration-300">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">DSP 27 Library</h3>
+                    <p class="text-blue-200">For Police Officers and Their Family Members</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-blue-200">© 2023 All Rights Reserved</p>
+                    <p class="text-sm text-blue-300">Government Approved Library</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data storage
+        let members = JSON.parse(localStorage.getItem('dsp27LibraryMembers')) || [];
+        let currentMemberId = members.length > 0 ? Math.max(...members.map(m => m.id)) + 1 : 1;
+        
+        // DOM Elements
+        const registrationTab = document.getElementById('registrationTab');
+        const searchTab = document.getElementById('searchTab');
+        const registrationSection = document.getElementById('registrationSection');
+        const searchSection = document.getElementById('searchSection');
+        const registrationForm = document.getElementById('registrationForm');
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const memberCount = document.getElementById('memberCount');
+        const memberModal = document.getElementById('memberModal');
+        const closeModal = document.getElementById('closeModal');
+        const editModal = document.getElementById('editModal');
+        const closeEditModal = document.getElementById('closeEditModal');
+        const editForm = document.getElementById('editForm');
+        const cancelEdit = document.getElementById('cancelEdit');
+        const editMember = document.getElementById('editMember');
+        const deleteMember = document.getElementById('deleteMember');
+        const photoInput = document.getElementById('photo');
+        const photoPreview = document.getElementById('photoPreview');
+        const idInput = document.getElementById('policeId');
+        const idPreview = document.getElementById('idPreview');
+        
+        // Initialize
+        updateMemberCount();
+        
+        // Event Listeners
+        registrationTab.addEventListener('click', () => {
+            registrationTab.classList.add('text-blue-900', 'border-blue-900');
+            registrationTab.classList.remove('text-gray-600');
+            searchTab.classList.add('text-gray-600');
+            searchTab.classList.remove('text-blue-900', 'border-blue-900');
+            registrationSection.classList.remove('hidden');
+            searchSection.classList.add('hidden');
+        });
+        
+        searchTab.addEventListener('click', () => {
+            searchTab.classList.add('text-blue-900', 'border-blue-900');
+            searchTab.classList.remove('text-gray-600');
+            registrationTab.classList.add('text-gray-600');
+            registrationTab.classList.remove('text-blue-900', 'border-blue-900');
+            searchSection.classList.remove('hidden');
+            registrationSection.classList.add('hidden');
+            searchInput.focus();
+        });
+        
+        registrationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(registrationForm);
+            const memberType = document.querySelector('input[name="memberType"]:checked').value;
+            
+            const newMember = {
+                id: currentMemberId++,
+                memberNumber: members.length + 1,
+                type: memberType,
+                fullName: formData.get('fullName'),
+                dob: formData.get('dob'),
+                age: formData.get('age'),
+                education: formData.get('education'),
+                phone: formData.get('phone'),
+                aadhar: formData.get('aadhar'),
+                address: formData.get('address'),
+                photo: photoPreview.src,
+                referenceName: formData.get('referenceName'),
+                referenceRelation: formData.get('referenceRelation'),
+                referencePost: formData.get('referencePost'),
+                referencePhone: formData.get('referencePhone'),
+                policeId: idPreview.src,
+                registrationDate: new Date().toISOString()
+            };
+            
+            members.push(newMember);
+            saveMembers();
+            registrationForm.reset();
+            photoPreview.src = "https://via.placeholder.com/150";
+            idPreview.src = "https://via.placeholder.com/300x150";
+            
+            alert(`Member registered successfully! Member Number: ${newMember.memberNumber}`);
+        });
+        
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            if (searchTerm.length < 1) {
+                searchResults.innerHTML = '';
+                return;
+            }
+            
+            const filteredMembers = members.filter(member => 
+                member.memberNumber.toString().includes(searchTerm) ||
+                member.fullName.toLowerCase().includes(searchTerm) ||
+                member.phone.includes(searchTerm) ||
+                member.aadhar.includes(searchTerm)
+            );
+            
+            displaySearchResults(filteredMembers);
+        });
+        
+        closeModal.addEventListener('click', () => {
+            memberModal.classList.add('hidden');
+        });
+        
+        closeEditModal.addEventListener('click', () => {
+            editModal.classList.add('hidden');
+        });
+        
+        cancelEdit.addEventListener('click', () => {
+            editModal.classList.add('hidden');
+        });
+        
+        photoInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    photoPreview.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        idInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    idPreview.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Functions
+        function saveMembers() {
+            localStorage.setItem('dsp27LibraryMembers', JSON.stringify(members));
+            updateMemberCount();
+        }
+        
+        function updateMemberCount() {
+            memberCount.textContent = members.length;
+        }
+        
+        function displaySearchResults(results) {
+            searchResults.innerHTML = '';
+            
+            if (results.length === 0) {
+                searchResults.innerHTML = '<p class="text-gray-500 text-center py-4">No members found matching your search.</p>';
+                return;
+            }
+            
+            results.forEach(member => {
+                const memberCard = document.createElement('div');
+                memberCard.className = 'user-card bg-white p-4 rounded-lg shadow hover:shadow-md cursor-pointer';
+                memberCard.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <img src="${member.photo}" alt="${member.fullName}" class="w-12 h-12 rounded-full object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-blue-800">${member.fullName} <span class="text-sm font-normal text-gray-600">(#${member.memberNumber})</span></h4>
+                            <p class="text-sm text-gray-600">${member.type} • ${member.education}</p>
+                            <p class="text-sm text-gray-600">${member.phone}</p>
+                        </div>
+                        <div>
+                            <button class="view-details text-blue-600 hover:text-blue-800" data-id="${member.id}">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                        </div>
+                    </div>
+                `;
+                searchResults.appendChild(memberCard);
+            });
+            
+            // Add event listeners to view buttons
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const memberId = parseInt(button.getAttribute('data-id'));
+                    showMemberDetails(memberId);
+                });
+            });
+        }
+        
+        function showMemberDetails(memberId) {
+            const member = members.find(m => m.id === memberId);
+            if (!member) return;
+            
+            // Set modal content
+            document.getElementById('modalMemberNumber').textContent = member.memberNumber;
+            document.getElementById('modalName').textContent = member.fullName;
+            document.getElementById('modalType').textContent = member.type;
+            document.getElementById('modalAge').textContent = member.age;
+            document.getElementById('modalDob').textContent = member.dob;
+            document.getElementById('modalEducation').textContent = member.education;
+            document.getElementById('modalPhone').textContent = member.phone;
+            document.getElementById('modalAadhar').textContent = member.aadhar;
+            document.getElementById('modalAddress').textContent = member.address;
+            document.getElementById('modalPhoto').src = member.photo;
+            document.getElementById('modalRefName').textContent = member.referenceName;
+            document.getElementById('modalRefRelation').textContent = member.referenceRelation;
+            document.getElementById('modalRefPost').textContent = member.referencePost;
+            document.getElementById('modalRefPhone').textContent = member.referencePhone;
+            document.getElementById('modalIdCard').src = member.policeId;
+            
+            // Set edit and delete buttons
+            editMember.onclick = () => {
+                showEditModal(member);
+            };
+            
+            deleteMember.onclick = () => {
+                if (confirm(`Are you sure you want to delete member #${member.memberNumber} (${member.fullName})?`)) {
+                    members = members.filter(m => m.id !== member.id);
+                    saveMembers();
+                    memberModal.classList.add('hidden');
+                    displaySearchResults(members); // Refresh search results
+                }
+            };
+            
+            // Show modal
+            memberModal.classList.remove('hidden');
+        }
+        
+        function showEditModal(member) {
+            memberModal.classList.add('hidden');
+            
+            // Set form values
+            document.getElementById('editId').value = member.id;
+            document.getElementById('editMemberNumber').textContent = member.memberNumber;
+            document.getElementById('editFullName').value = member.fullName;
+            document.getElementById('editDob').value = member.dob;
+            document.getElementById('editAge').value = member.age;
+            document.getElementById('editEducation').value = member.education;
+            document.getElementById('editPhone').value = member.phone;
+            document.getElementById('editAadhar').value = member.aadhar;
+            document.getElementById('editAddress').value = member.address;
+            document.getElementById('editReferenceName').value = member.referenceName;
+            document.getElementById('editReferenceRelation').value = member.referenceRelation;
+            document.getElementById('editReferencePost').value = member.referencePost;
+            document.getElementById('editReferencePhone').value = member.referencePhone;
+            
+            // Show modal
+            editModal.classList.remove('hidden');
+        }
+        
+        editForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const memberId = parseInt(document.getElementById('editId').value);
+            const memberIndex = members.findIndex(m => m.id === memberId);
+            
+            if (memberIndex !== -1) {
+                members[memberIndex] = {
+                    ...members[memberIndex],
+                    fullName: document.getElementById('editFullName').value,
+                    dob: document.getElementById('editDob').value,
+                    age: document.getElementById('editAge').value,
+                    education: document.getElementById('editEducation').value,
+                    phone: document.getElementById('editPhone').value,
+                    aadhar: document.getElementById('editAadhar').value,
+                    address: document.getElementById('editAddress').value,
+                    referenceName: document.getElementById('editReferenceName').value,
+                    referenceRelation: document.getElementById('editReferenceRelation').value,
+                    referencePost: document.getElementById('editReferencePost').value,
+                    referencePhone: document.getElementById('editReferencePhone').value
+                };
+                
+                saveMembers();
+                editModal.classList.add('hidden');
+                showMemberDetails(memberId);
+                displaySearchResults(members); // Refresh search results
+            }
+        });
+    </script>
+</body>
+</html>
