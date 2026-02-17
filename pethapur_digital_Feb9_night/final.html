@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Godown Industrial Complex</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background: #000;
+        }
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+        }
+        #controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            max-width: 280px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        #controls h3 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            color: #4CAF50;
+        }
+        #controls p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        button {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border: none;
+            color: white;
+            padding: 10px 18px;
+            margin: 8px 5px 8px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        button:hover {
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.4);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            display: none;
+        }
+        #camera-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        #camera-popup-overlay.show { display: flex; }
+        #camera-popup {
+            background: #1a1a1a;
+            border: 2px solid #4CAF50;
+            border-radius: 12px;
+            padding: 0;
+            max-width: 90vw;
+            max-height: 90vh;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        #camera-popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 16px;
+            background: #2d2d2d;
+            border-radius: 10px 10px 0 0;
+        }
+        #camera-popup-title {
+            color: #4CAF50;
+            font-size: 18px;
+            font-weight: bold;
+            flex: 1;
+            min-width: 0;
+        }
+        #camera-popup-close {
+            background: #444;
+            color: white;
+            border: none;
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            min-height: 38px;
+            border-radius: 8px;
+            font-size: 24px;
+            line-height: 1;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        #camera-popup-close:hover { background: #666; }
+        #camera-popup-body {
+            padding: 16px;
+            min-width: 640px;
+            min-height: 360px;
+        }
+        #camera-stream-video {
+            width: 100%;
+            max-width: 960px;
+            background: #000;
+            border-radius: 8px;
+            display: block;
+        }
+        #camera-stream-placeholder {
+            width: 100%;
+            min-height: 360px;
+            background: #111;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            text-align: center;
+            padding: 24px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">Loading 3D Model...</div>
+    <div id="canvas-container"></div>
+
+    <div id="camera-popup-overlay">
+        <div id="camera-popup">
+            <div id="camera-popup-header">
+                <span id="camera-popup-title">Camera Live Stream</span>
+                <button id="camera-popup-close" type="button" aria-label="Close">&times;</button>
+            </div>
+            <div id="camera-popup-body">
+                <video id="camera-stream-video" autoplay playsinline style="display:none;"></video>
+                <div id="camera-stream-placeholder">Click a camera on the digital twin to view its live stream.<br>Configure stream URLs in the code (see CAMERA_STREAM_URLS).<br><br>For RTSP cameras use an HLS proxy (e.g. ffmpeg) and set the .m3u8 URL here.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="info">
+        <strong>🏢 Secured Complex:</strong> 3 Warehouses | Main Gate (North Border) | Perimeter: North, South, East, West Borders | Manager Office<br>
+        <strong>Controls:</strong> WASD – Move | Mouse drag – Orbit | Scroll – Zoom
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.12"></script>
+    <script src="mediamtx-reader.js"></script>
+    <script>
+        console.log("Starting 3D Scene...");
+
+        // Camera stream URLs:
+        // - Use WHEP URL for WebRTC (MediaMTX): e.g. http://localhost:8889/manager_office/whep -> low latency, live
+        // - Use .m3u8 for HLS (server.js ffmpeg): e.g. /stream/manager_office/index.m3u8
+        var CAMERA_STREAM_URLS = {
+            'manager_office_front': '/asdf.mp4',
+            'manager_office_back': '/1.mp4',
+            'GODOWN_1_front_top_left': '',
+            'GODOWN_1_front_top_right': '',
+            'GODOWN_1_front_left_shelter': '',
+            'GODOWN_1_front_right_shelter': '',
+            'GODOWN_1_back_left': '',
+            'GODOWN_1_back_center': '',
+            'GODOWN_1_back_right': '',
+            'GODOWN_2_front_top_left': '',
+            'GODOWN_2_front_top_right': '',
+            'GODOWN_2_front_left_shelter': '',
+            'GODOWN_2_front_right_shelter': '',
+            'GODOWN_2_back_left': '',
+            'GODOWN_2_back_center': '',
+            'GODOWN_2_back_right': '',
+            'GODOWN_3_front_top_left': '/person.mp4',
+            'GODOWN_3_front_top_right': '',
+            'GODOWN_3_front_left_shelter': '/sack.mp4',
+            'GODOWN_3_front_right_shelter': '/cow.mp4',
+            'GODOWN_3_back_left': '',
+            'GODOWN_3_back_center': '',
+            'GODOWN_3_back_right': ''
+        };
+
+        var cameraPopupHls = null;
+        var cameraPopupWebRTCReader = null;
+        function showCameraPopup(cam) {
+            var overlay = document.getElementById('camera-popup-overlay');
+            var titleEl = document.getElementById('camera-popup-title');
+            var videoEl = document.getElementById('camera-stream-video');
+            var placeholderEl = document.getElementById('camera-stream-placeholder');
+            titleEl.textContent = cam.label;
+            overlay.classList.add('show');
+            videoEl.style.display = 'none';
+            placeholderEl.style.display = 'flex';
+            if (cameraPopupHls) {
+                cameraPopupHls.destroy();
+                cameraPopupHls = null;
+            }
+            if (cameraPopupWebRTCReader) {
+                cameraPopupWebRTCReader.close();
+                cameraPopupWebRTCReader = null;
+            }
+            videoEl.pause();
+            videoEl.removeAttribute('src');
+            videoEl.srcObject = null;
+            videoEl.load();
+            var url = (CAMERA_STREAM_URLS[cam.id] || '').trim();
+            if (url) {
+                if (url.indexOf('/whep') !== -1) {
+                    if (typeof MediaMTXWebRTCReader === 'undefined') {
+                        placeholderEl.innerHTML = 'WebRTC player not loaded. Ensure <code>mediamtx-reader.js</code> is in the same folder and the page is served via HTTP (e.g. <code>node server.js</code>).';
+                        placeholderEl.style.display = 'flex';
+                    } else {
+                        placeholderEl.innerHTML = 'Connecting to WebRTC stream...';
+                        cameraPopupWebRTCReader = new MediaMTXWebRTCReader({
+                            url: url,
+                            onError: function(err) {
+                                placeholderEl.innerHTML = 'WebRTC error: ' + err + '<br><br>1) Is MediaMTX running? Run: <code>./mediamtx mediamtx.yml</code><br>2) Is the RTSP camera at 192.168.1.10 reachable?<br>3) Open browser console (F12) for details.';
+                                placeholderEl.style.display = 'flex';
+                            },
+                            onTrack: function(evt) {
+                                placeholderEl.style.display = 'none';
+                                videoEl.style.display = 'block';
+                                videoEl.srcObject = evt.streams[0];
+                            }
+                        });
+                    }
+                } else if (url.indexOf('.m3u8') !== -1 && typeof Hls !== 'undefined' && Hls.isSupported()) {
+                    cameraPopupHls = new Hls({
+                        maxBufferLength: 0.5,
+                        maxMaxBufferLength: 1,
+                        liveSyncDuration: 0.5,
+                        liveMaxLatencyDuration: 1
+                    });
+                    cameraPopupHls.loadSource(url);
+                    cameraPopupHls.attachMedia(videoEl);
+                    cameraPopupHls.on(Hls.Events.MANIFEST_PARSED, function() {
+                        placeholderEl.style.display = 'none';
+                        videoEl.style.display = 'block';
+                    });
+                    cameraPopupHls.on(Hls.Events.ERROR, function(ev, data) {
+                        placeholderEl.innerHTML = 'Stream error: ' + (data.details || 'Unknown') + '. Check URL: ' + url;
+                        placeholderEl.style.display = 'flex';
+                    });
+                } else if (videoEl.canPlayType('application/vnd.apple.mpegurl') || (typeof Hls !== 'undefined' && !Hls.isSupported())) {
+                    videoEl.src = url;
+                    placeholderEl.style.display = 'none';
+                    videoEl.style.display = 'block';
+                } else {
+                    videoEl.src = url;
+                    videoEl.onloadeddata = function() {
+                        placeholderEl.style.display = 'none';
+                        videoEl.style.display = 'block';
+                        videoEl.play().catch(function() {});
+                    };
+                    videoEl.oncanplay = function() {
+                        placeholderEl.style.display = 'none';
+                        videoEl.style.display = 'block';
+                    };
+                    videoEl.onerror = function() {
+                        placeholderEl.innerHTML = 'Cannot play video. Check that the file exists (e.g. output.webm in project folder) and the server is running. Open browser console (F12) for details.';
+                        placeholderEl.style.display = 'flex';
+                    };
+                }
+            } else {
+                placeholderEl.innerHTML = 'No stream URL set for <strong>' + cam.label + '</strong>.<br><br>Edit <code>CAMERA_STREAM_URLS[\'' + cam.id + '\']</code> in the code with your stream URL (HLS .m3u8 or HTTP video).<br><br>For RTSP cameras, use a proxy (e.g. ffmpeg) to convert to HLS and paste the .m3u8 URL here.';
+            }
+        }
+        function closeCameraPopup() {
+            document.getElementById('camera-popup-overlay').classList.remove('show');
+            var videoEl = document.getElementById('camera-stream-video');
+            videoEl.pause();
+            videoEl.removeAttribute('src');
+            videoEl.srcObject = null;
+            videoEl.load();
+            if (cameraPopupHls) {
+                cameraPopupHls.destroy();
+                cameraPopupHls = null;
+            }
+            if (cameraPopupWebRTCReader) {
+                cameraPopupWebRTCReader.close();
+                cameraPopupWebRTCReader = null;
+            }
+        }
+        document.getElementById('camera-popup-close').addEventListener('click', closeCameraPopup);
+        document.getElementById('camera-popup-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closeCameraPopup();
+        });
+        window.onCameraClick = showCameraPopup;
+        
+        // Scene setup - sky background
+        const scene = new THREE.Scene();
+        // Sky gradient background (top = deep blue, bottom = light horizon)
+        const skyCanvas = document.createElement('canvas');
+        skyCanvas.width = 2;
+        skyCanvas.height = 256;
+        const skyCtx = skyCanvas.getContext('2d');
+        const skyGrad = skyCtx.createLinearGradient(0, 0, 0, 256);
+        skyGrad.addColorStop(0, '#4A90D9');
+        skyGrad.addColorStop(0.5, '#7EB8E8');
+        skyGrad.addColorStop(0.85, '#B8D4EC');
+        skyGrad.addColorStop(1, '#D4E4F0');
+        skyCtx.fillStyle = skyGrad;
+        skyCtx.fillRect(0, 0, 2, 256);
+        const skyTexture = new THREE.CanvasTexture(skyCanvas);
+        skyTexture.magFilter = THREE.LinearFilter;
+        skyTexture.minFilter = THREE.LinearFilter;
+        scene.background = skyTexture;
+        scene.fog = new THREE.Fog(0xB8D4EC, 120, 360);
+
+        // Camera - same setup as korea_dashboard
+        const camera = new THREE.PerspectiveCamera(
+            60,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.set(0, 50, 80);
+        camera.lookAt(0, 0, 0);
+
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        console.log("Renderer created");
+
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+        directionalLight.position.set(50, 80, 50);
+        directionalLight.castShadow = true;
+        directionalLight.shadow.camera.left = -100;
+        directionalLight.shadow.camera.right = 100;
+        directionalLight.shadow.camera.top = 100;
+        directionalLight.shadow.camera.bottom = -100;
+        directionalLight.shadow.mapSize.width = 2048;
+        directionalLight.shadow.mapSize.height = 2048;
+        scene.add(directionalLight);
+
+        // Earth / ground - large plane everywhere (same color as floor)
+        const groundGeometry = new THREE.PlaneGeometry(600, 400);
+        const groundMaterial = new THREE.MeshStandardMaterial({ 
+            color: 0x3D2914,
+            roughness: 0.95,
+            metalness: 0.02
+        });
+        const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+        ground.rotation.x = -Math.PI / 2;
+        ground.position.set(0, 0, 15);
+        ground.receiveShadow = true;
+        scene.add(ground);
+
+        // Land / base floor - dark brown (your fenced area, unchanged)
+        const baseFloorGeometry = new THREE.PlaneGeometry(180, 90);
+        const baseFloorMaterial = new THREE.MeshStandardMaterial({ 
+            color: 0x3D2914,
+            transparent: true,
+            opacity: 0.95,
+            roughness: 0.9,
+            metalness: 0.02
+        });
+        const baseFloor = new THREE.Mesh(baseFloorGeometry, baseFloorMaterial);
+        baseFloor.rotation.x = -Math.PI / 2;
+        baseFloor.position.set(0, 0.01, 15);
+        baseFloor.receiveShadow = true;
+        scene.add(baseFloor);
+
+        // Helper to create text label sprite
+        function createLabelSprite(text) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 28px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, 128, 32);
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 2;
+            ctx.strokeText(text, 128, 32);
+            const tex = new THREE.CanvasTexture(canvas);
+            const mat = new THREE.SpriteMaterial({ map: tex, transparent: true });
+            const sprite = new THREE.Sprite(mat);
+            sprite.scale.set(12, 3, 1);
+            return sprite;
+        }
+        // Label for cameras - visible in digital twin above each camera (text only, no background)
+        function createCameraLabelSprite(text) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 640;
+            canvas.height = 96;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, 640, 96);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 22px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, 320, 48);
+            const tex = new THREE.CanvasTexture(canvas);
+            tex.premultiplyAlpha = false;
+            const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false });
+            const sprite = new THREE.Sprite(mat);
+            sprite.scale.set(10, 1.5, 1);
+            return sprite;
+        }
+
+        // CCTV camera: clone from loaded GLB (cctv_camera.glb)
+        let cameraModelTemplate = null;
+        let clickableCameras = [];
+        function createCameraMesh() {
+            if (!cameraModelTemplate) return new THREE.Group();
+            const g = cameraModelTemplate.clone(true);
+            g.traverse(function (o) {
+                if (o.isMesh && o.material) {
+                    o.material = o.material.clone();
+                    o.material.userData = o.material.userData || {};
+                    if (o.material.color) o.material.userData.originalColor = o.material.color.getHex();
+                    o.castShadow = true;
+                }
+            });
+            return g;
+        }
+
+        // Function to create a complete warehouse
+        function createWarehouse(offsetX, name, cameraList) {
+            const warehouseGroup = new THREE.Group();
+            
+            // GODOWN floor - warm concrete
+            const floorGeo = new THREE.PlaneGeometry(40, 30);
+            const floorMat = new THREE.MeshStandardMaterial({ 
+                color: 0xD4C4A8,
+                transparent: true,
+                opacity: 0.95,
+                roughness: 0.75
+            });
+            const floor = new THREE.Mesh(floorGeo, floorMat);
+            floor.rotation.x = -Math.PI / 2;
+            floor.position.y = 0.02;
+            floor.receiveShadow = true;
+            warehouseGroup.add(floor);
+            
+            // GODOWN walls - cream / off-white
+            const wallMat = new THREE.MeshStandardMaterial({ 
+                color: 0xE8E2D4,
+                transparent: true,
+                opacity: 0.96,
+                side: THREE.DoubleSide,
+                roughness: 0.65
+            });
+            
+            // Back wall
+            const backWall = new THREE.Mesh(new THREE.BoxGeometry(40, 8, 0.3), wallMat);
+            backWall.position.set(0, 4, -15);
+            backWall.castShadow = true;
+            warehouseGroup.add(backWall);
+            
+            // Left wall
+            const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.3, 8, 30), wallMat);
+            leftWall.position.set(-20, 4, 0);
+            leftWall.castShadow = true;
+            warehouseGroup.add(leftWall);
+            
+            // Right wall
+            const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.3, 8, 30), wallMat);
+            rightWall.position.set(20, 4, 0);
+            rightWall.castShadow = true;
+            warehouseGroup.add(rightWall);
+            
+            // Front wall parts (with door opening)
+            const frontLeft = new THREE.Mesh(new THREE.BoxGeometry(12, 8, 0.3), wallMat);
+            frontLeft.position.set(-14, 4, 15);
+            frontLeft.castShadow = true;
+            warehouseGroup.add(frontLeft);
+            
+            const frontRight = new THREE.Mesh(new THREE.BoxGeometry(12, 8, 0.3), wallMat);
+            frontRight.position.set(14, 4, 15);
+            frontRight.castShadow = true;
+            warehouseGroup.add(frontRight);
+            
+            const frontTop = new THREE.Mesh(new THREE.BoxGeometry(16, 2.5, 0.3), wallMat);
+            frontTop.position.set(0, 6.75, 15);
+            frontTop.castShadow = true;
+            warehouseGroup.add(frontTop);
+            
+            // GODOWN door / gate - grey
+            const door = new THREE.Mesh(
+                new THREE.BoxGeometry(15, 5, 0.2),
+                new THREE.MeshStandardMaterial({ 
+                    color: 0x6B6B6B,
+                    transparent: true,
+                    opacity: 0.95,
+                    roughness: 0.5,
+                    metalness: 0.3
+                })
+            );
+            door.position.set(0, 2.5, 14.9);
+            door.castShadow = true;
+            warehouseGroup.add(door);
+            
+            // GODOWN roof - industrial blue-gray
+            const roof = new THREE.Mesh(
+                new THREE.BoxGeometry(41, 0.3, 31),
+                new THREE.MeshStandardMaterial({ 
+                    color: 0x5B7C99,
+                    transparent: true,
+                    opacity: 0.98,
+                    metalness: 0.3,
+                    roughness: 0.6
+                })
+            );
+            roof.position.set(0, 8.15, 0);
+            roof.castShadow = true;
+            roof.userData.isRoof = true;
+            warehouseGroup.add(roof);
+            
+            // GODOWN shelter - slate gray
+            const shelterMat = new THREE.MeshStandardMaterial({ 
+                color: 0x6B7B8A,
+                metalness: 0.35,
+                roughness: 0.55
+            });
+            const shelterRoof = new THREE.Mesh(
+                new THREE.BoxGeometry(18, 0.18, 8),
+                shelterMat
+            );
+            shelterRoof.position.set(0, 6.0, 18);
+            shelterRoof.castShadow = true;
+            warehouseGroup.add(shelterRoof);
+            
+            // Name label above godown
+            const label = createLabelSprite(name);
+            label.position.set(0, 10, 0);
+            warehouseGroup.add(label);
+
+            // Godown cameras: 4 front (2 top building corners + 2 at shelter-wall corners), 3 back - on wall, not in air
+            const camScale = 0.03;
+            const shortName = name.replace(' ', '_');
+            const frontWallZ = 15.15;
+            const camHeight = 7.2;
+            if (cameraList) {
+                // Front: two on top corners of building (left/right where front wall meets side walls), two at shelter-wall junction
+                const frontCams = [
+                    { pos: [-20, camHeight, frontWallZ], rot: 0, id: shortName + '_front_top_left', label: (name === 'GODOWN 3') ? 'Face Detection Cam' : (name + ' - Front Top Left Corner') },
+                    { pos: [20, camHeight, frontWallZ], rot: 0, id: shortName + '_front_top_right', label: name + ' - Front Top Right Corner' },
+                    { pos: [-14, camHeight, frontWallZ], rot: 0, id: shortName + '_front_left_shelter', label: (name === 'GODOWN 3') ? 'Sack Detection Cam' : (name + ' - Front Left Shelter') },
+                    { pos: [14, camHeight, frontWallZ], rot: 0, id: shortName + '_front_right_shelter', label: (name === 'GODOWN 3') ? 'Animal Detection Cam2' : (name + ' - Front Right Shelter') }
+                ];
+                frontCams.forEach(function (c) {
+                    const cam = createCameraMesh();
+                    cam.position.set(c.pos[0], c.pos[1], c.pos[2]);
+                    cam.rotation.y = c.rot;
+                    cam.scale.setScalar(camScale);
+                    cam.traverse(function (o) { if (o.isMesh) o.castShadow = true; });
+                    cam.userData = { type: 'camera', id: c.id, label: c.label };
+                    cam.name = c.label;
+                    const camLabel = createCameraLabelSprite(c.label);
+                    camLabel.position.set(c.pos[0], c.pos[1] + 2.5, c.pos[2]);
+                    warehouseGroup.add(camLabel);
+                    warehouseGroup.add(cam);
+                    cameraList.push(cam);
+                });
+                // Back: 3 cameras - left, center, right
+                const backCams = [
+                    { pos: [-12, 6.2, -15.2], id: shortName + '_back_left', label: name + ' - Back Left' },
+                    { pos: [0, 6.2, -15.2], id: shortName + '_back_center', label: name + ' - Back Center' },
+                    { pos: [12, 6.2, -15.2], id: shortName + '_back_right', label: name + ' - Back Right' }
+                ];
+                backCams.forEach(function (c) {
+                    const cam = createCameraMesh();
+                    cam.position.set(c.pos[0], c.pos[1], c.pos[2]);
+                    cam.rotation.y = Math.PI;
+                    cam.scale.setScalar(camScale);
+                    cam.traverse(function (o) { if (o.isMesh) o.castShadow = true; });
+                    cam.userData = { type: 'camera', id: c.id, label: c.label };
+                    cam.name = c.label;
+                    const camLabel = createCameraLabelSprite(c.label);
+                    camLabel.position.set(c.pos[0], c.pos[1] + 2.5, c.pos[2]);
+                    warehouseGroup.add(camLabel);
+                    warehouseGroup.add(cam);
+                    cameraList.push(cam);
+                });
+            }
+            
+            warehouseGroup.position.x = offsetX;
+            return warehouseGroup;
+        }
+
+        function initScene() {
+        // Create three warehouses with cameras
+        const godownCameras = [];
+        console.log("Creating warehouses...");
+        const warehouse1 = createWarehouse(0, 'GODOWN 1', godownCameras);
+        const warehouse2 = createWarehouse(50, 'GODOWN 2', godownCameras);
+        const warehouse3 = createWarehouse(-50, 'GODOWN 3', godownCameras);
+        scene.add(warehouse1, warehouse2, warehouse3);
+
+        // ROAD - clean asphalt gray
+        const road = new THREE.Mesh(
+            new THREE.PlaneGeometry(180, 14),
+            new THREE.MeshStandardMaterial({ 
+                color: 0x3D4245,
+                roughness: 0.92,
+                metalness: 0.02
+            })
+        );
+        road.rotation.x = -Math.PI / 2;
+        road.position.set(0, 0.02, 67);
+        road.receiveShadow = true;
+        scene.add(road);
+
+        // Perimeter fence (borders) - gray as before
+        const fenceMat = new THREE.MeshStandardMaterial({ 
+            color: 0x888888,
+            transparent: true,
+            opacity: 0.5,
+            side: THREE.DoubleSide
+        });
+
+        const postMat = new THREE.MeshStandardMaterial({ color: 0x4a4a4a });
+
+        // South border (rear boundary, z = -30)
+        const southBorderFence = new THREE.Mesh(new THREE.PlaneGeometry(180, 4), fenceMat);
+        southBorderFence.position.set(0, 2, -30);
+        southBorderFence.name = 'South Border';
+        scene.add(southBorderFence);
+
+        for (let i = -90; i <= 90; i += 15) {
+            const post = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 4, 8), postMat);
+            post.position.set(i, 2, -30);
+            post.castShadow = true;
+            scene.add(post);
+        }
+
+        const southBorderLabel = createLabelSprite('SOUTH BORDER');
+        southBorderLabel.position.set(0, 5, -30);
+        scene.add(southBorderLabel);
+
+        // West border (left boundary, x = -90)
+        const westBorderFence = new THREE.Mesh(new THREE.PlaneGeometry(90, 4), fenceMat);
+        westBorderFence.rotation.y = Math.PI / 2;
+        westBorderFence.position.set(-90, 2, 15);
+        westBorderFence.name = 'West Border';
+        scene.add(westBorderFence);
+
+        for (let i = -30; i <= 60; i += 15) {
+            const post = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 4, 8), postMat);
+            post.position.set(-90, 2, i);
+            post.castShadow = true;
+            scene.add(post);
+        }
+
+        const westBorderLabel = createLabelSprite('WEST BORDER');
+        westBorderLabel.position.set(-90, 5, 15);
+        scene.add(westBorderLabel);
+
+        // East border (right boundary, x = 90)
+        const eastBorderFence = new THREE.Mesh(new THREE.PlaneGeometry(90, 4), fenceMat);
+        eastBorderFence.rotation.y = -Math.PI / 2;
+        eastBorderFence.position.set(90, 2, 15);
+        eastBorderFence.name = 'East Border';
+        scene.add(eastBorderFence);
+
+        for (let i = -30; i <= 60; i += 15) {
+            const post = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 4, 8), postMat);
+            post.position.set(90, 2, i);
+            post.castShadow = true;
+            scene.add(post);
+        }
+
+        const eastBorderLabel = createLabelSprite('EAST BORDER');
+        eastBorderLabel.position.set(90, 5, 15);
+        scene.add(eastBorderLabel);
+
+        // North border - Main Gate side (front boundary, z = 60). Gate opening at -80 to -65.
+        const northBorderFenceRight = new THREE.Mesh(new THREE.PlaneGeometry(155, 4), fenceMat);
+        northBorderFenceRight.position.set(12.5, 2, 60);
+        northBorderFenceRight.name = 'North Border (Right of Gate)';
+        scene.add(northBorderFenceRight);
+
+        const northBorderFenceLeft = new THREE.Mesh(new THREE.PlaneGeometry(10, 4), fenceMat);
+        northBorderFenceLeft.position.set(-85, 2, 60);
+        northBorderFenceLeft.name = 'North Border (Left of Gate)';
+        scene.add(northBorderFenceLeft);
+
+        for (let i = -85; i <= -80; i += 5) {
+            const post = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 4, 8), postMat);
+            post.position.set(i, 2, 60);
+            post.castShadow = true;
+            scene.add(post);
+        }
+
+        // North border posts (skip gate opening -80 to -65)
+        for (let i = -90; i <= 90; i += 15) {
+            if (i >= -80 && i <= -65) continue; // Skip gate opening
+            const post = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 4, 8), postMat);
+            post.position.set(i, 2, 60);
+            post.castShadow = true;
+            scene.add(post);
+        }
+
+        const northBorderLabel = createLabelSprite('NORTH BORDER (MAIN GATE)');
+        northBorderLabel.position.set(0, 5, 60);
+        scene.add(northBorderLabel);
+
+        // GATE - dark metallic blue-gray
+        const pillarMat = new THREE.MeshStandardMaterial({ color: 0x2C3E50, roughness: 0.4, metalness: 0.5 });
+        
+        const cornerPillar1 = new THREE.Mesh(new THREE.BoxGeometry(1.5, 6, 1.5), pillarMat);
+        cornerPillar1.position.set(-80, 3, 60);
+        cornerPillar1.castShadow = true;
+        scene.add(cornerPillar1);
+
+        const cornerPillar2 = new THREE.Mesh(new THREE.BoxGeometry(1.5, 6, 1.5), pillarMat);
+        cornerPillar2.position.set(-65, 3, 60);
+        cornerPillar2.castShadow = true;
+        scene.add(cornerPillar2);
+
+        // Gate pillar caps
+        const capMat = new THREE.MeshStandardMaterial({ color: 0x34495E, metalness: 0.55 });
+        
+        const cap1 = new THREE.Mesh(new THREE.BoxGeometry(2, 0.5, 2), capMat);
+        cap1.position.set(-80, 6.25, 60);
+        cap1.castShadow = true;
+        scene.add(cap1);
+
+        const cap2 = new THREE.Mesh(new THREE.BoxGeometry(2, 0.5, 2), capMat);
+        cap2.position.set(-65, 6.25, 60);
+        cap2.castShadow = true;
+        scene.add(cap2);
+
+        // Gate arch
+        const arch = new THREE.Mesh(
+            new THREE.BoxGeometry(16, 1.5, 1),
+            pillarMat
+        );
+        arch.position.set(-72.5, 5.5, 60);
+        arch.castShadow = true;
+        scene.add(arch);
+
+        // Main gate doors (north border - not godown gate)
+        const gateMat = new THREE.MeshStandardMaterial({ 
+            color: 0x2C3E50,
+            transparent: true,
+            opacity: 0.98,
+            metalness: 0.5,
+            roughness: 0.45,
+            side: THREE.DoubleSide
+        });
+
+        const leftGate = new THREE.Mesh(new THREE.BoxGeometry(7, 5, 0.3), gateMat);
+        leftGate.position.set(-76.5, 2.5, 60);
+        leftGate.castShadow = true;
+        scene.add(leftGate);
+
+        const rightGate = new THREE.Mesh(new THREE.BoxGeometry(7, 5, 0.3), gateMat);
+        rightGate.position.set(-68.5, 2.5, 60);
+        rightGate.castShadow = true;
+        scene.add(rightGate);
+
+        // Gate lights
+        const gateLightMat = new THREE.MeshStandardMaterial({ 
+            color: 0xffff00,
+            emissive: 0xffff00,
+            emissiveIntensity: 0.8,
+            transparent: true,
+            opacity: 0.9
+        });
+
+        const gateLight1 = new THREE.Mesh(new THREE.SphereGeometry(0.4, 16, 16), gateLightMat);
+        gateLight1.position.set(-65, 6.5, 60);
+        scene.add(gateLight1);
+
+        const gateLight2 = new THREE.Mesh(new THREE.SphereGeometry(0.4, 16, 16), gateLightMat);
+        gateLight2.position.set(-80, 6.5, 60);
+        scene.add(gateLight2);
+
+        const gatePointLight1 = new THREE.PointLight(0xffffcc, 0.6, 15);
+        gatePointLight1.position.set(-65, 6.5, 60);
+        scene.add(gatePointLight1);
+
+        const gatePointLight2 = new THREE.PointLight(0xffffcc, 0.6, 15);
+        gatePointLight2.position.set(-80, 6.5, 60);
+        scene.add(gatePointLight2);
+
+        // Manager office - left side, near road and gate
+        const managerOffice = new THREE.Mesh(
+            new THREE.BoxGeometry(8, 4, 10),
+            new THREE.MeshStandardMaterial({ 
+                color: 0xD4C8B8,
+                transparent: true,
+                opacity: 0.98,
+                roughness: 0.65
+            })
+        );
+        managerOffice.position.set(-85, 2, 48);
+        managerOffice.castShadow = true;
+        scene.add(managerOffice);
+
+        const managerOfficeRoof = new THREE.Mesh(
+            new THREE.BoxGeometry(9, 0.3, 11),
+            new THREE.MeshStandardMaterial({ 
+                color: 0x6B5B4F,
+                transparent: true,
+                opacity: 0.98,
+                roughness: 0.6,
+                metalness: 0.1
+            })
+        );
+        managerOfficeRoof.position.set(-85, 4.15, 48);
+        managerOfficeRoof.castShadow = true;
+        scene.add(managerOfficeRoof);
+
+        const managerOfficeLabel = createLabelSprite('MANAGER OFFICE');
+        managerOfficeLabel.position.set(-85, 5.5, 48);
+        scene.add(managerOfficeLabel);
+
+        const officeCameraFront = createCameraMesh();
+        officeCameraFront.position.set(-85, 4.5, 53);
+        officeCameraFront.rotation.y = 0;
+        officeCameraFront.scale.set(0.02, 0.02, 0.02);
+        officeCameraFront.traverse(o => { if (o.isMesh) o.castShadow = true; });
+        officeCameraFront.userData = { type: 'camera', id: 'manager_office_front', label: 'Number Plate Detection Cam' };
+        officeCameraFront.name = 'Number Plate Detection Cam';
+        scene.add(officeCameraFront);
+        const officeCamFrontLabel = createCameraLabelSprite('Number Plate Detection Cam');
+        officeCamFrontLabel.position.set(-85, 7, 53);
+        scene.add(officeCamFrontLabel);
+
+        const officeCameraBack = createCameraMesh();
+        officeCameraBack.position.set(-85, 4.5, 43);
+        officeCameraBack.rotation.y = Math.PI;
+        officeCameraBack.scale.set(0.02, 0.02, 0.02);
+        officeCameraBack.traverse(o => { if (o.isMesh) o.castShadow = true; });
+        officeCameraBack.userData = { type: 'camera', id: 'manager_office_back', label: 'Animal Detection Cam1' };
+        officeCameraBack.name = 'Animal Detection Cam1';
+        scene.add(officeCameraBack);
+        const officeCamBackLabel = createCameraLabelSprite('Animal Detection Cam1');
+        officeCamBackLabel.position.set(-85, 7, 43);
+        scene.add(officeCamBackLabel);
+
+        clickableCameras = [officeCameraFront, officeCameraBack].concat(godownCameras);
+
+        console.log("Scene setup complete");
+
+        // Camera controls - from korea_dashboard (smooth orbit + FOV zoom)
+        let moveSpeed = 2;
+        let radius = 100;
+        let target = new THREE.Vector3(0, 0, 0);
+        let targetRotationX = Math.PI / 4, targetRotationY = Math.PI / 4;
+        let currentRotationX = Math.PI / 4, currentRotationY = Math.PI / 4;
+
+        const keys = { w: false, s: false, a: false, d: false };
+        let mouseDown = false;
+        let mouseX = 0, mouseY = 0;
+
+        // WASD - Move target to explore
+        document.addEventListener('keydown', (e) => {
+            const k = e.key.toLowerCase();
+            if (k === 'w') keys.w = true;
+            if (k === 's') keys.s = true;
+            if (k === 'a') keys.a = true;
+            if (k === 'd') keys.d = true;
+        });
+        document.addEventListener('keyup', (e) => {
+            const k = e.key.toLowerCase();
+            if (k === 'w') keys.w = false;
+            if (k === 's') keys.s = false;
+            if (k === 'a') keys.a = false;
+            if (k === 'd') keys.d = false;
+        });
+
+        // Raycaster for clickable cameras
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+
+        // Mouse drag - Orbit (smooth rotation like korea_dashboard)
+        function onMouseDown(e) {
+            mouseDown = true;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            renderer.domElement.style.cursor = 'grabbing';
+        }
+        function onMouseUp(e) {
+            if (mouseDown && e && typeof e.clientX === 'number' && Math.abs(e.clientX - mouseX) < 5 && Math.abs(e.clientY - mouseY) < 5) {
+                // Quick click - check for camera
+                mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+                raycaster.setFromCamera(mouse, camera);
+                const intersects = raycaster.intersectObjects(clickableCameras, true);
+                if (intersects.length > 0) {
+                    let obj = intersects[0].object;
+                    while (obj && !obj.userData.type) obj = obj.parent;
+                    const camGroup = obj;
+                    const cam = camGroup ? camGroup.userData : null;
+                    if (cam && cam.type === 'camera') {
+                        camGroup.traverse(o => {
+                            if (o.isMesh && o.material && o.material.color) {
+                                o.material.color.setHex(0x4CAF50);
+                            }
+                        });
+                        setTimeout(() => {
+                            camGroup.traverse(o => {
+                                if (o.isMesh && o.material && o.material.userData && o.material.userData.originalColor) {
+                                    o.material.color.setHex(o.material.userData.originalColor);
+                                }
+                            });
+                        }, 500);
+                        console.log('Camera clicked:', cam.id, cam.label);
+                        if (typeof window.onCameraClick === 'function') {
+                            window.onCameraClick(cam);
+                        }
+                    }
+                }
+            }
+            mouseDown = false;
+            renderer.domElement.style.cursor = 'grab';
+        }
+        function onMouseMove(e) {
+            if (!mouseDown) return;
+            const deltaX = e.clientX - mouseX;
+            const deltaY = e.clientY - mouseY;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            targetRotationY -= deltaX * 0.01;
+            targetRotationX -= deltaY * 0.01;
+            targetRotationX = Math.max(-Math.PI / 3, Math.min(Math.PI / 3, targetRotationX));
+        }
+
+        // Scroll - Radius zoom (pull back to see whole digital twin with gate)
+        function onWheel(e) {
+            e.preventDefault();
+            radius -= e.deltaY * 0.5;
+            radius = Math.max(40, Math.min(350, radius));
+        }
+
+        renderer.domElement.addEventListener('mousedown', onMouseDown);
+        renderer.domElement.addEventListener('mouseup', onMouseUp);
+        renderer.domElement.addEventListener('mouseleave', onMouseUp);
+        renderer.domElement.addEventListener('mousemove', onMouseMove);
+        renderer.domElement.addEventListener('wheel', onWheel);
+        renderer.domElement.addEventListener('contextmenu', (e) => e.preventDefault());
+        renderer.domElement.style.cursor = 'grab';
+
+        function updateCamera() {
+            // WASD: Move based on camera view (forward/back/left/right relative to where you're looking)
+            const viewDir = new THREE.Vector3();
+            camera.getWorldDirection(viewDir);
+            viewDir.y = 0;
+            if (viewDir.length() > 0.01) {
+                const forward = viewDir.clone().normalize();
+                const right = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), forward).normalize();
+            
+                if (keys.w) { target.x += forward.x * moveSpeed; target.z += forward.z * moveSpeed; }
+                if (keys.s) { target.x -= forward.x * moveSpeed; target.z -= forward.z * moveSpeed; }
+                if (keys.a) { target.x += right.x * moveSpeed; target.z += right.z * moveSpeed; }  // A = left (opposite of D)
+                if (keys.d) { target.x -= right.x * moveSpeed; target.z -= right.z * moveSpeed; }  // D = right (opposite of A)
+            }
+
+            // Smooth camera rotation (like korea_dashboard)
+            currentRotationX += (targetRotationX - currentRotationX) * 0.1;
+            currentRotationY += (targetRotationY - currentRotationY) * 0.1;
+
+            camera.position.x = target.x + radius * Math.sin(currentRotationY) * Math.cos(currentRotationX);
+            camera.position.y = target.y + 8 + radius * Math.sin(currentRotationX);
+            camera.position.z = target.z + radius * Math.cos(currentRotationY) * Math.cos(currentRotationX);
+            camera.lookAt(target.x, target.y, target.z);
+        }
+
+        window.toggleRacks = function() {
+            scene.traverse((obj) => {
+                if (obj.userData.isRacks) obj.visible = !obj.visible;
+            });
+        };
+        window.toggleRoof = function() {
+            scene.traverse((obj) => {
+                if (obj.userData.isRoof) obj.visible = !obj.visible;
+            });
+        };
+        window.resetCamera = function() {
+            targetRotationX = Math.PI / 4;
+            targetRotationY = Math.PI / 4;
+            currentRotationX = Math.PI / 4;
+            currentRotationY = Math.PI / 4;
+            radius = 100;
+            target.set(0, 0, 0);
+        };
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Update first-person camera
+            updateCamera();
+            
+            renderer.render(scene, camera);
+        }
+
+        // Window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Start animation
+        console.log("Starting animation...");
+        animate();
+        }
+
+        const loader = new THREE.GLTFLoader();
+        loader.load('cctv_camera.glb', function(gltf) {
+            cameraModelTemplate = gltf.scene;
+            cameraModelTemplate.traverse(function(o) { if (o.isMesh) o.castShadow = true; });
+            var box = new THREE.Box3().setFromObject(cameraModelTemplate);
+            var size = new THREE.Vector3();
+            box.getSize(size);
+            var maxDim = Math.max(size.x, size.y, size.z);
+            var targetSize = 0.008;
+            if (maxDim > 0) cameraModelTemplate.scale.setScalar(targetSize / maxDim);
+            initScene();
+            document.getElementById('loading').style.display = 'none';
+        }, undefined, function(err) {
+            console.error('CCTV GLB load failed:', err);
+            document.getElementById('loading').textContent = 'Camera model failed to load. Using placeholders.';
+            cameraModelTemplate = null;
+            initScene();
+            document.getElementById('loading').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

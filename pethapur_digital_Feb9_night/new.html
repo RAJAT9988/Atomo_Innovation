@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Godown Industrial Complex</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background: #000;
+        }
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+        }
+        #controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            max-width: 280px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        #controls h3 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            color: #4CAF50;
+        }
+        #controls p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        button {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border: none;
+            color: white;
+            padding: 10px 18px;
+            margin: 8px 5px 8px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        button:hover {
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.4);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">Loading 3D Model...</div>
+    <div id="canvas-container"></div>
+    
+    <div id="controls">
+        <h3>🏭 Industrial Complex</h3>
+        <p><strong>Mouse Controls:</strong></p>
+        <p>🖱️ Drag: Rotate View</p>
+        <p>🖱️ Scroll: Zoom In/Out</p>
+        <div style="margin-top: 15px;">
+            <button onclick="toggleRacks()">Toggle Racks</button>
+            <button onclick="toggleRoof()">Toggle Roofs</button>
+            <button onclick="resetCamera()">Reset View</button>
+        </div>
+    </div>
+
+    <div id="info">
+        <strong>🏢 Secured Complex:</strong> 3 Warehouses | Main Gate | Perimeter Fence | Guard House
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        console.log("Starting 3D Scene...");
+        
+        // Scene setup
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000000);
+        scene.fog = new THREE.Fog(0x000000, 100, 300);
+
+        // Camera
+        const camera = new THREE.PerspectiveCamera(
+            60,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.set(80, 50, 80);
+        camera.lookAt(0, 0, 0);
+
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        console.log("Renderer created");
+
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+        directionalLight.position.set(50, 80, 50);
+        directionalLight.castShadow = true;
+        directionalLight.shadow.camera.left = -100;
+        directionalLight.shadow.camera.right = 100;
+        directionalLight.shadow.camera.top = 100;
+        directionalLight.shadow.camera.bottom = -100;
+        directionalLight.shadow.mapSize.width = 2048;
+        directionalLight.shadow.mapSize.height = 2048;
+        scene.add(directionalLight);
+
+        // Ground (invisible base)
+        const groundGeometry = new THREE.PlaneGeometry(300, 200);
+        const groundMaterial = new THREE.MeshStandardMaterial({ 
+            color: 0x000000,
+            transparent: true,
+            opacity: 0
+        });
+        const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+        ground.rotation.x = -Math.PI / 2;
+        ground.position.y = 0;
+        ground.receiveShadow = true;
+        scene.add(ground);
+
+        // Large concrete base floor
+        const baseFloorGeometry = new THREE.PlaneGeometry(180, 90);
+        const baseFloorMaterial = new THREE.MeshStandardMaterial({ 
+            color: 0x404040,
+            transparent: true,
+            opacity: 0.6,
+            roughness: 0.9
+        });
+        const baseFloor = new THREE.Mesh(baseFloorGeometry, baseFloorMaterial);
+        baseFloor.rotation.x = -Math.PI / 2;
+        baseFloor.position.y = 0.01;
+        baseFloor.receiveShadow = true;
+        scene.add(baseFloor);
+
+        // Function to create a complete warehouse
+        function createWarehouse(offsetX) {
+            const warehouseGroup = new THREE.Group();
+            
+            // Transparent floor
+            const floorGeo = new THREE.PlaneGeometry(40, 30);
+            const floorMat = new THREE.MeshStandardMaterial({ 
+                color: 0xffffff,
+                transparent: true,
+                opacity: 0.3,
+                roughness: 0.7
+            });
+            const floor = new THREE.Mesh(floorGeo, floorMat);
+            floor.rotation.x = -Math.PI / 2;
+            floor.position.y = 0.02;
+            floor.receiveShadow = true;
+            warehouseGroup.add(floor);
+            
+            // Transparent walls
+            const wallMat = new THREE.MeshStandardMaterial({ 
+                color: 0xffffff,
+                transparent: true,
+                opacity: 0.4,
+                side: THREE.DoubleSide
+            });
+            
+            // Back wall
+            const backWall = new THREE.Mesh(new THREE.BoxGeometry(40, 8, 0.3), wallMat);
+            backWall.position.set(0, 4, -15);
+            backWall.castShadow = true;
+            warehouseGroup.add(backWall);
+            
+            // Left wall
+            const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.3, 8, 30), wallMat);
+            leftWall.position.set(-20, 4, 0);
+            leftWall.castShadow = true;
+            warehouseGroup.add(leftWall);
+            
+            // Right wall
+            const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.3, 8, 30), wallMat);
+            rightWall.position.set(20, 4, 0);
+            rightWall.castShadow = true;
+            warehouseGroup.add(rightWall);
+            
+            // Front wall parts (with door opening)
+            const frontLeft = new THREE.Mesh(new THREE.BoxGeometry(12, 8, 0.3), wallMat);
+            frontLeft.position.set(-14, 4, 15);
+            frontLeft.castShadow = true;
+            warehouseGroup.add(frontLeft);
+            
+            const frontRight = new THREE.Mesh(new THREE.BoxGeometry(12, 8, 0.3), wallMat);
+            frontRight.position.set(14, 4, 15);
+            frontRight.castShadow = true;
+            warehouseGroup.add(frontRight);
+            
+            const frontTop = new THREE.Mesh(new THREE.BoxGeometry(16, 2.5, 0.3), wallMat);
+            frontTop.position.set(0, 6.75, 15);
+            frontTop.castShadow = true;
+            warehouseGroup.add(frontTop);
+            
+            // Door
+            const door = new THREE.Mesh(
+                new THREE.BoxGeometry(15, 5, 0.2),
+                new THREE.MeshStandardMaterial({ 
+                    color: 0x8B4513,
+                    transparent: true,
+                    opacity: 0.6
+                })
+            );
+            door.position.set(0, 2.5, 14.9);
+            door.castShadow = true;
+            warehouseGroup.add(door);
+            
+            // Roof
+            const roof = new THREE.Mesh(
+                new THREE.BoxGeometry(41, 0.3, 31),
+                new THREE.MeshStandardMaterial({ 
+                    color: 0xffffff,
+                    transparent: true,
+                    opacity: 0.4,
+                    metalness: 0.7
+                })
+            );
+            roof.position.set(0, 8.15, 0);
+            roof.castShadow = true;
+            roof.userData.isRoof = true;
+            warehouseGroup.add(roof);
+            
+            // Support beams
+            const beamMat = new THREE.MeshStandardMaterial({ 
+                color: 0x654321,
+                transparent: true,
+                opacity: 0.7
+            });
+            
+            for (let i = -15; i <= 15; i += 10) {
+                const beam1 = new THREE.Mesh(new THREE.BoxGeometry(0.4, 8, 0.4), beamMat);
+                beam1.position.set(i, 4, -12);
+                beam1.castShadow = true;
+                warehouseGroup.add(beam1);
+                
+                const beam2 = new THREE.Mesh(new THREE.BoxGeometry(0.4, 8, 0.4), beamMat);
+                beam2.position.set(i, 4, 12);
+                beam2.castShadow = true;
+                warehouseGroup.add(beam2);
+            }
+            
+            // Storage racks
+            const rackGroup = new THREE.Group();
+            rackGroup.userData.isRacks = true;
+            
+            for (let row = 0; row < 2; row++) {
+                for (let col = 0; col < 5; col++) {
+                    const rack = new THREE.Group();
+                    
+                    const rackMat = new THREE.MeshStandardMaterial({ 
+                        color: 0xff6600,
+                        roughness: 0.6,
+                        metalness: 0.3
+                    });
+                    
+                    // Posts
+                    for (let i = 0; i < 4; i++) {
+                        const post = new THREE.Mesh(new THREE.BoxGeometry(0.2, 6, 0.2), rackMat);
+                        const xOff = i % 2 === 0 ? -2 : 2;
+                        const zOff = i < 2 ? -0.75 : 0.75;
+                        post.position.set(xOff, 3, zOff);
+                        post.castShadow = true;
+                        rack.add(post);
+                    }
+                    
+                    // Shelves
+                    for (let level = 0; level < 3; level++) {
+                        const shelf = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.1, 1.6), rackMat);
+                        shelf.position.set(0, 2 + level * 2, 0);
+                        shelf.castShadow = true;
+                        rack.add(shelf);
+                        
+                        // Random boxes
+                        if (Math.random() > 0.3) {
+                            const box = new THREE.Mesh(
+                                new THREE.BoxGeometry(1.2, 0.8, 0.8),
+                                new THREE.MeshStandardMaterial({ 
+                                    color: Math.random() * 0xffffff
+                                })
+                            );
+                            box.position.set(
+                                (Math.random() - 0.5) * 2,
+                                2.4 + level * 2,
+                                (Math.random() - 0.5) * 0.5
+                            );
+                            box.castShadow = true;
+                            rack.add(box);
+                        }
+                    }
+                    
+                    rack.position.set(-15 + col * 6, 0, -8 + row * 10);
+                    rackGroup.add(rack);
+                }
+            }
+            warehouseGroup.add(rackGroup);
+            
+            warehouseGroup.position.x = offsetX;
+            return warehouseGroup;
+        }
+
+        // Create three warehouses
+        console.log("Creating warehouses...");
+        const warehouse1 = createWarehouse(0);
+        const warehouse2 = createWarehouse(50);
+        const warehouse3 = createWarehouse(-50);
+        scene.add(warehouse1, warehouse2, warehouse3);
+
+        // Road
+        const road = new THREE.Mesh(
+            new THREE.PlaneGeometry(180, 12),
+            new THREE.MeshStandardMaterial({ 
+                color: 0x2a2a2a,
+                transparent: true,
+                opacity: 0.8
+            })
+        );
+        road.rotation.x = -Math.PI / 2;
+        road.position.set(0, 0.03, 30);
+        road.receiveShadow = true;
+        scene.add(road);
+
+        // Road markings
+        const lineMat = new THREE.MeshStandardMaterial({ 
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.9
+        });
+        
+        // Center dashed line
+        for (let i = -80; i < 80; i += 10) {
+            const line = new THREE.Mesh(new THREE.PlaneGeometry(5, 0.2), lineMat);
+            line.rotation.x = -Math.PI / 2;
+            line.position.set(i, 0.04, 30);
+            scene.add(line);
+        }
+
+        // Side lines
+        const sideLine1 = new THREE.Mesh(new THREE.PlaneGeometry(180, 0.3), lineMat);
+        sideLine1.rotation.x = -Math.PI / 2;
+        sideLine1.position.set(0, 0.04, 24);
+        scene.add(sideLine1);
+
+        const sideLine2 = new THREE.Mesh(new THREE.PlaneGeometry(180, 0.3), lineMat);
+        sideLine2.rotation.x = -Math.PI / 2;
+        sideLine2.position.set(0, 0.04, 36);
+        scene.add(sideLine2);
+
+        // Street lights
+        for (let i = -60; i <= 60; i += 30) {
+            const pole = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.15, 0.15, 8, 8),
+                new THREE.MeshStandardMaterial({ color: 0x4a4a4a, metalness: 0.6 })
+            );
+            pole.position.set(i, 4, 38);
+            pole.castShadow = true;
+            scene.add(pole);
+
+            const light = new THREE.Mesh(
+                new THREE.SphereGeometry(0.5, 16, 16),
+                new THREE.MeshStandardMaterial({ 
+                    color: 0xffffaa,
+                    emissive: 0xffffaa,
+                    emissiveIntensity: 0.5,
+                    transparent: true,
+                    opacity: 0.8
+                })
+            );
+            light.position.set(i, 8, 38);
+            scene.add(light);
+
+            const pointLight = new THREE.PointLight(0xffffcc, 0.5, 20);
+            pointLight.position.set(i, 8, 38);
+            scene.add(pointLight);
+        }
+
+        // Perimeter fence
+        const fenceMat = new THREE.MeshStandardMaterial({ 
+            color: 0x888888,
+            transparent: true,
+            opacity: 0.5,
+            side: THREE.DoubleSide
+        });
+
+        const postMat = new THREE.MeshStandardMaterial({ color: 0x4a4a4a });
+
+        // Back fence
+        const backFence = new THREE.Mesh(new THREE.PlaneGeometry(180, 4), fenceMat);
+        backFence.position.set(0, 2, -30);
+        scene.add(backFence);
+
+        for (let i = -90; i <= 90; i += 15) {
+            const post = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 4, 8), postMat);
+            post.position.set(i, 2, -30);
+            post.castShadow = true;
+            scene.add(post);
+        }
+
+        // Left fence
+        const leftFence = new THREE.Mesh(new THREE.PlaneGeometry(90, 4), fenceMat);
+        leftFence.rotation.y = Math.PI / 2;
+        leftFence.position.set(-90, 2, 15);
+        scene.add(leftFence);
+
+        for (let i = -30; i <= 60; i += 15) {
+            const post = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 4, 8), postMat);
+            post.position.set(-90, 2, i);
+            post.castShadow = true;
+            scene.add(post);
+        }
+
+        // Right fence
+        const rightFence = new THREE.Mesh(new THREE.PlaneGeometry(90, 4), fenceMat);
+        rightFence.rotation.y = -Math.PI / 2;
+        rightFence.position.set(90, 2, 15);
+        scene.add(rightFence);
+
+        for (let i = -30; i <= 60; i += 15) {
+            const post = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 4, 8), postMat);
+            post.position.set(90, 2, i);
+            post.castShadow = true;
+            scene.add(post);
+        }
+
+        // Front fence (with gate opening)
+        const frontFenceL = new THREE.Mesh(new THREE.PlaneGeometry(60, 4), fenceMat);
+        frontFenceL.position.set(-60, 2, 60);
+        scene.add(frontFenceL);
+
+        const frontFenceR = new THREE.Mesh(new THREE.PlaneGeometry(60, 4), fenceMat);
+        frontFenceR.position.set(60, 2, 60);
+        scene.add(frontFenceR);
+
+        for (let i = -90; i <= -30; i += 15) {
+            const post = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 4, 8), postMat);
+            post.position.set(i, 2, 60);
+            post.castShadow = true;
+            scene.add(post);
+        }
+
+        for (let i = 30; i <= 90; i += 15) {
+            const post = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 4, 8), postMat);
+            post.position.set(i, 2, 60);
+            post.castShadow = true;
+            scene.add(post);
+        }
+
+        // Gate pillars
+        const pillarMat = new THREE.MeshStandardMaterial({ color: 0x505050, roughness: 0.6 });
+        
+        const leftPillar = new THREE.Mesh(new THREE.BoxGeometry(1.5, 6, 1.5), pillarMat);
+        leftPillar.position.set(-25, 3, 60);
+        leftPillar.castShadow = true;
+        scene.add(leftPillar);
+
+        const rightPillar = new THREE.Mesh(new THREE.BoxGeometry(1.5, 6, 1.5), pillarMat);
+        rightPillar.position.set(25, 3, 60);
+        rightPillar.castShadow = true;
+        scene.add(rightPillar);
+
+        // Pillar caps
+        const capMat = new THREE.MeshStandardMaterial({ color: 0x606060, metalness: 0.5 });
+        
+        const leftCap = new THREE.Mesh(new THREE.BoxGeometry(2, 0.5, 2), capMat);
+        leftCap.position.set(-25, 6.25, 60);
+        leftCap.castShadow = true;
+        scene.add(leftCap);
+
+        const rightCap = new THREE.Mesh(new THREE.BoxGeometry(2, 0.5, 2), capMat);
+        rightCap.position.set(25, 6.25, 60);
+        rightCap.castShadow = true;
+        scene.add(rightCap);
+
+        // Gate arch
+        const arch = new THREE.Mesh(
+            new THREE.BoxGeometry(52, 1.5, 1),
+            pillarMat
+        );
+        arch.position.set(0, 5.5, 60);
+        arch.castShadow = true;
+        scene.add(arch);
+
+        // Gate doors
+        const gateMat = new THREE.MeshStandardMaterial({ 
+            color: 0x3a3a3a,
+            transparent: true,
+            opacity: 0.7,
+            metalness: 0.6,
+            side: THREE.DoubleSide
+        });
+
+        const leftGate = new THREE.Mesh(new THREE.BoxGeometry(24, 5, 0.3), gateMat);
+        leftGate.position.set(-12.5, 2.5, 60);
+        leftGate.castShadow = true;
+        scene.add(leftGate);
+
+        const rightGate = new THREE.Mesh(new THREE.BoxGeometry(24, 5, 0.3), gateMat);
+        rightGate.position.set(12.5, 2.5, 60);
+        rightGate.castShadow = true;
+        scene.add(rightGate);
+
+        // Gate lights
+        const gateLightMat = new THREE.MeshStandardMaterial({ 
+            color: 0xffff00,
+            emissive: 0xffff00,
+            emissiveIntensity: 0.8,
+            transparent: true,
+            opacity: 0.9
+        });
+
+        const gateLight1 = new THREE.Mesh(new THREE.SphereGeometry(0.4, 16, 16), gateLightMat);
+        gateLight1.position.set(-25, 6.5, 60);
+        scene.add(gateLight1);
+
+        const gateLight2 = new THREE.Mesh(new THREE.SphereGeometry(0.4, 16, 16), gateLightMat);
+        gateLight2.position.set(25, 6.5, 60);
+        scene.add(gateLight2);
+
+        const gatePointLight1 = new THREE.PointLight(0xffffcc, 0.6, 15);
+        gatePointLight1.position.set(-25, 6.5, 60);
+        scene.add(gatePointLight1);
+
+        const gatePointLight2 = new THREE.PointLight(0xffffcc, 0.6, 15);
+        gatePointLight2.position.set(25, 6.5, 60);
+        scene.add(gatePointLight2);
+
+        // Guard house
+        const guardHouse = new THREE.Mesh(
+            new THREE.BoxGeometry(4, 3, 4),
+            new THREE.MeshStandardMaterial({ 
+                color: 0x606060,
+                transparent: true,
+                opacity: 0.6
+            })
+        );
+        guardHouse.position.set(-35, 1.5, 55);
+        guardHouse.castShadow = true;
+        scene.add(guardHouse);
+
+        const guardRoof = new THREE.Mesh(
+            new THREE.BoxGeometry(4.5, 0.3, 4.5),
+            new THREE.MeshStandardMaterial({ 
+                color: 0x4a4a4a,
+                transparent: true,
+                opacity: 0.7
+            })
+        );
+        guardRoof.position.set(-35, 3.15, 55);
+        guardRoof.castShadow = true;
+        scene.add(guardRoof);
+
+        console.log("Scene setup complete");
+
+        // Camera controls
+        let isDragging = false;
+        let previousMouse = { x: 0, y: 0 };
+        let cameraAngle = { theta: Math.PI / 4, phi: Math.PI / 5 };
+        let cameraDistance = 100;
+
+        renderer.domElement.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            previousMouse = { x: e.clientX, y: e.clientY };
+        });
+
+        renderer.domElement.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const deltaX = e.clientX - previousMouse.x;
+                const deltaY = e.clientY - previousMouse.y;
+                
+                cameraAngle.theta -= deltaX * 0.005;
+                cameraAngle.phi -= deltaY * 0.005;
+                cameraAngle.phi = Math.max(0.1, Math.min(Math.PI / 2 - 0.1, cameraAngle.phi));
+                
+                previousMouse = { x: e.clientX, y: e.clientY };
+            }
+        });
+
+        renderer.domElement.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        renderer.domElement.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            cameraDistance += e.deltaY * 0.1;
+            cameraDistance = Math.max(30, Math.min(200, cameraDistance));
+        });
+
+        // Toggle functions
+        window.toggleRacks = function() {
+            scene.traverse((obj) => {
+                if (obj.userData.isRacks) {
+                    obj.visible = !obj.visible;
+                }
+            });
+        };
+
+        window.toggleRoof = function() {
+            scene.traverse((obj) => {
+                if (obj.userData.isRoof) {
+                    obj.visible = !obj.visible;
+                }
+            });
+        };
+
+        window.resetCamera = function() {
+            cameraAngle = { theta: Math.PI / 4, phi: Math.PI / 5 };
+            cameraDistance = 100;
+        };
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            camera.position.x = cameraDistance * Math.sin(cameraAngle.phi) * Math.cos(cameraAngle.theta);
+            camera.position.y = cameraDistance * Math.cos(cameraAngle.phi);
+            camera.position.z = cameraDistance * Math.sin(cameraAngle.phi) * Math.sin(cameraAngle.theta);
+            camera.lookAt(0, 4, 0);
+            
+            renderer.render(scene, camera);
+        }
+
+        // Window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Start animation
+        console.log("Starting animation...");
+        animate();
+        
+        // Hide loading message
+        setTimeout(() => {
+            document.getElementById('loading').style.display = 'none';
+        }, 1000);
+    </script>
+</body>
+</html>

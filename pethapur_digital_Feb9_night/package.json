@@ -1,0 +1,13 @@
+{
+  "name": "pethapur-digital-twin",
+  "version": "1.0.0",
+  "description": "Digital twin with RTSP camera streams",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
