@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webcam + Digital Twin</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      gap: 0;
+    }
+    .panel {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .panel-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.9;
+      z-index: 2;
+    }
+    .webcam-panel .panel-label { color: #6ee7b7; }
+    .twin-panel .panel-label { color: #93c5fd; }
+    .webcam-panel {
+      background: #111;
+      border-right: 1px solid #222;
+    }
+    .webcam-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .twin-panel {
+      background: #000;
+    }
+    #twin-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="panel webcam-panel">
+      <span class="panel-label">Webcam</span>
+      <img src="/video_feed" alt="Webcam stream" id="webcam-img" />
+    </div>
+    <div class="panel twin-panel">
+      <span class="panel-label">Digital Twin — 3D Hand · Drag to rotate, scroll to zoom</span>
+      <canvas id="twin-canvas"></canvas>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const canvas = document.getElementById('twin-canvas');
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0a0a0f);
+
+      const camera = new THREE.PerspectiveCamera(50, 1, 0.01, 100);
+      camera.position.set(0, 0.5, 3.5);
+      camera.lookAt(0, 0.3, 0);
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      const ambient = new THREE.AmbientLight(0x7efff5, 0.3);
+      scene.add(ambient);
+      const key = new THREE.DirectionalLight(0xffffff, 0.9);
+      key.position.set(3, 5, 3);
+      key.castShadow = true;
+      scene.add(key);
+      const rim = new THREE.DirectionalLight(0x00ffcc, 0.4);
+      rim.position.set(-3, 1, -2);
+      scene.add(rim);
+      const fill = new THREE.PointLight(0x7efff5, 0.5, 8);
+      fill.position.set(0, 3, 1);
+      scene.add(fill);
+
+      const skinMat = new THREE.MeshStandardMaterial({
+        color: 0xf0c080, roughness: 0.55, metalness: 0.05, envMapIntensity: 0.4
+      });
+      const jointMat = new THREE.MeshStandardMaterial({
+        color: 0xe0a860, roughness: 0.4, metalness: 0.1
+      });
+      const nailMat = new THREE.MeshStandardMaterial({
+        color: 0xffeedd, roughness: 0.2, metalness: 0.2
+      });
+
+      function makeCylinder(rTop, rBot, h, segs) { return new THREE.CylinderGeometry(rTop, rBot, h, segs || 8); }
+      function makeSphere(r, ws, hs) { return new THREE.SphereGeometry(r, ws || 8, hs || 8); }
+
+      function addSegment(parent, length, radius) {
+        const mat = skinMat.clone();
+        const mesh = new THREE.Mesh(makeCylinder(radius * 0.9, radius, length, 8), mat);
+        mesh.castShadow = true;
+        mesh.position.y = length / 2;
+        const pivot = new THREE.Object3D();
+        pivot.add(mesh);
+        parent.add(pivot);
+        const knuckle = new THREE.Mesh(makeSphere(radius * 0.95, 8, 8), jointMat.clone());
+        knuckle.castShadow = true;
+        pivot.add(knuckle);
+        return { pivot, mesh, length };
+      }
+
+      const handRoot = new THREE.Object3D();
+      handRoot.rotation.x = -0.3;
+      scene.add(handRoot);
+
+      const palmGeo = new THREE.BoxGeometry(0.72, 0.9, 0.2);
+      const palm = new THREE.Mesh(palmGeo, skinMat);
+      palm.castShadow = true;
+      palm.receiveShadow = true;
+      handRoot.add(palm);
+
+      const fingers = [];
+      function buildFinger(xOffset, yBase, segLengths, segRadii, fingerIndex) {
+        const root = new THREE.Object3D();
+        root.position.set(xOffset, yBase, 0);
+        handRoot.add(root);
+        const segs = [];
+        let parent = root;
+        for (let i = 0; i < segLengths.length; i++) {
+          const s = addSegment(parent, segLengths[i], segRadii[i]);
+          segs.push(s);
+          if (i < segLengths.length - 1) {
+            const nextBase = new THREE.Object3D();
+            nextBase.position.y = segLengths[i];
+            s.pivot.add(nextBase);
+            parent = nextBase;
+          }
+        }
+        const lastSeg = segs[segs.length - 1];
+        const nailGeo = new THREE.BoxGeometry(segRadii[segRadii.length - 1] * 1.5, segLengths[segLengths.length - 1] * 0.45, 0.02);
+        const nail = new THREE.Mesh(nailGeo, nailMat);
+        nail.position.set(0, segLengths[segLengths.length - 1] * 0.6, segRadii[segRadii.length - 1] + 0.005);
+        lastSeg.mesh.add(nail);
+        fingers[fingerIndex] = { segs, root };
+      }
+
+      const fingerDefs = [
+        { x: -0.265, segs: [0.28, 0.22, 0.16], radii: [0.065, 0.06, 0.052] },
+        { x: -0.088, segs: [0.30, 0.24, 0.17], radii: [0.068, 0.063, 0.055] },
+        { x: 0.088, segs: [0.28, 0.22, 0.16], radii: [0.065, 0.060, 0.052] },
+        { x: 0.265, segs: [0.22, 0.17, 0.13], radii: [0.058, 0.052, 0.046] }
+      ];
+      fingerDefs.forEach((def, i) => buildFinger(def.x, 0.45, def.segs, def.radii, i + 1));
+
+      const thumbRoot = new THREE.Object3D();
+      thumbRoot.position.set(-0.42, 0.05, 0.06);
+      thumbRoot.rotation.z = 0.5;
+      thumbRoot.rotation.y = -0.3;
+      handRoot.add(thumbRoot);
+      const thumbSegs = [];
+      let thumbParent = thumbRoot;
+      const tLengths = [0.22, 0.19, 0.15];
+      const tRadii = [0.075, 0.068, 0.058];
+      for (let i = 0; i < 3; i++) {
+        const s = addSegment(thumbParent, tLengths[i], tRadii[i]);
+        thumbSegs.push(s);
+        if (i < 2) {
+          const nb = new THREE.Object3D();
+          nb.position.y = tLengths[i];
+          s.pivot.add(nb);
+          thumbParent = nb;
+        }
+      }
+      const tnail = new THREE.Mesh(new THREE.BoxGeometry(tRadii[2] * 1.5, tLengths[2] * 0.45, 0.02), nailMat);
+      tnail.position.set(0, tLengths[2] * 0.6, tRadii[2] + 0.005);
+      thumbSegs[2].mesh.add(tnail);
+      fingers[0] = { segs: thumbSegs, root: thumbRoot };
+
+      const wristGeo = new THREE.CylinderGeometry(0.28, 0.3, 0.22, 10);
+      const wrist = new THREE.Mesh(wristGeo, skinMat);
+      wrist.castShadow = true;
+      wrist.position.y = -0.55;
+      handRoot.add(wrist);
+
+      const curlState = [0, 0, 0, 0, 0];
+      const curlAngles = [
+        [0.7, 0.7, 0.5], [1.5, 1.4, 1.2], [1.5, 1.4, 1.2], [1.5, 1.4, 1.2], [1.5, 1.4, 1.2]
+      ];
+      function applyFingerCurl() {
+        fingers.forEach((finger, fi) => {
+          const curl = curlState[fi];
+          finger.segs.forEach((seg, si) => { seg.pivot.rotation.x = curl * curlAngles[fi][si]; });
+        });
+      }
+
+      window.updateFromLandmarks = function(landmarks) {
+        const fingerTips = [4, 8, 12, 16, 20];
+        const fingerMCPs = [2, 5, 9, 13, 17];
+        const wristPt = landmarks[0];
+        fingerTips.forEach((tipIdx, fi) => {
+          const mcp = landmarks[fingerMCPs[fi]];
+          const tip = landmarks[tipIdx];
+          const tipDist = Math.sqrt(
+            Math.pow(tip.x - wristPt.x, 2) + Math.pow(tip.y - wristPt.y, 2) + Math.pow((tip.z || 0) - (wristPt.z || 0), 2)
+          );
+          const mcpDist = Math.sqrt(
+            Math.pow(mcp.x - wristPt.x, 2) + Math.pow(mcp.y - wristPt.y, 2) + Math.pow((mcp.z || 0) - (wristPt.z || 0), 2)
+          );
+          const ratio = Math.min(tipDist / (mcpDist * 1.8), 1.0);
+          curlState[fi] = 1.0 - ratio;
+        });
+        applyFingerCurl();
+      };
+
+      let isDragging = false, prevMouse = { x: 0, y: 0 };
+      let rotX = -0.3, rotY = 0.2;
+      canvas.addEventListener('mousedown', e => { isDragging = true; prevMouse = { x: e.clientX, y: e.clientY }; });
+      canvas.addEventListener('mouseup', () => isDragging = false);
+      canvas.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        const dx = e.clientX - prevMouse.x, dy = e.clientY - prevMouse.y;
+        rotY += dx * 0.006; rotX += dy * 0.006;
+        prevMouse = { x: e.clientX, y: e.clientY };
+        handRoot.rotation.y = rotY;
+        handRoot.rotation.x = rotX;
+      });
+      canvas.addEventListener('wheel', e => {
+        camera.position.z = Math.max(1.5, Math.min(6, camera.position.z + e.deltaY * 0.005));
+      });
+      canvas.addEventListener('touchstart', e => {
+        isDragging = true;
+        prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      });
+      canvas.addEventListener('touchend', () => isDragging = false);
+      canvas.addEventListener('touchmove', e => {
+        if (!isDragging) return;
+        const dx = e.touches[0].clientX - prevMouse.x, dy = e.touches[0].clientY - prevMouse.y;
+        rotY += dx * 0.006; rotX += dy * 0.006;
+        prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        handRoot.rotation.y = rotY;
+        handRoot.rotation.x = rotX;
+      });
+
+      setInterval(function() {
+        fetch('/api/hand_landmarks').then(function(r) { return r.json(); }).then(function(data) {
+          if (data.landmarks && data.landmarks.length) window.updateFromLandmarks(data.landmarks);
+        }).catch(function() {});
+      }, 50);
+
+      const clock = new THREE.Clock();
+      function animate() {
+        requestAnimationFrame(animate);
+        const t = clock.getElapsedTime();
+        handRoot.position.y = Math.sin(t * 0.8) * 0.03;
+        if (!isDragging) handRoot.rotation.y = rotY + Math.sin(t * 0.3) * 0.05;
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        if (canvas.width !== w || canvas.height !== h) {
+          renderer.setSize(w, h);
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+        }
+        renderer.render(scene, camera);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>
