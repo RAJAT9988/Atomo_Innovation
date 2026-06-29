@@ -1,0 +1,19 @@
+<%- include('../partials/page-hero', { hero: page.hero }) %>
+<section class="section-light section-padding">
+  <div class="container-site grid gap-8 lg:grid-cols-3">
+    <% productList.forEach(function(product) { %>
+    <a href="/products/<%= product.slug %>" class="group rounded-2xl border border-[var(--color-border-light)] overflow-hidden transition-shadow hover:shadow-lg">
+      <div class="relative aspect-square bg-muted-light">
+        <img src="<%= product.heroImage %>" alt="<%= product.name %>" class="h-full w-full object-contain p-6 transition-transform group-hover:scale-105" />
+      </div>
+      <div class="p-6">
+        <h2 class="card-headline text-dark-text"><%= product.name %></h2>
+        <p class="mt-2 text-base text-dark-text/70"><%= product.positioning %></p>
+      </div>
+    </a>
+    <% }); %>
+  </div>
+  <div class="container-site mt-12 text-center">
+    <a href="/products/compare" class="btn-secondary-light">Compare Atomo Processing Units</a>
+  </div>
+</section>

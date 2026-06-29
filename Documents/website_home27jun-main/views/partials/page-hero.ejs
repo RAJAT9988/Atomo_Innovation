@@ -1,0 +1,24 @@
+<section class="section-padding pt-32 <%= hero.dark === false ? 'section-light' : 'section-dark' %>">
+  <div class="container-site">
+    <% if (hero.breadcrumbs) { %>
+    <nav aria-label="Breadcrumb" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-2 text-sm text-silver">
+        <% hero.breadcrumbs.forEach(function(item, i) { %>
+        <li class="flex items-center gap-2">
+          <% if (i > 0) { %><span aria-hidden="true">/</span><% } %>
+          <% if (item.href) { %><a href="<%= item.href %>" class="hover:text-cyan"><%= item.label %></a><% } else { %><span class="text-light-text"><%= item.label %></span><% } %>
+        </li>
+        <% }); %>
+      </ol>
+    </nav>
+    <% } %>
+    <% if (hero.eyebrow) { %><p class="eyebrow mb-4"><%= hero.eyebrow %></p><% } %>
+    <h1 class="section-headline max-w-4xl"><%= hero.headline %></h1>
+    <p class="intro-text mt-6 <%= hero.dark === false ? 'text-dark-text/75' : 'text-silver' %>"><%= hero.description %></p>
+    <% if (hero.cta) {
+      const cta = getCta(hero.cta.type, hero.cta.label, hero.cta.href);
+    %>
+    <div class="mt-10"><a href="<%= cta.href %>" class="<%= cta.className %>"><%= cta.label %></a></div>
+    <% } %>
+  </div>
+</section>

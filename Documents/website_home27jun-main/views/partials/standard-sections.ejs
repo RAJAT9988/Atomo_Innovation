@@ -1,0 +1,57 @@
+<section class="section-light section-padding">
+  <div class="container-site container-editorial">
+    <% (page.sections || []).forEach(function(section) { %>
+      <% if (section.type === 'content') { %>
+        <% (section.blocks || []).forEach(function(block) { %>
+          <% if (block.tag === 'h2' || block.tag === 'p') { %>
+            <<%= block.tag %> class="<%= block.class %>"><%= block.text %></<%= block.tag %>>
+          <% } else if (block.type === 'list') { %>
+            <ul class="mt-6 space-y-3 text-base text-dark-text/75">
+              <% block.items.forEach(function(item) { %><li>• <%= item %></li><% }); %>
+            </ul>
+          <% } else if (block.type === 'grid') { %>
+            <div class="mt-8 grid gap-8 md:grid-cols-<%= block.columns || 2 %>">
+              <% block.items.forEach(function(item) { %>
+              <div class="flex gap-4">
+                <div class="mt-1 h-2 w-2 shrink-0 rounded-full bg-cyan"></div>
+                <div>
+                  <h3 class="card-headline text-dark-text"><%= item.title %></h3>
+                  <p class="mt-2 text-base text-dark-text/75"><%= item.description %></p>
+                </div>
+              </div>
+              <% }); %>
+            </div>
+          <% } else if (block.type === 'link-grid') { %>
+            <div class="grid gap-6 md:grid-cols-2">
+              <% block.links.forEach(function(link) { %>
+              <a href="<%= link.href %>" class="rounded-2xl border border-[var(--color-border-light)] p-8 hover:border-purple/30">
+                <h2 class="card-headline text-dark-text"><%= link.title %></h2>
+                <p class="mt-2 text-base text-dark-text/70"><%= link.description %></p>
+              </a>
+              <% }); %>
+            </div>
+          <% } else if (block.type === 'placeholder') { %>
+            <div class="mb-12 flex max-w-md aspect-video items-center justify-center rounded-2xl bg-muted-light text-dark-text/50"><%= block.label %></div>
+          <% } else if (block.type === 'addresses') { %>
+            <h2 class="section-headline-secondary mt-16 text-dark-text">Where we operate</h2>
+            <ul class="mt-6 space-y-6">
+              <% site.addresses.forEach(function(address) { %>
+              <li>
+                <h3 class="font-semibold text-dark-text"><%= address.label %></h3>
+                <address class="mt-2 not-italic text-base text-dark-text/75">
+                  <% address.lines.forEach(function(line) { %><span class="block"><%= line %></span><% }); %>
+                </address>
+              </li>
+              <% }); %>
+            </ul>
+            <p class="mt-8 text-base text-dark-text/75">Email: <a href="mailto:<%= site.email %>" class="font-medium text-cyan hover:underline"><%= site.email %></a></p>
+          <% } else if (block.type === 'cta') {
+            const cta = getCta(block.cta.type, block.cta.label, block.cta.href, block.cta.className || '');
+          %>
+            <div class="mt-12"><a href="<%= cta.href %>" class="<%= cta.className %>"><%= cta.label %></a></div>
+          <% } %>
+        <% }); %>
+      <% } %>
+    <% }); %>
+  </div>
+</section>

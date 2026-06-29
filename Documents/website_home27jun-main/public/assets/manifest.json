@@ -1,0 +1,930 @@
+{
+  "generatedAt": "2026-06-19T22:50:52.216Z",
+  "sourceUrl": "https://atomo.in",
+  "assets": [
+    {
+      "sourceUrl": "https://atomo.in/assets/mainfavicon.ico",
+      "localPath": "/assets/assets/mainfavicon.ico",
+      "sha256": "c7981c132c939f2009831b2f70858f648dac801baa46b481132989d1e38e420e",
+      "contentType": "image/vnd.microsoft.icon",
+      "size": 4158
+    },
+    {
+      "sourceUrl": "https://atomo.in/assets/atomoheaderlogo.png?v=1.1?v=1.0",
+      "localPath": "/assets/assets/atomoheaderlogo.png",
+      "sha256": "a214ed8277ca5aa4e3cf015d6fae6de752950892ccff1f85100f99a4428b22b6",
+      "contentType": "image/png",
+      "size": 43029
+    },
+    {
+      "sourceUrl": "https://atomo.in/assets/index_page_files/compressed_HomeFinal.webm",
+      "localPath": "/assets/assets/index_page_files/compressed_HomeFinal.webm",
+      "sha256": "9d83286883a7a007271ee26ce00c53d38beff823dba0b1444c1312bb8863d2fe",
+      "contentType": "video/webm",
+      "size": 4536550
+    },
+    {
+      "sourceUrl": "https://atomo.in/assets/index_page_files/PROTON.71.png?v=1.1?v=1.0",
+      "localPath": "/assets/assets/index_page_files/PROTON.71.png",
+      "sha256": "d56514dfc8cbec5c038f2e00bfd226418d76692610d65fbbd6c9914fedcdcae2",
+      "contentType": "image/png",
+      "size": 2241765
+    },
+    {
+      "sourceUrl": "https://atomo.in/assets/index_page_files/PROTON.3.png?v=1.1?v=1.0",
+      "localPath": "/assets/assets/index_page_files/PROTON.3.png",
+      "sha256": "ccc388d0314c84cafb2e85a4cbcce33c49bd993dac24ea9f07df343431e229c6",
+      "contentType": "image/png",
+      "size": 1963359
+    },
+    {
+      "sourceUrl": "https://atomo.in/assets/index_page_files/atomic%20os.png?v=1.1?v=1.0",
+      "localPath": "/assets/assets/index_page_files/atomic%20os.png",
+      "sha256": "5583254614b60638e77c85e47008af35355b2db46c0f06b8c2842802dfd7448a",
+      "contentType": "image/png",
+      "size": 42984
+    },
+    {
+      "sourceUrl": "https://atomo.in/airowl_page/Airowl.gif",
+      "localPath": "/assets/airowl_page/Airowl.gif",
+      "sha256": "106744972a80f5b8aa6397f570b19c9c48e0dd722e62961e3c850d5c441a4c50",
+      "contentType": "image/gif",
+      "size": 152859
+    },
+    {
+      "sourceUrl": "https://atomo.in/assets/index_page_files/Support.png?v=1.1?v=1.0",
+      "localPath": "/assets/assets/index_page_files/Support.png",
+      "sha256": "ebe0fdd23da65805797a53ac95118def38b2aae60f407df847429490ea201903",
+      "contentType": "image/png",
+      "size": 26400
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/atomologo.png?v=1.1?v=1.0",
+      "localPath": "/assets/electron_page/atomologo.png",
+      "sha256": "a214ed8277ca5aa4e3cf015d6fae6de752950892ccff1f85100f99a4428b22b6",
+      "contentType": "image/png",
+      "size": 43029
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/electronvp8.webm",
+      "localPath": "/assets/electron_page/electronvp8.webm",
+      "sha256": "24230db97ea002f202c750d79f02861d3d3e65f9a8ce66245c976f3f22ef743b",
+      "contentType": "video/webm",
+      "size": 689183
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/Electron.66.png?v=1.1?v=1.0",
+      "localPath": "/assets/electron_page/Electron.66.png",
+      "sha256": "3dae480ea9aa43642cc5f9e7dd372e458abf9fcb237099a0c4df72b0b4fcad60",
+      "contentType": "image/png",
+      "size": 1812215
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/cpu.png?v=1.1?v=1.0",
+      "localPath": "/assets/smarthome_asset/device-spec/cpu.png",
+      "sha256": "c12a7900b9d801075de6699f1f172e6a6b0aa1d12c0a9d0f333c09f376c3624a",
+      "contentType": "image/png",
+      "size": 959
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/npu.png?v=1.1?v=1.0",
+      "localPath": "/assets/smarthome_asset/device-spec/npu.png",
+      "sha256": "767567ea92bcef181e30fa05cfca8c5bdd1e1e29f4e49363b59156e9d44c480a",
+      "contentType": "image/png",
+      "size": 608
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/ram.png?v=1.1?v=1.0",
+      "localPath": "/assets/smarthome_asset/device-spec/ram.png",
+      "sha256": "8ff97f3ab6f14cbf26ba1e43609f3d11c011d7820478ceb1979105ecf760551a",
+      "contentType": "image/png",
+      "size": 365
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/storage.png?v=1.1?v=1.0",
+      "localPath": "/assets/smarthome_asset/device-spec/storage.png",
+      "sha256": "bc173d291aecedb1fc6440c7e6e7ddf919ece7b4b1ca19408ff60a92aba21d03",
+      "contentType": "image/png",
+      "size": 540
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/power.png?v=1.1?v=1.0",
+      "localPath": "/assets/smarthome_asset/device-spec/power.png",
+      "sha256": "030165ac4e6b2ce5dfb7bfe2f1597b3c1aeb836de37f193df59775520672480f",
+      "contentType": "image/png",
+      "size": 785
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/ethernet.png?v=1.1?v=1.0",
+      "localPath": "/assets/smarthome_asset/device-spec/ethernet.png",
+      "sha256": "edcb9ea2b0f764ddcc6d392b1f9c668dc92530be1c5aafee9a37da718fe91e57",
+      "contentType": "image/png",
+      "size": 581
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/wifi.png?v=1.1?v=1.0",
+      "localPath": "/assets/smarthome_asset/device-spec/wifi.png",
+      "sha256": "6d445bd92597f0a56d8113b86c2af225f93fda28f9594cbd7230b840919602ab",
+      "contentType": "image/png",
+      "size": 592
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/bluetooth.png?v=1.1?v=1.0",
+      "localPath": "/assets/smarthome_asset/device-spec/bluetooth.png",
+      "sha256": "51df48c13a3a884a427587174301ab3cda1a2eabbbf616856239df6dd9ecbf59",
+      "contentType": "image/png",
+      "size": 547
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/thread.png?v=1.1?v=1.0",
+      "localPath": "/assets/smarthome_asset/device-spec/thread.png",
+      "sha256": "0d3b51da529c129ca7e4065388eedad9022c4cde8c6b847764eb9874472bad6b",
+      "contentType": "image/png",
+      "size": 968
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/imgg1.svg?v=2.1",
+      "localPath": "/assets/electron_page/imgg1.svg",
+      "sha256": "e8bfd7555dfa8ea0d740c679819c284f530ace51be45307134957f5b04231d5d",
+      "contentType": "image/svg+xml",
+      "size": 122451
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/imgg2.svg?v=2.1",
+      "localPath": "/assets/electron_page/imgg2.svg",
+      "sha256": "27161616b55dd36b287af96dc90aa44166a2f8bcc15565d549834cb632a4cd9e",
+      "contentType": "image/svg+xml",
+      "size": 71407
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/imgg3.svg?v=2.1",
+      "localPath": "/assets/electron_page/imgg3.svg",
+      "sha256": "e7c3abb5848f6f253c90a84cdbaa19921339b9a00619121dbdb492da8ab6088d",
+      "contentType": "image/svg+xml",
+      "size": 40659
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/imgg4.svg?v=2.1",
+      "localPath": "/assets/electron_page/imgg4.svg",
+      "sha256": "3855d272d48fc0dda0dabe50fe999fcda11fa2628385e82f504bac377c496c02",
+      "contentType": "image/svg+xml",
+      "size": 7580
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/imgg5.svg?v=2.1",
+      "localPath": "/assets/electron_page/imgg5.svg",
+      "sha256": "b97567a67f7f19adfdafd3e0ba5bdabcf4d481a5c9091623c5bdf8bdfc13f42f",
+      "contentType": "image/svg+xml",
+      "size": 23297
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/imgg6.svg?v=2.1",
+      "localPath": "/assets/electron_page/imgg6.svg",
+      "sha256": "e02ec9461183233c19c426b50ba10085167fd8b67cd9fea323573795abc7b83b",
+      "contentType": "image/svg+xml",
+      "size": 7819
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/imgg7.svg?v=2.1",
+      "localPath": "/assets/electron_page/imgg7.svg",
+      "sha256": "5f70f4a36c4e14198c8a10c31ef957e2b851f946b8c974338fa84a2cb165cc61",
+      "contentType": "image/svg+xml",
+      "size": 27372
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/imgg8.svg?v=2.1",
+      "localPath": "/assets/electron_page/imgg8.svg",
+      "sha256": "5e794325e5776d5660ee639807faf5a86d403abed7027b783a18b069dffd5999",
+      "contentType": "image/svg+xml",
+      "size": 29870
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/imgg9.svg?v=2.1",
+      "localPath": "/assets/electron_page/imgg9.svg",
+      "sha256": "1d673c726f29dba900cacc8007bdf892b9b4a8caca3bb378cc8a79ab185697c5",
+      "contentType": "image/svg+xml",
+      "size": 43527
+    },
+    {
+      "sourceUrl": "https://atomo.in/electron_page/imgg10.svg?v=2.1",
+      "localPath": "/assets/electron_page/imgg10.svg",
+      "sha256": "117cb5d1c26f80b61740a6635ef57c9a0a53aa00d95f0ac6dcf0e81e934941cc",
+      "contentType": "image/svg+xml",
+      "size": 19647
+    },
+    {
+      "sourceUrl": "https://atomo.in/assets/atomoheaderlogo.png?v=1.1",
+      "localPath": "/assets/assets/atomoheaderlogo.png",
+      "sha256": "a214ed8277ca5aa4e3cf015d6fae6de752950892ccff1f85100f99a4428b22b6",
+      "contentType": "application/octet-stream",
+      "size": 43029
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/outputvp8.webm",
+      "localPath": "/assets/proton_page/outputvp8.webm",
+      "sha256": "66195ff8fb4ccceb3ab0bf152d61f3a6bcfdc2c02f318027c4afd820ed1f7665",
+      "contentType": "video/webm",
+      "size": 2313962
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/PROTON.71.png?v=1.1",
+      "localPath": "/assets/proton_page/PROTON.71.png",
+      "sha256": "d56514dfc8cbec5c038f2e00bfd226418d76692610d65fbbd6c9914fedcdcae2",
+      "contentType": "image/png",
+      "size": 2241765
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/cpu.png?v=1.1",
+      "localPath": "/assets/smarthome_asset/device-spec/cpu.png",
+      "sha256": "c12a7900b9d801075de6699f1f172e6a6b0aa1d12c0a9d0f333c09f376c3624a",
+      "contentType": "application/octet-stream",
+      "size": 959
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/npu.png?v=1.1",
+      "localPath": "/assets/smarthome_asset/device-spec/npu.png",
+      "sha256": "767567ea92bcef181e30fa05cfca8c5bdd1e1e29f4e49363b59156e9d44c480a",
+      "contentType": "application/octet-stream",
+      "size": 608
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/ram.png?v=1.1",
+      "localPath": "/assets/smarthome_asset/device-spec/ram.png",
+      "sha256": "8ff97f3ab6f14cbf26ba1e43609f3d11c011d7820478ceb1979105ecf760551a",
+      "contentType": "application/octet-stream",
+      "size": 365
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/storage.png?v=1.1",
+      "localPath": "/assets/smarthome_asset/device-spec/storage.png",
+      "sha256": "bc173d291aecedb1fc6440c7e6e7ddf919ece7b4b1ca19408ff60a92aba21d03",
+      "contentType": "application/octet-stream",
+      "size": 540
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/power.png?v=1.1",
+      "localPath": "/assets/smarthome_asset/device-spec/power.png",
+      "sha256": "030165ac4e6b2ce5dfb7bfe2f1597b3c1aeb836de37f193df59775520672480f",
+      "contentType": "application/octet-stream",
+      "size": 785
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/ethernet.png?v=1.1",
+      "localPath": "/assets/smarthome_asset/device-spec/ethernet.png",
+      "sha256": "edcb9ea2b0f764ddcc6d392b1f9c668dc92530be1c5aafee9a37da718fe91e57",
+      "contentType": "application/octet-stream",
+      "size": 581
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/wifi.png?v=1.1",
+      "localPath": "/assets/smarthome_asset/device-spec/wifi.png",
+      "sha256": "6d445bd92597f0a56d8113b86c2af225f93fda28f9594cbd7230b840919602ab",
+      "contentType": "application/octet-stream",
+      "size": 592
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/bluetooth.png?v=1.1",
+      "localPath": "/assets/smarthome_asset/device-spec/bluetooth.png",
+      "sha256": "51df48c13a3a884a427587174301ab3cda1a2eabbbf616856239df6dd9ecbf59",
+      "contentType": "application/octet-stream",
+      "size": 547
+    },
+    {
+      "sourceUrl": "https://atomo.in/smarthome_asset/device-spec/thread.png?v=1.1",
+      "localPath": "/assets/smarthome_asset/device-spec/thread.png",
+      "sha256": "0d3b51da529c129ca7e4065388eedad9022c4cde8c6b847764eb9874472bad6b",
+      "contentType": "application/octet-stream",
+      "size": 968
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/icon1.svg?v=2.1",
+      "localPath": "/assets/proton_page/icon1.svg",
+      "sha256": "4bad896f20aecab7cbbfe262ab1baa094c6515290d94e74bd2571d2b116dd798",
+      "contentType": "image/svg+xml",
+      "size": 59945
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/icon2.svg?v=2.1",
+      "localPath": "/assets/proton_page/icon2.svg",
+      "sha256": "a1fb4da102669807c6ff2be71ba01eff4b8036243174eb9afc3d1668827dedae",
+      "contentType": "image/svg+xml",
+      "size": 53681
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/icon3.svg?v=2.1",
+      "localPath": "/assets/proton_page/icon3.svg",
+      "sha256": "63d6ab6c24a478bda85b065608fe179315a936ff722197e389cfdc4de451eaf4",
+      "contentType": "image/svg+xml",
+      "size": 57177
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/icon4.svg?v=2.1",
+      "localPath": "/assets/proton_page/icon4.svg",
+      "sha256": "56f3a626081e624a3ca6ebdaaf3d7e380552f43a6628d4ea3963a1f4bd84b8ef",
+      "contentType": "image/svg+xml",
+      "size": 27349
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/icon5.svg?v=2.1",
+      "localPath": "/assets/proton_page/icon5.svg",
+      "sha256": "d2bab580e430c2920c6fe457e7d947b2f7055048c34848fb5957cdd262ac5172",
+      "contentType": "image/svg+xml",
+      "size": 26965
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/icon6.svg?v=2.1",
+      "localPath": "/assets/proton_page/icon6.svg",
+      "sha256": "08da69064cd3d57beb6d7fa11ea9c809709752b161094a47719b608c2a3ab5d7",
+      "contentType": "image/svg+xml",
+      "size": 49649
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/icon7.svg?v=2.1",
+      "localPath": "/assets/proton_page/icon7.svg",
+      "sha256": "bf5e87e3e760efee71efc890751a2d72762fc4da40e9e54fb9415b81349335c7",
+      "contentType": "image/svg+xml",
+      "size": 51133
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/icon8.svg?v=2.1",
+      "localPath": "/assets/proton_page/icon8.svg",
+      "sha256": "71be6843f569c6f2c7c3f52dcef9adf700dccb1aff9f23a8b5d16bc32b8ec847",
+      "contentType": "image/svg+xml",
+      "size": 42093
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/icon9.svg?v=2.1",
+      "localPath": "/assets/proton_page/icon9.svg",
+      "sha256": "a66d974573a5b4f34f283c4068845d14c0e451c2616decd087c49cc66a94a89e",
+      "contentType": "image/svg+xml",
+      "size": 54429
+    },
+    {
+      "sourceUrl": "https://atomo.in/proton_page/icon10.svg?v=2.1",
+      "localPath": "/assets/proton_page/icon10.svg",
+      "sha256": "0ebf0435aca29e5d64570112f034f6803b5a892db0d112c072ae44d22009ef83",
+      "contentType": "image/svg+xml",
+      "size": 29969
+    },
+    {
+      "sourceUrl": "https://atomo.in/neutron_page/neutronoutput_vp8final.webm",
+      "localPath": "/assets/neutron_page/neutronoutput_vp8final.webm",
+      "sha256": "267cf60dc9bf4bc054d833c734adbdceeaca5eb6ad0393f428c3fc423b3cf87b",
+      "contentType": "video/webm",
+      "size": 1111273
+    },
+    {
+      "sourceUrl": "https://atomo.in/assets/index_page_files/PROTON.3.png?v=1.1",
+      "localPath": "/assets/assets/index_page_files/PROTON.3.png",
+      "sha256": "ccc388d0314c84cafb2e85a4cbcce33c49bd993dac24ea9f07df343431e229c6",
+      "contentType": "application/octet-stream",
+      "size": 1963359
+    },
+    {
+      "sourceUrl": "https://atomo.in/neutron_page/1.svg?v=2.1",
+      "localPath": "/assets/neutron_page/1.svg",
+      "sha256": "cb3238ebd0f44738a707cd78e3d7de7427cc4e03f1c8080b59ce88038d3cfd2e",
+      "contentType": "image/svg+xml",
+      "size": 31441
+    },
+    {
+      "sourceUrl": "https://atomo.in/neutron_page/2.svg?v=2.1",
+      "localPath": "/assets/neutron_page/2.svg",
+      "sha256": "bd4992485df1b0cf5eda9d1e05e336c64e85529433d827c3565e7834fa256eec",
+      "contentType": "image/svg+xml",
+      "size": 32269
+    },
+    {
+      "sourceUrl": "https://atomo.in/neutron_page/3.svg?v=2.1",
+      "localPath": "/assets/neutron_page/3.svg",
+      "sha256": "a6dcc747e3699ee22572598f2d090a88d252d5e56425ebfa61f9e91f8467dcfe",
+      "contentType": "image/svg+xml",
+      "size": 173509
+    },
+    {
+      "sourceUrl": "https://atomo.in/neutron_page/4.svg?v=2.1",
+      "localPath": "/assets/neutron_page/4.svg",
+      "sha256": "1435d47d60ff979627575aa68937a113584aafc54329366db945a7b34a60ff14",
+      "contentType": "image/svg+xml",
+      "size": 46987
+    },
+    {
+      "sourceUrl": "https://atomo.in/neutron_page/5.svg?v=2.1",
+      "localPath": "/assets/neutron_page/5.svg",
+      "sha256": "574053b9d6c08cf0efd6af3525f16bf4b6cdcf6d39b63ed757b2203ec86edb52",
+      "contentType": "image/svg+xml",
+      "size": 39797
+    },
+    {
+      "sourceUrl": "https://atomo.in/neutron_page/6.svg?v=2.1",
+      "localPath": "/assets/neutron_page/6.svg",
+      "sha256": "c2c09cf2c0953b833972545a27bef671b3f585fafb914baae7110dddf25589a0",
+      "contentType": "image/svg+xml",
+      "size": 25845
+    },
+    {
+      "sourceUrl": "https://atomo.in/neutron_page/7.svg?v=2.1",
+      "localPath": "/assets/neutron_page/7.svg",
+      "sha256": "f88259e2a706d3dc24f4af5137aabbd2e7a567d58b3b907b1a35018eac30dd29",
+      "contentType": "image/svg+xml",
+      "size": 58557
+    },
+    {
+      "sourceUrl": "https://atomo.in/neutron_page/8.svg?v=2.1",
+      "localPath": "/assets/neutron_page/8.svg",
+      "sha256": "e6a7538729ec100c447ab94784fbb6a07cd8f22f8f5dd5b3ca1777a4b954514e",
+      "contentType": "image/svg+xml",
+      "size": 31329
+    },
+    {
+      "sourceUrl": "https://atomo.in/neutron_page/9.svg?v=2.1",
+      "localPath": "/assets/neutron_page/9.svg",
+      "sha256": "b02d986ba6453c0098f949f52076917e3a77a64c78e92146e726caa7741d2d1e",
+      "contentType": "image/svg+xml",
+      "size": 54163
+    },
+    {
+      "sourceUrl": "https://atomo.in/neutron_page/10.svg?v=2.1",
+      "localPath": "/assets/neutron_page/10.svg",
+      "sha256": "40a23e6c1ffa1901707300069d5c4d73bade16184f5e5d93b072c58f02e8fddf",
+      "contentType": "image/svg+xml",
+      "size": 13979
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomicos_page/Frame%201000004656.png?v=1.1",
+      "localPath": "/assets/atomicos_page/Frame%201000004656.png",
+      "sha256": "e68a049de8a53bebe531744fea465993753936d6b45e8866c5c5c0c2996926e8",
+      "contentType": "image/png",
+      "size": 296229
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomicos_page/icon11.svg?v=2.1",
+      "localPath": "/assets/atomicos_page/icon11.svg",
+      "sha256": "eeb5d5c0ad835265f95ec41e142db7099521e8dd700947a5a2d8d30ca3bed17c",
+      "contentType": "image/svg+xml",
+      "size": 1081
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomicos_page/icon22.svg?v=2.1",
+      "localPath": "/assets/atomicos_page/icon22.svg",
+      "sha256": "272cf0d1bad5ffdbc81abc63f861b25e2c6a6b5b43861cd1a050f4f4ef9175cb",
+      "contentType": "image/svg+xml",
+      "size": 10157
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomicos_page/icon33.svg?v=2.1",
+      "localPath": "/assets/atomicos_page/icon33.svg",
+      "sha256": "038564d3b0b7547eb8727bbcd85c8bf9bba0eef144a6a6fd7f6bd78bbbfeeabd",
+      "contentType": "image/svg+xml",
+      "size": 18913
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomicos_page/icon44.svg?v=2.1",
+      "localPath": "/assets/atomicos_page/icon44.svg",
+      "sha256": "a4106e9e3171596ab6d593f3873f9f4ae5c8725ef5560096b49c9b4cd07f6ee2",
+      "contentType": "image/svg+xml",
+      "size": 20717
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomicos_page/icon55.svg?v=2.1",
+      "localPath": "/assets/atomicos_page/icon55.svg",
+      "sha256": "f3af55ec6eb2e2e1ee719de967c63e48d16e99bec2ec67b45ee3940166a99b44",
+      "contentType": "image/svg+xml",
+      "size": 37921
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomicos_page/icon66.svg?v=2.1",
+      "localPath": "/assets/atomicos_page/icon66.svg",
+      "sha256": "3451e6eec9cb72819ca815bb3dd843083a3f5ed5fad56ce35a483c08d8b8d71e",
+      "contentType": "image/svg+xml",
+      "size": 62341
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomicos_page/power.svg?v=2.1",
+      "localPath": "/assets/atomicos_page/power.svg",
+      "sha256": "12654418a4ea3e7b4ccaee5b6d3c57662782487ea4e2341b399a782bd96c177b",
+      "contentType": "image/svg+xml",
+      "size": 2787
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomicos_page/boot.svg?v=2.1",
+      "localPath": "/assets/atomicos_page/boot.svg",
+      "sha256": "72761f7c0a21f5cae534814e5e726af5c63fa25aefadf77a1dbb7019e1ea657f",
+      "contentType": "image/svg+xml",
+      "size": 684
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomicos_page/login.svg?v=2.1",
+      "localPath": "/assets/atomicos_page/login.svg",
+      "sha256": "640b9f73458322d7d5cca28168d77679f715afd3c9a51af8420c010415f871d9",
+      "contentType": "image/svg+xml",
+      "size": 1456
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomicos_page/configure.svg?v=2.1",
+      "localPath": "/assets/atomicos_page/configure.svg",
+      "sha256": "a1be54acff5639f19cf2f90c00840cd77c2c8c0e415b436e92c92f3d80f3d985",
+      "contentType": "image/svg+xml",
+      "size": 39105
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Compress_atomo/urban-rickshaw-monitoring-ai.mp4",
+      "localPath": "/assets/atomo-int_page/Compress_atomo/urban-rickshaw-monitoring-ai.mp4",
+      "sha256": "1e866315769b896d1fa401989d1731138ab5c844a3f744b686e880463cca62d9",
+      "contentType": "video/mp4",
+      "size": 2265237
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Compress_atomo/smart-city-car-analytics-ai.mp4",
+      "localPath": "/assets/atomo-int_page/Compress_atomo/smart-city-car-analytics-ai.mp4",
+      "sha256": "d1bca9d867623df36dfc87730407f4246f0098b0eab140f6e6b42f6f0ef85c4d",
+      "contentType": "video/mp4",
+      "size": 1120404
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Compress_atomo/cattle-road-safety-ai-detection.mp4",
+      "localPath": "/assets/atomo-int_page/Compress_atomo/cattle-road-safety-ai-detection.mp4",
+      "sha256": "10028eaf83afa43ef61b6bed64f2eaaed3250a08830dd541ee72489a1126e13b",
+      "contentType": "video/mp4",
+      "size": 1916786
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Compress_atomo/human-crowd-detection-ai.mp4",
+      "localPath": "/assets/atomo-int_page/Compress_atomo/human-crowd-detection-ai.mp4",
+      "sha256": "5e52bdc20a89156253085691293138f4a4cda4c0488874f521752922104c9493",
+      "contentType": "video/mp4",
+      "size": 948836
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Compress_atomo/advanced-fire-detection-ai.mp4",
+      "localPath": "/assets/atomo-int_page/Compress_atomo/advanced-fire-detection-ai.mp4",
+      "sha256": "57f0faa43aae52d6d7ff099cde67e12daea64ebcf256dd20c12873ca92a7c5af",
+      "contentType": "video/mp4",
+      "size": 1197279
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Compress_atomo/public-event-ai-security-ai.mp4",
+      "localPath": "/assets/atomo-int_page/Compress_atomo/public-event-ai-security-ai.mp4",
+      "sha256": "5031973fc7482ff3c311048211728fbc3a89c1c5a7a5a3241c3770f215601080",
+      "contentType": "video/mp4",
+      "size": 2139006
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Compress_atomo/wildlife-horse-tracking-ai.mp4",
+      "localPath": "/assets/atomo-int_page/Compress_atomo/wildlife-horse-tracking-ai.mp4",
+      "sha256": "7a6a169f099f0bdb4cc2e1d3dc4446f25e6917181ba72f8ffe3974de30c8cec4",
+      "contentType": "video/mp4",
+      "size": 1432216
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Compress_atomo/human-pose-analysis-ai.mp4",
+      "localPath": "/assets/atomo-int_page/Compress_atomo/human-pose-analysis-ai.mp4",
+      "sha256": "8fab2d44eb45d0100f9fd2737a0413799fae91b5554c4d269cd7ee8deea5318e",
+      "contentType": "video/mp4",
+      "size": 1748416
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Compress_atomo/sack-recognition-ai.mp4",
+      "localPath": "/assets/atomo-int_page/Compress_atomo/sack-recognition-ai.mp4",
+      "sha256": "420ea1f8f367bf3e3630365557b782b300f428fba774a25d8fc32cc0955573cc",
+      "contentType": "video/mp4",
+      "size": 1452305
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Compress_atomo/emergency-smoke-safety-ai.mp4",
+      "localPath": "/assets/atomo-int_page/Compress_atomo/emergency-smoke-safety-ai.mp4",
+      "sha256": "e285c6896de21a1afd240dbee41abb167d5dbf18fcb74f519326829df1f8e525",
+      "contentType": "video/mp4",
+      "size": 1052972
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/asnn/3d-model.png",
+      "localPath": "/assets/atomo-int_page/asnn/3d-model.png",
+      "sha256": "2ecba2e5faf1781c5448896dd3ca1a798f2c8d351b271e8fd148ba3e43bb6405",
+      "contentType": "image/png",
+      "size": 24706
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/asnn/coding-management.png",
+      "localPath": "/assets/atomo-int_page/asnn/coding-management.png",
+      "sha256": "396953fbbee455ebfd8e18a373e9bc239763152783b7ad791befd53671a62c9d",
+      "contentType": "image/png",
+      "size": 44010
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/asnn/micro-chip.png",
+      "localPath": "/assets/atomo-int_page/asnn/micro-chip.png",
+      "sha256": "21fa6140552f9b3ed96e51022483908ed60bbcf68919b48c951f85ef932bdf9b",
+      "contentType": "image/png",
+      "size": 6398
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/asnn/monitoring.png",
+      "localPath": "/assets/atomo-int_page/asnn/monitoring.png",
+      "sha256": "05d7b7705a1b1723a1a7175d42367560e321f573cff242d44ed5a31527508e6a",
+      "contentType": "image/png",
+      "size": 16029
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/asnn/motion-sensor.png",
+      "localPath": "/assets/atomo-int_page/asnn/motion-sensor.png",
+      "sha256": "698e61d4eed61b20a7870ace7fc710a83aa7a4764f1b24a727660728d821f0bb",
+      "contentType": "image/png",
+      "size": 26993
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/asnn/paper-2.png",
+      "localPath": "/assets/atomo-int_page/asnn/paper-2.png",
+      "sha256": "88fd7b7eee0a24c616c01721106ab8eec85d3d42e2021e15bf3787f4efaa0aab",
+      "contentType": "image/png",
+      "size": 35949
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/asnn/qa.png",
+      "localPath": "/assets/atomo-int_page/asnn/qa.png",
+      "sha256": "6966a67485568fb60f0772f6153db811c68b2e62ff0905eb661d82bf55899a91",
+      "contentType": "image/png",
+      "size": 20554
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/asnn/sdk.png",
+      "localPath": "/assets/atomo-int_page/asnn/sdk.png",
+      "sha256": "b80991b3f1f4ef3e9544f15f9588f1ee8066d62c25a39dece688b73274cb2059",
+      "contentType": "image/png",
+      "size": 19502
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/asnn/update.png",
+      "localPath": "/assets/atomo-int_page/asnn/update.png",
+      "sha256": "9206680c243fe3bc72929eca7f4ca34ec7e37b9656b696f6284efd41762717ca",
+      "contentType": "image/png",
+      "size": 26971
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/asnn/web-development.png",
+      "localPath": "/assets/atomo-int_page/asnn/web-development.png",
+      "sha256": "f037037ad239ac1a51aab29e70cc8d6c7a323af589ed8e63a3d700935fb21920",
+      "contentType": "image/png",
+      "size": 24410
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Domains/drone.png",
+      "localPath": "/assets/atomo-int_page/Domains/drone.png",
+      "sha256": "dece8549ea0c97110e8ad902e4e23bdc70c606ca90be5c3386a0d475a15ff8ae",
+      "contentType": "image/png",
+      "size": 20509
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Domains/healthcare.png",
+      "localPath": "/assets/atomo-int_page/Domains/healthcare.png",
+      "sha256": "13ee2e29badc4c2fc15af4e918d32addf627461d461cc0dee9ba7b0143976b83",
+      "contentType": "image/png",
+      "size": 36252
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Domains/industry.png",
+      "localPath": "/assets/atomo-int_page/Domains/industry.png",
+      "sha256": "374c9ec0df2b0dd54dab784e36fde29904d07be435c940bbd74816d5e81ce82a",
+      "contentType": "image/png",
+      "size": 14574
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Domains/precision-agriculture.png",
+      "localPath": "/assets/atomo-int_page/Domains/precision-agriculture.png",
+      "sha256": "6c3d4a05950368cc07ea6063309356df25eb9e9f8337569c6cfb5033c3a8fdb6",
+      "contentType": "image/png",
+      "size": 37695
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Domains/rocket.png",
+      "localPath": "/assets/atomo-int_page/Domains/rocket.png",
+      "sha256": "4a15c4a21b0d32220e103b1f61584d5bb22a0026ba0f33ad1e326f599d8ae871",
+      "contentType": "image/png",
+      "size": 54269
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Domains/security-2.png",
+      "localPath": "/assets/atomo-int_page/Domains/security-2.png",
+      "sha256": "72904496a59dd835f2e9de2907c937c4d278f5c768a50dbc40449dbea4e1d1c2",
+      "contentType": "image/png",
+      "size": 39557
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Domains/security-camera.png",
+      "localPath": "/assets/atomo-int_page/Domains/security-camera.png",
+      "sha256": "df151d228e85026da270e75837a630bd263beaa1b8013da9a5249709d255b33e",
+      "contentType": "image/png",
+      "size": 27241
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Domains/smart-city.png",
+      "localPath": "/assets/atomo-int_page/Domains/smart-city.png",
+      "sha256": "da092ccb6fd1ac8c1fa7d70f34107f240063bbec9e73b92236ecf04c1ac44114",
+      "contentType": "image/png",
+      "size": 33915
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/Domains/virtual-assistance.png",
+      "localPath": "/assets/atomo-int_page/Domains/virtual-assistance.png",
+      "sha256": "2aa0cc7fc802dc30fd5b9dd0540ac34e42346e21ea5ef83a64154da2d6df99dd",
+      "contentType": "image/png",
+      "size": 28177
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/yolo-logo.svg",
+      "localPath": "/assets/atomo-int_page/yolo-logo.svg",
+      "sha256": "022aacbc98a9622016fac07541f88d3cd5e8a6755a2130c25faf40e9d78ed913",
+      "contentType": "image/svg+xml",
+      "size": 1678
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/caffe.png",
+      "localPath": "/assets/atomo-int_page/caffe.png",
+      "sha256": "609fe4275e577df2a82cdee61f3e5a654fa39f26f00cb3f988be0f701a91cb44",
+      "contentType": "image/png",
+      "size": 167200
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/darknet_logo_blue.png",
+      "localPath": "/assets/atomo-int_page/darknet_logo_blue.png",
+      "sha256": "9e965c521cadcbbe929799a02d0a2ac6f002a2879fc4ace354f6481ed3bb315e",
+      "contentType": "image/png",
+      "size": 263329
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/kerasss.png",
+      "localPath": "/assets/atomo-int_page/kerasss.png",
+      "sha256": "11f89e8c9e660d7479ca08e1a7b5ae0badd63688037652d951ee0a7b87cbd56a",
+      "contentType": "image/png",
+      "size": 27360
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/ONNX.png",
+      "localPath": "/assets/atomo-int_page/ONNX.png",
+      "sha256": "409f9c3715b589977308d021509219cdc19f979658be0c13f4fedcb5a727389b",
+      "contentType": "image/png",
+      "size": 26081
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/pytorch.png",
+      "localPath": "/assets/atomo-int_page/pytorch.png",
+      "sha256": "9744793324d58e23baba73b7550c8f0aa8f821646443bad3d4efdc0a76772b20",
+      "contentType": "image/png",
+      "size": 48581
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/TensorFlowLogo.png",
+      "localPath": "/assets/atomo-int_page/TensorFlowLogo.png",
+      "sha256": "cf5c51dce801d6a418daa76663eb2eed8a40aa246c90b7ee1d9c0567af189425",
+      "contentType": "image/png",
+      "size": 668527
+    },
+    {
+      "sourceUrl": "https://atomo.in/atomo-int_page/tflite.png",
+      "localPath": "/assets/atomo-int_page/tflite.png",
+      "sha256": "5fec0a7132a69d045a63b434545ec5bf9136555f0723ac8381a1fc3215f3c0c0",
+      "contentType": "image/png",
+      "size": 35542
+    },
+    {
+      "sourceUrl": "https://atomo.in/about_page/vision%201.svg?v=2.1",
+      "localPath": "/assets/about_page/vision%201.svg",
+      "sha256": "d98a78d85947104dfc12d7235f0e033c5814536e2fdf9c016d297af00dbcdbf9",
+      "contentType": "image/svg+xml",
+      "size": 35421
+    },
+    {
+      "sourceUrl": "https://atomo.in/about_page/target%201.svg?v=2.1",
+      "localPath": "/assets/about_page/target%201.svg",
+      "sha256": "ed21899637de75c357a1ca7fbe658f1068b3435782f2449a5f4a9e0d04ebdb74",
+      "contentType": "image/svg+xml",
+      "size": 41553
+    },
+    {
+      "sourceUrl": "https://atomo.in/about_page/human-resources%201.svg?v=2.1",
+      "localPath": "/assets/about_page/human-resources%201.svg",
+      "sha256": "b9d7510583dd501897c5a1524b5d37f9b82f6a9c68bc47007cda5228d05885a1",
+      "contentType": "image/svg+xml",
+      "size": 31945
+    },
+    {
+      "sourceUrl": "https://atomo.in/about_page/gtu_ventures.svg",
+      "localPath": "/assets/about_page/gtu_ventures.svg",
+      "sha256": "6f2a1d5089688baa5149989ed35fba1ad2a160fcbc199ce884a0922fc52e79ba",
+      "contentType": "image/svg+xml",
+      "size": 355568
+    },
+    {
+      "sourceUrl": "https://atomo.in/about_page/ihubs.svg?v=2.1",
+      "localPath": "/assets/about_page/ihubs.svg",
+      "sha256": "0d58997e1f2c64a849333109c946b79c249c0c7facb6e391a8fa86dbe8650aab",
+      "contentType": "image/svg+xml",
+      "size": 13994
+    },
+    {
+      "sourceUrl": "https://atomo.in/about_page/nasscomt.svg?v=2.1",
+      "localPath": "/assets/about_page/nasscomt.svg",
+      "sha256": "053c2012b4b7c9e352d963791b5e58575734479594d847e9e67115dc0ae9f210",
+      "contentType": "image/svg+xml",
+      "size": 51673
+    },
+    {
+      "sourceUrl": "https://atomo.in/about_page/nidhiprayas.png?v=1.1",
+      "localPath": "/assets/about_page/nidhiprayas.png",
+      "sha256": "af47a91543122eec8bd756e8df7d26bc3c9f80206b77d5ba20fe89e96474d4be",
+      "contentType": "image/png",
+      "size": 28842
+    },
+    {
+      "sourceUrl": "https://atomo.in/about_page/pdeuiic.png?v=1.1",
+      "localPath": "/assets/about_page/pdeuiic.png",
+      "sha256": "e175a112adab7e064ad892dcc290c2ebc6a4e290f1c3d98e4c1d6ff6b4be2bff",
+      "contentType": "image/png",
+      "size": 54012
+    },
+    {
+      "sourceUrl": "https://atomo.in/about_page/VCUf.svg?v=2.1",
+      "localPath": "/assets/about_page/VCUf.svg",
+      "sha256": "66458cea1788f90b4baec8b4d496a2bf2544ebf163306407c49b112eabe828fe",
+      "contentType": "image/svg+xml",
+      "size": 32055
+    },
+    {
+      "sourceUrl": "https://atomo.in/presskit_page/press_icons/atomologo.png?v=1.1",
+      "localPath": "/assets/presskit_page/press_icons/atomologo.png",
+      "sha256": "a214ed8277ca5aa4e3cf015d6fae6de752950892ccff1f85100f99a4428b22b6",
+      "contentType": "image/png",
+      "size": 43029
+    },
+    {
+      "sourceUrl": "https://atomo.in/presskit_page/press_icons/icon.svg?v=2.1",
+      "localPath": "/assets/presskit_page/press_icons/icon.svg",
+      "sha256": "9d35ddf314d1966733f45ba640c2af141888244289999e2851397148423297bd",
+      "contentType": "image/svg+xml",
+      "size": 26232
+    },
+    {
+      "sourceUrl": "https://atomo.in/presskit_page/press_icons/icon2.svg?v=2.1",
+      "localPath": "/assets/presskit_page/press_icons/icon2.svg",
+      "sha256": "d712328b82db3bd39b38ed75b38366785e81a382a3d4a1c7dbcb94fc40f59283",
+      "contentType": "image/svg+xml",
+      "size": 12037
+    },
+    {
+      "sourceUrl": "https://atomo.in/presskit_page//press_icons/icon3.svg?v=2.1",
+      "localPath": "/assets/presskit_page/press_icons/icon3.svg",
+      "sha256": "508fd3d135c0ec17cc50342e74df6389c9501c25cb451d76cd60fcfeba422a4a",
+      "contentType": "image/svg+xml",
+      "size": 34027
+    },
+    {
+      "sourceUrl": "https://atomo.in/presskit_page//press_icons/icon4.svg?v=2.1",
+      "localPath": "/assets/presskit_page/press_icons/icon4.svg",
+      "sha256": "99965e426fe90b45ba5d638d70c7fc2d5fcaddc20a7dbe8e76706d3fc3fd59d5",
+      "contentType": "image/svg+xml",
+      "size": 34554
+    },
+    {
+      "sourceUrl": "https://atomo.in/presskit_page//press_icons/icon5.svg?v=2.1",
+      "localPath": "/assets/presskit_page/press_icons/icon5.svg",
+      "sha256": "81a6b8dab17f239bddda815925284d5f21e02bded8b93898e71e67eca00f6ed1",
+      "contentType": "image/svg+xml",
+      "size": 31595
+    },
+    {
+      "sourceUrl": "https://atomo.in/presskit_page//press_icons/icon6.svg?v=2.1",
+      "localPath": "/assets/presskit_page/press_icons/icon6.svg",
+      "sha256": "d175b20d525a4bead2b46ead557a3d57bedea5df6c4deebca5f952928d80db7a",
+      "contentType": "image/svg+xml",
+      "size": 24367
+    },
+    {
+      "sourceUrl": "https://atomo.in/presskit_page//press_icons/icon7.svg?v=2.1",
+      "localPath": "/assets/presskit_page/press_icons/icon7.svg",
+      "sha256": "5a790ef48dac4775fb27ba6de8a72ce11264b6ae2f9287a69e93e2bab166a10c",
+      "contentType": "image/svg+xml",
+      "size": 614625
+    },
+    {
+      "sourceUrl": "https://atomo.in/presskit_page//press_icons/icon8.svg?v=2.1",
+      "localPath": "/assets/presskit_page/press_icons/icon8.svg",
+      "sha256": "2ef7354070c564c427e2d1329167024dd8e8601a317cc5eeac10de2695b48768",
+      "contentType": "image/svg+xml",
+      "size": 18919
+    },
+    {
+      "sourceUrl": "https://atomo.in/presskit_page//press_icons/icon9.svg?v=2.1",
+      "localPath": "/assets/presskit_page/press_icons/icon9.svg",
+      "sha256": "dbde4abf247bead38a43e7aa0715d3989b8a7f09309318593885d9b0b66a5996",
+      "contentType": "image/svg+xml",
+      "size": 12523
+    },
+    {
+      "sourceUrl": "https://atomo.in/presskit_page/press_icons/rec.svg?v=2.1",
+      "localPath": "/assets/presskit_page/press_icons/rec.svg",
+      "sha256": "fbb95ae98308892808ecf2efdb0523676d6bfd0e3db0be119128677ed308cac4",
+      "contentType": "image/svg+xml",
+      "size": 69891
+    }
+  ]
+}

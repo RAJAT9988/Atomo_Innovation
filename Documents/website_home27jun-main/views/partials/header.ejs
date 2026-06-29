@@ -1,0 +1,107 @@
+<header id="site-header" class="site-header fixed inset-x-0 top-0 z-50" data-home="<%= path === '/' ? 'true' : 'false' %>">
+  <div class="site-header__inner">
+    <nav class="site-header__nav hidden lg:flex items-center" aria-label="Main navigation">
+      <a href="/" class="site-header__logo-link" aria-label="Atomo home">
+        <img src="/assets/brand/atomo-logo.png" alt="" width="108" height="28" class="site-header__logo-img brightness-0 invert" />
+        <span class="sr-only">Atomo</span>
+      </a>
+
+      <% primaryNav.forEach(function(item, navIndex) { %>
+      <div
+        class="site-header__trigger"
+        data-nav-trigger
+        data-nav-index="<%= navIndex %>"
+        <% if (item.children) { %>data-has-dropdown="true"<% } %>
+      >
+        <div class="site-header__trigger-row flex items-center">
+          <a
+            href="<%= item.href %>"
+            class="nav-link transition-colors duration-150"
+            <% if (item.children) { %>
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="nav-mega-panel-<%= navIndex %>"
+            <% } %>
+          ><%= item.label %></a>
+          <% if (item.children) { %>
+          <span class="nav-chevron flex h-5 w-4 items-center justify-center shrink-0" aria-hidden="true">
+            <svg class="h-3 w-3 opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+          <% } %>
+        </div>
+      </div>
+      <% }); %>
+    </nav>
+
+    <a href="/" class="site-header__logo-link site-header__logo-link--mobile lg:hidden" aria-label="Atomo home">
+      <img src="/assets/brand/atomo-logo.png" alt="" width="108" height="28" class="site-header__logo-img brightness-0 invert" />
+    </a>
+
+    <button type="button" id="mobile-menu-toggle" class="site-header__toggle border-white/20 lg:hidden z-50 flex h-9 w-9 items-center justify-center rounded-md border" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+      <svg class="menu-icon h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg class="close-icon hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Desktop mega menu -->
+  <div class="nav-mega hidden lg:block" data-nav-mega aria-hidden="true">
+    <div class="nav-mega__bridge" aria-hidden="true"></div>
+    <div class="nav-mega__surface">
+      <div class="nav-mega__inner">
+        <% primaryNav.forEach(function(item, navIndex) { %>
+        <% if (item.children) { %>
+        <div
+          class="nav-mega__panel"
+          id="nav-mega-panel-<%= navIndex %>"
+          data-nav-panel="<%= navIndex %>"
+          role="menu"
+          aria-label="<%= item.label %> menu"
+          hidden
+        >
+          <div
+            class="nav-mega__grid"
+            style="--nav-mega-columns: <%= item.children.length %>"
+          >
+            <% item.children.forEach(function(child, childIndex) { %>
+            <a
+              href="<%= child.href %>"
+              class="nav-mega__link"
+              role="menuitem"
+              style="--nav-stagger: <%= childIndex %>"
+            >
+              <span class="nav-mega__link-label"><%= child.label %></span>
+              <% if (child.description) { %>
+              <span class="nav-mega__link-desc"><%= child.description %></span>
+              <% } %>
+            </a>
+            <% }); %>
+          </div>
+        </div>
+        <% } %>
+        <% }); %>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="mobile-nav" class="fixed inset-0 z-40 hidden flex-col bg-[rgba(3,7,13,0.98)] backdrop-blur-lg lg:hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  <div class="container-site flex flex-1 flex-col overflow-y-auto pt-20 pb-8">
+    <nav class="space-y-2">
+      <% primaryNav.forEach(function(item) { %>
+      <details class="group rounded-xl border border-white/10">
+        <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-4 text-base font-medium text-light-text [&::-webkit-details-marker]:hidden">
+          <%= item.label %>
+          <svg class="h-5 w-5 text-silver transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="space-y-0.5 border-t border-white/10 px-2 py-2">
+          <a href="<%= item.href %>" class="block rounded-lg px-3 py-3 text-base font-medium text-light-text">Overview</a>
+          <% if (item.children) { item.children.forEach(function(child) { %>
+          <a href="<%= child.href %>" class="block rounded-lg px-3 py-3 text-base text-silver hover:bg-white/5 hover:text-light-text"><%= child.label %></a>
+          <% }); } %>
+        </div>
+      </details>
+      <% }); %>
+    </nav>
+    <div class="mt-8 pb-4"><a href="/contact" class="btn-primary w-full justify-center flex">Talk to Atomo</a></div>
+  </div>
+</div>

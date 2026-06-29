@@ -1,0 +1,31 @@
+<section class="section-light section-padding pt-32">
+  <div class="container-site container-editorial">
+    <% if (page.legalType === 'privacy') { %>
+    <h1 class="section-headline-secondary text-dark-text">Privacy Policy</h1>
+    <p class="mt-4 text-sm text-dark-text/60">Last updated: June 2026</p>
+    <div class="mt-10 space-y-6 text-base text-dark-text/75">
+      <p><%= site.legalName %> ("Atomo", "we", "us") respects your privacy. This policy describes how we collect, use and protect personal information when you visit our website or contact us.</p>
+      <h2 class="card-headline text-dark-text">Information we collect</h2>
+      <p>When you submit our contact form, we collect the information you provide — including name, company, email, phone, location and use case details.</p>
+      <h2 class="card-headline text-dark-text">How we use information</h2>
+      <p>We use contact information to respond to inquiries and communicate about Atomo products and services. We do not sell personal information to third parties.</p>
+      <h2 class="card-headline text-dark-text">Contact</h2>
+      <p>For privacy inquiries, contact us at <a href="mailto:<%= site.email %>" class="text-cyan hover:underline"><%= site.email %></a>.</p>
+    </div>
+    <% } else if (page.legalType === 'terms') { %>
+    <h1 class="section-headline-secondary text-dark-text">Terms of Service</h1>
+    <p class="mt-4 text-sm text-dark-text/60">Last updated: June 2026</p>
+    <div class="mt-10 space-y-6 text-base text-dark-text/75">
+      <p>By accessing the Atomo Innovation website, you agree to these terms of service. Content on this site is provided for informational purposes about Atomo products and services.</p>
+      <p>For questions about these terms, contact <a href="mailto:<%= site.email %>" class="text-cyan hover:underline"><%= site.email %></a>.</p>
+    </div>
+    <% } else { %>
+    <h1 class="section-headline-secondary text-dark-text">Cookie Settings</h1>
+    <p class="mt-4 text-sm text-dark-text/60">Last updated: June 2026</p>
+    <div class="mt-10 space-y-6 text-base text-dark-text/75">
+      <p>This website uses essential cookies required for basic functionality. We do not use third-party advertising cookies.</p>
+      <p>Contact <a href="mailto:<%= site.email %>" class="text-cyan hover:underline"><%= site.email %></a> for cookie-related inquiries.</p>
+    </div>
+    <% } %>
+  </div>
+</section>

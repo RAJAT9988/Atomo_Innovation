@@ -1,0 +1,37 @@
+<%- include('../partials/page-hero', { hero: { eyebrow: 'Products', headline: 'Compare Atomo Processing Units.', description: 'Side-by-side comparison of verified specifications for Electron, Proton and Neutron. Draft or unverified values are omitted.', breadcrumbs: [{ label: 'Home', href: '/' }, { label: 'Products', href: '/products' }, { label: 'Compare' }], cta: { type: 'product' } } }) %>
+<section class="section-light section-padding">
+  <div class="container-site container-editorial">
+    <div class="overflow-x-auto">
+      <table class="w-full min-w-[640px] border-collapse text-left text-base">
+        <caption class="sr-only">Comparison of Atomo Processing Units</caption>
+        <thead>
+          <tr class="border-b-2 border-[var(--color-border-light)]">
+            <th scope="col" class="py-4 pr-6 font-semibold text-dark-text">Specification</th>
+            <% productList.forEach(function(product) { %>
+            <th scope="col" class="py-4 px-4 font-semibold text-dark-text"><a href="/products/<%= product.slug %>" class="hover:text-cyan hover:underline"><%= product.name %></a></th>
+            <% }); %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-[var(--color-border-light)]">
+            <th scope="row" class="py-4 pr-6 font-medium text-dark-text">Positioning</th>
+            <% productList.forEach(function(product) { %><td class="py-4 px-4 text-dark-text/75"><%= product.positioning %></td><% }); %>
+          </tr>
+          <% specLabels.forEach(function(label) { %>
+          <tr class="border-b border-[var(--color-border-light)]">
+            <th scope="row" class="py-4 pr-6 font-medium text-dark-text"><%= label %></th>
+            <% productList.forEach(function(product) {
+              const spec = product.specs.find(function(s) { return s.label === label; });
+              const value = spec && spec.value.verificationStatus === 'approved' ? spec.value.value : null;
+            %>
+            <td class="py-4 px-4 text-dark-text/75"><%= value || '—' %></td>
+            <% }); %>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-6 text-sm text-dark-text/60">Only specifications with approved verification status are displayed.</p>
+    <div class="mt-12"><a href="/contact?interest=product" class="btn-primary">Discuss Your Deployment</a></div>
+  </div>
+</section>

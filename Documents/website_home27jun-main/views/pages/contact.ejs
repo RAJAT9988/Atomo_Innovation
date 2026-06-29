@@ -1,0 +1,80 @@
+<%- include('../partials/page-hero', { hero: { eyebrow: 'Contact', headline: 'Talk to Atomo.', description: 'Deployment inquiries, developer programs, partnerships, media and careers — reach the Atomo team.', breadcrumbs, dark: false } }) %>
+<section class="section-light section-padding">
+  <div class="container-site container-editorial">
+    <div class="grid gap-16 lg:grid-cols-2">
+      <div>
+        <h2 class="card-headline text-dark-text">Get in touch</h2>
+        <p class="mt-4 text-base text-dark-text/75">Fill out the form and our team will respond within two business days.</p>
+        <form id="contact-form" class="relative mt-8 space-y-6" novalidate data-default-interest="<%= interest %>">
+          <div id="contact-status" class="hidden rounded-lg px-4 py-3 text-base" role="status"></div>
+          <div class="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+            <label for="website">Website</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2">
+            <div>
+              <label for="name" class="mb-2 block text-sm font-medium text-dark-text">Full name <span class="text-red-600">*</span></label>
+              <input id="name" name="name" type="text" required class="field-input" autocomplete="name" />
+            </div>
+            <div>
+              <label for="company" class="mb-2 block text-sm font-medium text-dark-text">Company</label>
+              <input id="company" name="company" type="text" class="field-input" autocomplete="organization" />
+            </div>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2">
+            <div>
+              <label for="email" class="mb-2 block text-sm font-medium text-dark-text">Email <span class="text-red-600">*</span></label>
+              <input id="email" name="email" type="email" required class="field-input" autocomplete="email" />
+            </div>
+            <div>
+              <label for="phone" class="mb-2 block text-sm font-medium text-dark-text">Phone</label>
+              <input id="phone" name="phone" type="tel" class="field-input" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2">
+            <div>
+              <label for="city" class="mb-2 block text-sm font-medium text-dark-text">City</label>
+              <input id="city" name="city" type="text" class="field-input" autocomplete="address-level2" />
+            </div>
+            <div>
+              <label for="country" class="mb-2 block text-sm font-medium text-dark-text">Country <span class="text-red-600">*</span></label>
+              <input id="country" name="country" type="text" required class="field-input" autocomplete="country-name" />
+            </div>
+          </div>
+          <div>
+            <label for="interest" class="mb-2 block text-sm font-medium text-dark-text">Inquiry type</label>
+            <select id="interest" name="interest" class="field-input">
+              <option value="general">General inquiry</option>
+              <option value="enterprise">Plan a deployment</option>
+              <option value="product">Product inquiry</option>
+              <option value="partnership">Partnership</option>
+              <option value="developer">Developer program</option>
+              <option value="media">Media inquiry</option>
+              <option value="career">Careers</option>
+              <option value="support">Technical support</option>
+            </select>
+          </div>
+          <div>
+            <label for="useCase" class="mb-2 block text-sm font-medium text-dark-text">Use case or message <span class="text-red-600">*</span></label>
+            <textarea id="useCase" name="useCase" rows="5" required class="field-input"></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Send message</button>
+        </form>
+      </div>
+      <div>
+        <h2 class="card-headline text-dark-text">Offices</h2>
+        <ul class="mt-6 space-y-8">
+          <% site.addresses.forEach(function(address) { %>
+          <li>
+            <h3 class="font-semibold text-dark-text"><%= address.label %></h3>
+            <address class="mt-2 not-italic text-base text-dark-text/75">
+              <% address.lines.forEach(function(line) { %><span class="block"><%= line %></span><% }); %>
+            </address>
+          </li>
+          <% }); %>
+        </ul>
+        <p class="mt-8 text-base text-dark-text/75">Email: <a href="mailto:<%= site.email %>" class="font-medium text-cyan hover:underline"><%= site.email %></a></p>
+      </div>
+    </div>
+  </div>
+</section>

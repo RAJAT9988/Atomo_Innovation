@@ -1,0 +1,2081 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+  .tail-container {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .headline-font {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  /* Hero typography — Inter only */
+  .hero-content {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    width: 100%;
+    max-width: 58rem;
+    margin-left: -50px;
+    margin-top: 2.5rem;
+    align-self: flex-start;
+  }
+
+  @media (min-width: 768px) {
+    .hero-content {
+      margin-top: 3.75rem;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .hero-content {
+      margin-left: -12px;
+    }
+  }
+
+  :root {
+    --hero-accent: #f97316;
+    --hero-accent-light: #fdba74;
+    --hero-accent-mid: #fb923c;
+    --hero-accent-deep: #ea580c;
+  }
+
+  .hero-eyebrow,
+  .section-2-eyebrow {
+    display: inline-block;
+    width: max-content;
+    max-width: 100%;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    background: linear-gradient(
+      105deg,
+      var(--hero-accent-light) 0%,
+      var(--hero-accent-mid) 38%,
+      var(--hero-accent) 72%,
+      var(--hero-accent-deep) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--hero-accent);
+  }
+
+  .hero-eyebrow {
+    filter: drop-shadow(0 0 14px rgba(249, 115, 22, 0.22));
+    margin: 0 0 1.35rem;
+  }
+
+  .section-2-eyebrow {
+    margin: 0 0 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-eyebrow,
+    .section-2-eyebrow {
+      font-size: 0.9375rem;
+      letter-spacing: 0.12em;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-eyebrow,
+    .section-2-eyebrow {
+      font-size: 1rem;
+    }
+  }
+
+  .hero-headline {
+    font-size: 1.3125rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.032em;
+    color: #ffffff;
+    margin: 0 0 1.75rem;
+    width: fit-content;
+    max-width: 100%;
+    padding-bottom: 0.05em;
+  }
+
+  .hero-headline__line {
+    display: block;
+    white-space: normal;
+  }
+
+  @media (min-width: 640px) {
+    .hero-headline__line {
+      white-space: nowrap;
+    }
+  }
+
+  .hero-headline__accent {
+    color: var(--hero-accent);
+  }
+
+  @media (min-width: 360px) {
+    .hero-headline {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (min-width: 380px) {
+    .hero-headline {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (min-width: 480px) {
+    .hero-headline {
+      font-size: 2.125rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .hero-headline {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-headline {
+      font-size: 3.25rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-headline {
+      font-size: 3.65rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero-headline {
+      font-size: 4.16rem;
+    }
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 43.75rem;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0 0 3rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-subtitle {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-subtitle {
+      font-size: 1.375rem;
+    }
+  }
+
+  /* Section 2 — heading only (matches Section 1 typography) */
+  .section-2-title {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 1.3125rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.032em;
+    color: #3c3c3c;
+    margin: 0;
+    padding-bottom: 0.05em;
+  }
+
+  @media (min-width: 360px) {
+    .section-2-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (min-width: 380px) {
+    .section-2-title {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (min-width: 480px) {
+    .section-2-title {
+      font-size: 2.125rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .section-2-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .section-2-title {
+      font-size: 3.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-2-title {
+      font-size: 3.65rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .section-2-title {
+      font-size: 4.16rem;
+    }
+  }
+
+  .section-subtitle {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 43.75rem;
+    color: #6b7280;
+    margin: 1.75rem 0 0;
+  }
+
+  @media (min-width: 640px) {
+    .section-subtitle {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .section-subtitle {
+      margin-top: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-subtitle {
+      font-size: 1.375rem;
+    }
+  }
+
+  .section-4-header {
+    margin-bottom: 2.5rem;
+  }
+
+  #section-platform {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #section-platform .section-4-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .section-4-grid {
+    flex: 1;
+    min-height: 0;
+    align-content: stretch;
+  }
+
+  @media (min-width: 1024px) {
+    .section-4-header {
+      margin-bottom: 2rem;
+    }
+
+    #section-platform .section-subtitle {
+      margin-top: 1.5rem;
+    }
+
+    .section-4-grid {
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+
+    .section-4-grid > * {
+      min-height: 0;
+      height: 100%;
+    }
+  }
+
+  .section-4-grid > div,
+  .section-4-grid > a {
+    padding: 1.375rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-4-grid > div,
+    .section-4-grid > a {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-4-grid > div,
+    .section-4-grid > a {
+      padding: 1.75rem 1.625rem;
+    }
+
+    .section-4-card-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.125rem;
+    }
+
+    .section-4-card-icon img {
+      width: 80px;
+      height: 80px;
+      display: block;
+      object-fit: contain;
+      background: transparent;
+    }
+
+    .section-4-grid h3 {
+      font-size: 1.125rem;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-4-grid p {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+  }
+
+  .section-4-card-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    background: transparent;
+  }
+
+  .section-4-card-icon img {
+    width: 80px;
+    height: 80px;
+    display: block;
+    object-fit: contain;
+    background: transparent;
+  }
+
+  @media (min-width: 1024px) {
+    .section-4-card-icon,
+    .section-4-card-icon img {
+      width: 84px;
+      height: 84px;
+    }
+  }
+
+  .section-4-cta-card {
+    background: #3c3c3c;
+    color: #ffffff;
+  }
+
+  .section-4-cta-card:hover {
+    background: #3c3c3c;
+    border-color: transparent;
+  }
+
+  .section-4-cta-card h3,
+  .section-4-cta-card .section-4-cta-card__arrow {
+    color: #ffffff;
+  }
+
+  .section-4-cta-card p {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .section-4-cta-card:hover p {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .section-4-live {
+    margin-top: 0.625rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: #6b7280;
+  }
+
+  .section-4-live__dot {
+    display: inline-block;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 9999px;
+    background: #22c55e;
+    margin-right: 0.375rem;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .section-5-footer-note {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+  }
+
+  #section-edge {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #section-edge .section-5-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .section-5-layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  @media (min-width: 1024px) {
+    .section-5-layout {
+      grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .section-5-header .section-subtitle {
+      margin-top: 1.5rem;
+    }
+  }
+
+  .section-5-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    min-height: 0;
+  }
+
+  @media (min-width: 640px) {
+    .section-5-grid {
+      gap: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-5-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem 1.5rem;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .section-5-grid > * {
+      min-height: 0;
+      height: 100%;
+    }
+  }
+
+  .section-5-card {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 1.375rem;
+    background: #ffffff;
+    border: 1px solid #f3f4f6;
+    border-radius: 1rem;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  @media (min-width: 640px) {
+    .section-5-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-5-card {
+      padding: 1.75rem 1.625rem;
+    }
+  }
+
+  .section-5-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    border-color: #bfdbfe;
+  }
+
+  .section-5-card-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    background: transparent;
+  }
+
+  .section-5-card-icon img {
+    width: 80px;
+    height: 80px;
+    display: block;
+    object-fit: contain;
+    background: transparent;
+  }
+
+  @media (min-width: 1024px) {
+    .section-5-card-icon,
+    .section-5-card-icon img {
+      width: 84px;
+      height: 84px;
+      margin-bottom: 1.125rem;
+    }
+
+    .section-5-grid h3 {
+      font-size: 1.125rem;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-5-grid p {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+  }
+
+  .section-5-card h3 {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #1f2937;
+    line-height: 1.35;
+    margin: 0 0 0.5rem;
+  }
+
+  .section-5-card p {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #6b7280;
+    line-height: 1.5;
+    margin: 0;
+    margin-top: auto;
+  }
+
+  .section-2-card-icon {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Section 2 — comparison cards */
+  .comparison-card {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 2rem 2rem 2.25rem;
+    border-radius: 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .comparison-card__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 2rem;
+    line-height: 1.2;
+  }
+
+  .comparison-card__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .comparison-card__row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .comparison-card__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.15rem;
+  }
+
+  .comparison-card__icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .comparison-card--cloud .comparison-card__icon {
+    color: #9ca3af;
+  }
+
+  .comparison-card--edge .comparison-card__icon {
+    color: #47a0e9;
+  }
+
+  .comparison-card--cloud {
+    background-color: #f3f4f6;
+  }
+
+  .comparison-card--cloud .comparison-card__label {
+    color: #6b7280;
+  }
+
+  .comparison-card--cloud .comparison-card__row {
+    color: #374151;
+  }
+
+  .comparison-card--edge {
+    background-color: #3c3c3c;
+  }
+
+  .comparison-card--edge .comparison-card__label {
+    color: #47a0e9;
+  }
+
+  .comparison-card--edge .comparison-card__row {
+    color: #f3f4f6;
+  }
+
+  .hero-video-stack {
+    position: absolute;
+    inset: 0;
+  }
+
+  #hero-premium {
+    margin-top: var(--nav-height, 60px);
+    height: calc(100svh - var(--nav-height, 60px));
+    min-height: calc(100svh - var(--nav-height, 60px));
+  }
+
+  .hero-inner {
+    width: 100%;
+    min-height: 100%;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+  }
+
+  .hero-video {
+    filter: brightness(0.84) contrast(1.06) saturate(1.02);
+  }
+
+  .hero-video-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 94% 90% at 50% 48%, transparent 72%, rgba(0, 0, 0, 0.04) 92%, rgba(0, 0, 0, 0.07) 100%);
+  }
+
+  .hero-video-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 1;
+    background: #000;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* Section 3 — Intelligent Infrastructure */
+  .brand-gradient-text {
+    display: inline-block;
+    width: max-content;
+    max-width: 100%;
+    background: linear-gradient(90deg, #1D4ED8 0%, #3730A3 40%, #9D174D 72%, #BE185D 100%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .brand-gradient-word {
+    font-weight: 600;
+  }
+
+  .brand-word--observe {
+    display: inline-block;
+    width: max-content;
+    background-image: linear-gradient(90deg, #2563eb 0%, #5b6cff 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #2563eb;
+  }
+
+  .brand-word--understand {
+    display: inline-block;
+    width: max-content;
+    background-image: linear-gradient(90deg, #3b82f6 0%, #7c3aed 55%, #ec4899 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #3b82f6;
+  }
+
+  .brand-word--decide {
+    display: inline-block;
+    width: max-content;
+    background-image: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #6366f1;
+  }
+
+  .brand-word--act {
+    display: inline-block;
+    width: max-content;
+    background-image: linear-gradient(90deg, #8b5cf6 0%, #d946ef 45%, #ec4899 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #8b5cf6;
+  }
+
+  .section-3-header {
+    margin-bottom: 3.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-3-header {
+      margin-bottom: 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-3-header {
+      margin-bottom: 4.75rem;
+    }
+  }
+
+  .section-3-industries {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem 2rem;
+    margin-bottom: 4.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-3-industries {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem 3rem;
+      margin-bottom: 5.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-3-industries {
+      gap: 2.25rem 3.5rem;
+      margin-bottom: 6rem;
+    }
+  }
+
+  .section-3-industry-item {
+    display: flex;
+    align-items: center;
+    gap: 1.375rem;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 1.1875rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #4b5563;
+    margin: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .section-3-industry-item {
+      font-size: 1.3125rem;
+      gap: 1.375rem;
+    }
+  }
+
+  .section-3-industry-item strong {
+    color: #111827;
+    font-weight: 700;
+  }
+
+  .section-3-industry-icon {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+
+  .section-3-industry-icon img {
+    width: 80px;
+    height: 80px;
+    display: block;
+    object-fit: contain;
+    background: transparent;
+  }
+
+  @media (min-width: 1024px) {
+    .section-3-industry-icon,
+    .section-3-industry-icon img {
+      width: 84px;
+      height: 84px;
+    }
+  }
+
+  .section-3-statement {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .section-3-statement {
+      margin-bottom: 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-3-statement {
+      margin-bottom: 6.5rem;
+    }
+  }
+
+  .section-3-statement p {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: #4b5563;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .section-3-statement p {
+      font-size: 1.5rem;
+    }
+  }
+
+  .section-3-flow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem 1rem;
+    padding-bottom: 2rem;
+    max-width: 68rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .section-3-flow {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 1.5rem 2rem;
+      align-items: center;
+    }
+  }
+
+  .section-3-flow__step {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 4.5rem;
+    height: auto;
+    padding: 0.875rem 1.5rem;
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 9999px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), 0 4px 14px rgba(0, 0, 0, 0.06);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    box-sizing: border-box;
+  }
+
+  .section-3-flow__inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 640px) {
+    .section-3-flow__step {
+      min-height: 4.75rem;
+      padding: 0.875rem 1.625rem;
+      max-width: 17rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-3-flow__step {
+      max-width: none;
+      width: 100%;
+      min-height: 4.75rem;
+      padding: 0.875rem 1.75rem;
+    }
+  }
+
+  .section-3-flow__step:hover {
+    border-color: #94a3b8;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .section-3-flow__icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: transparent;
+  }
+
+  .section-3-flow__icon img {
+    width: 48px;
+    height: 48px;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: right center;
+    background: transparent;
+  }
+
+  @media (min-width: 1024px) {
+    .section-3-flow__icon {
+      width: 46px;
+      height: 50px;
+    }
+
+    .section-3-flow__icon img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .section-3-flow__label {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    line-height: 1.2;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  .section-3-flow__label--observe {
+    background-image: linear-gradient(90deg, #2563eb 0%, #5b6cff 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #2563eb;
+  }
+
+  .section-3-flow__label--understand {
+    background-image: linear-gradient(90deg, #3b82f6 0%, #7c3aed 55%, #ec4899 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #3b82f6;
+  }
+
+  .section-3-flow__label--decide {
+    background-image: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #6366f1;
+  }
+
+  .section-3-flow__label--act {
+    background-image: linear-gradient(90deg, #8b5cf6 0%, #d946ef 45%, #ec4899 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ec4899;
+  }
+
+  .section-3-flow__step--act .section-3-flow__inner {
+    gap: 0.5rem;
+  }
+
+  .section-3-flow__step--act .section-3-flow__icon {
+    width: 40px;
+  }
+
+  .section-3-flow__step--act .section-3-flow__icon img {
+    width: 46px;
+    height: 46px;
+    transform: scale(1.08);
+    transform-origin: right center;
+  }
+
+  @media (min-width: 1024px) {
+    .section-3-flow__step--act .section-3-flow__icon {
+      width: 42px;
+    }
+
+    .section-3-flow__step--act .section-3-flow__icon img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  .section-3-flow__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #64748b;
+    padding: 0 0.375rem;
+    align-self: center;
+  }
+
+  .section-3-flow__arrow svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+  }
+
+  @media (max-width: 1023px) {
+    .section-3-flow {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section-3-flow__step {
+      max-width: 20rem;
+    }
+
+    .section-3-flow__arrow svg {
+      transform: rotate(90deg);
+    }
+  }
+
+  /* ── Homepage responsive (all sections) ── */
+  #hero-premium,
+  #section-problem,
+  #section-infrastructure,
+  #section-platform,
+  #section-edge {
+    overflow-x: clip;
+  }
+
+  @media (min-width: 1024px) and (min-height: 820px) {
+    #section-platform,
+    #section-edge {
+      min-height: 100vh;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    #section-platform,
+    #section-edge {
+      min-height: auto;
+    }
+
+    .section-4-grid {
+      grid-template-rows: none;
+    }
+
+    .section-4-grid > *,
+    .section-5-grid > * {
+      height: auto;
+      min-height: 0;
+    }
+
+    .section-5-layout {
+      flex: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    #hero-premium {
+      height: auto;
+      min-height: calc(100svh - var(--nav-height, 60px));
+      overflow: visible;
+    }
+
+    .hero-inner {
+      justify-content: flex-start;
+      padding-top: 1.25rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .hero-content {
+      margin-left: 0;
+      margin-top: 1.25rem;
+      max-width: 100%;
+    }
+
+    .hero-eyebrow,
+    .section-2-eyebrow {
+      letter-spacing: 0.14em;
+      max-width: 100%;
+      white-space: normal;
+    }
+
+    .hero-headline__line {
+      white-space: normal;
+    }
+
+    .hero-subtitle {
+      margin-bottom: 1.75rem;
+      font-size: 0.9375rem;
+    }
+
+    #hero-premium .hero-inner a {
+      width: 100%;
+      justify-content: center;
+      padding: 0.875rem 1.25rem;
+      font-size: 0.9375rem;
+    }
+
+    #section-problem {
+      height: auto;
+      min-height: 0;
+      overflow: visible;
+    }
+
+    #section-problem .container {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    #section-problem .mb-10 {
+      margin-bottom: 1.75rem;
+    }
+
+    #section-problem .grid.gap-6.mb-12 {
+      margin-bottom: 2rem;
+      gap: 1rem;
+    }
+
+    #section-problem .grid.gap-6.mb-12 > div {
+      padding: 1.25rem;
+      border-radius: 1.25rem;
+    }
+
+    #section-problem .grid.gap-6.mb-12 h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    #section-problem .grid.gap-6.mb-12 p {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+
+    .comparison-card {
+      padding: 1.5rem 1.375rem 1.625rem;
+    }
+
+    .comparison-card__label {
+      margin-bottom: 1.25rem;
+    }
+
+    .comparison-card__list {
+      gap: 1rem;
+    }
+
+    .comparison-card__row {
+      font-size: 0.9375rem;
+      line-height: 1.55;
+    }
+
+    .section-3-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-3-industries {
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-3-industry-item {
+      font-size: 1rem;
+      gap: 1rem;
+    }
+
+    .section-3-industry-icon,
+    .section-3-industry-icon img {
+      width: 56px;
+      height: 56px;
+    }
+
+    .section-3-statement {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-3-statement p {
+      font-size: 1.0625rem;
+      line-height: 1.65;
+    }
+
+    .section-4-header {
+      margin-bottom: 1.75rem;
+    }
+
+    .section-4-grid > div,
+    .section-4-grid > a {
+      padding: 1.125rem;
+    }
+
+    .section-4-card-icon,
+    .section-4-card-icon img,
+    .section-5-card-icon,
+    .section-5-card-icon img {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-4-grid h3,
+    .section-5-card h3 {
+      font-size: 0.9375rem;
+    }
+
+    .section-4-grid p,
+    .section-5-card p {
+      font-size: 0.6875rem;
+    }
+
+    .section-5-grid {
+      gap: 0.875rem;
+    }
+
+    .section-5-card {
+      padding: 1.125rem;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .hero-headline__line {
+      white-space: normal;
+    }
+
+    .hero-content {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .hero-content {
+      margin-top: 0.75rem;
+    }
+
+    .hero-eyebrow,
+    .section-2-eyebrow {
+      font-size: 0.8125rem;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-5-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-height: 760px) and (min-width: 768px) {
+    #hero-premium {
+      height: auto;
+      min-height: calc(100svh - var(--nav-height, 60px));
+    }
+
+    .hero-inner {
+      justify-content: flex-start;
+      padding-top: 1.5rem;
+    }
+
+    .hero-content {
+      margin-top: 1.5rem;
+    }
+
+    .hero-subtitle {
+      margin-bottom: 1.5rem;
+    }
+
+    #section-problem {
+      height: auto;
+      min-height: 0;
+      overflow: visible;
+    }
+  }
+</style>
+
+  <!-- HERO SECTION - Updated Headline Color -->
+<section class="relative flex items-center overflow-hidden" id="hero-premium">
+  <!-- Background Video -->
+  <div class="absolute inset-0 z-0">
+    <div class="hero-video-stack" aria-hidden="true">
+      <video
+        class="hero-video hero-video-layer is-active"
+        id="hero-video"
+        autoplay
+        muted
+        playsinline
+        webkit-playsinline
+        preload="metadata"
+        disablepictureinpicture
+        disableremoteplayback
+        x-webkit-airplay="deny"
+      ></video>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-black/32 to-black/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/28 via-transparent to-black/14 pointer-events-none"></div>
+    <div class="hero-video-vignette" aria-hidden="true"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="hero-inner relative z-10 container mx-auto px-6 lg:px-12 max-w-7xl h-full flex flex-col justify-center items-start">
+    <div class="hero-content">
+      <!-- Eyebrow -->
+      <p class="hero-eyebrow">Edge AI Infrastructure</p>
+
+      <!-- Headline -->
+      <h1 class="hero-headline">
+        <span class="hero-headline__line">Intelligence Should Live</span>
+        <span class="hero-headline__line hero-headline__accent">Where Decisions Are Made</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="hero-subtitle">
+        Atomo brings real-time AI to industries, cities and critical infrastructure through an integrated edge computing platform built for speed, privacy and resilience.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap gap-4">
+        <a href="/products" 
+           class="inline-flex items-center px-8 py-4 bg-white text-gray-900 font-semibold rounded-2xl hover:bg-gray-100 transition-all duration-300 text-lg">
+          Explore Products
+        </a>
+        <a href="/platform" 
+           class="inline-flex items-center px-8 py-4 border border-white/70 text-white font-semibold rounded-2xl hover:bg-white/10 transition-all duration-300 text-lg">
+          Explore the Platform
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/70 z-10"></div>
+</section>
+  <!-- SECTION 2 — The Challenge (Full 100vh) -->
+  <section class="bg-white flex flex-col" id="section-problem">
+    <div class="container mx-auto px-6 lg:px-12 max-w-7xl flex-1 flex flex-col py-12">
+
+      <!-- Header -->
+      <div class="mb-10">
+        <span class="section-2-eyebrow">The Next Computing Transition</span>
+        <h2 class="section-2-title">
+          The Cloud Cannot Power<br>The Physical World Alone
+        </h2>
+      </div>
+
+      <!-- 4 Challenge Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
+        <div class="bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 p-6 rounded-3xl transition-all group">
+          <div class="w-11 h-11 bg-white rounded-2xl flex items-center justify-center mb-5 shadow-sm group-hover:scale-105 transition-transform">
+            <img src="/section2icon/latency.png" alt="" class="section-2-card-icon" width="34" height="34" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="font-semibold text-xl mb-3">Latency</h3>
+          <p class="text-gray-600 text-[15px] leading-snug">
+            Real-world operations cannot always wait for data to travel to distant cloud infrastructure and return.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 p-6 rounded-3xl transition-all group">
+          <div class="w-11 h-11 bg-white rounded-2xl flex items-center justify-center mb-5 shadow-sm group-hover:scale-105 transition-transform">
+            <img src="/section2icon/Connectivity.png" alt="" class="section-2-card-icon" width="34" height="34" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="font-semibold text-xl mb-3">Connectivity</h3>
+          <p class="text-gray-600 text-[15px] leading-snug">
+            Factories, infrastructure and remote environments cannot always depend on uninterrupted internet connectivity.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 p-6 rounded-3xl transition-all group">
+          <div class="w-11 h-11 bg-white rounded-2xl flex items-center justify-center mb-5 shadow-sm group-hover:scale-105 transition-transform">
+            <img src="/section2icon/Privacy%20and%20sovereignty.png" alt="" class="section-2-card-icon" width="34" height="34" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="font-semibold text-xl mb-3">Privacy and sovereignty</h3>
+          <p class="text-gray-600 text-[15px] leading-snug">
+            Sensitive video, operational and industrial data often needs to remain closer to its source.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 p-6 rounded-3xl transition-all group">
+          <div class="w-11 h-11 bg-white rounded-2xl flex items-center justify-center mb-5 shadow-sm group-hover:scale-105 transition-transform">
+            <img src="/section2icon/Bandwidth%20and%20cost.png" alt="" class="section-2-card-icon" width="34" height="34" loading="lazy" decoding="async" />
+          </div>
+          <h3 class="font-semibold text-xl mb-3">Bandwidth and cost</h3>
+          <p class="text-gray-600 text-[15px] leading-snug">
+            Continuously moving high-volume video and sensor data to the cloud can become costly and inefficient.
+          </p>
+        </div>
+      </div>
+
+      <!-- Comparison Boxes -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-start">
+        
+        <!-- Cloud-only -->
+        <div class="comparison-card comparison-card--cloud">
+          <div class="comparison-card__label">CLOUD-ONLY</div>
+          <div class="comparison-card__list">
+            <div class="comparison-card__row">
+              <span class="comparison-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17a3.5 3.5 0 1 1 0-7 4.5 4.5 0 0 1 8.5-1.2A3 3 0 1 1 19 17H7z"/>
+                  <path d="M12 13.5v4"/>
+                  <path d="M10 15.5h4"/>
+                  <rect x="3" y="10" width="5" height="3.5" rx="1"/>
+                  <circle cx="5.5" cy="11.75" r="0.75"/>
+                </svg>
+              </span>
+              <span>Data is captured.</span>
+            </div>
+            <div class="comparison-card__row">
+              <span class="comparison-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 12l16-6-6 16-2-7-8-3z"/>
+                </svg>
+              </span>
+              <span>Data is transmitted.</span>
+            </div>
+            <div class="comparison-card__row">
+              <span class="comparison-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="7" y="4" width="10" height="3" rx="0.75"/>
+                  <rect x="7" y="9" width="10" height="3" rx="0.75"/>
+                  <path d="M10 12h4"/>
+                  <path d="M8 16a3.5 3.5 0 1 1 0-7 5 5 0 0 1 9.8-1A3 3 0 1 1 16 16"/>
+                </svg>
+              </span>
+              <span>Data is processed remotely.</span>
+            </div>
+            <div class="comparison-card__row">
+              <span class="comparison-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17a3.5 3.5 0 1 1 0-7 4.5 4.5 0 0 1 8.5-1.2A3 3 0 1 1 19 17H7z"/>
+                  <path d="M9.5 14.5c1.2 1.2 3.8 1.2 5 0"/>
+                  <path d="M12 16.5v2"/>
+                  <path d="M9.5 18.5h5"/>
+                </svg>
+              </span>
+              <span>A response returns.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Atomo Edge -->
+        <div class="comparison-card comparison-card--edge">
+          <div class="comparison-card__label">ATOMO EDGE INTELLIGENCE</div>
+          <div class="comparison-card__list">
+            <div class="comparison-card__row">
+              <span class="comparison-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 9h3l1-2h6l1 2h3a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"/>
+                  <circle cx="12" cy="13" r="2.25"/>
+                </svg>
+              </span>
+              <span>Data is captured.</span>
+            </div>
+            <div class="comparison-card__row">
+              <span class="comparison-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="5" width="14" height="14" rx="2.5"/>
+                  <rect x="9" y="9" width="2" height="2" rx="0.5"/>
+                  <rect x="13" y="9" width="2" height="2" rx="0.5"/>
+                  <rect x="9" y="13" width="2" height="2" rx="0.5"/>
+                  <rect x="13" y="13" width="2" height="2" rx="0.5"/>
+                  <path d="M5 12H3"/>
+                  <path d="M21 12h-2"/>
+                </svg>
+              </span>
+              <span>AI processes it locally.</span>
+            </div>
+            <div class="comparison-card__row">
+              <span class="comparison-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="2"/>
+                  <path d="M12 10V5"/>
+                  <path d="M12 14v5"/>
+                  <path d="M10 12H5"/>
+                  <path d="M14 12h5"/>
+                </svg>
+              </span>
+              <span>A decision is made immediately.</span>
+            </div>
+            <div class="comparison-card__row">
+              <span class="comparison-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="9" cy="5.5" r="0.75"/>
+                  <circle cx="12" cy="4.5" r="0.75"/>
+                  <circle cx="15" cy="5.5" r="0.75"/>
+                  <path d="M8 8h8l-3.5 6H14l-5.5 8 2-6H8z"/>
+                </svg>
+              </span>
+              <span>Only meaningful events need to be transmitted.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<!-- SECTION 3 — Intelligent Infrastructure (White Background) -->
+<section class="bg-white border-t border-gray-100" id="section-infrastructure">
+  <div class="container mx-auto px-6 lg:px-12 max-w-7xl py-12">
+
+    <!-- Header -->
+    <div class="section-3-header">
+      <span class="section-2-eyebrow">The Next Computing Transition</span>
+      <h2 class="section-2-title">
+        The Next Decade Will Be<br>Defined by Intelligent Infrastructure
+      </h2>
+    </div>
+
+    <!-- Six Industry Points -->
+    <div class="section-3-industries">
+      <p class="section-3-industry-item">
+        <span class="section-3-industry-icon" aria-hidden="true">
+          <img src="/assets/icons/section3/features/factory.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <span><strong>Factories</strong> are becoming intelligent.</span>
+      </p>
+
+      <p class="section-3-industry-item">
+        <span class="section-3-industry-icon" aria-hidden="true">
+          <img src="/assets/icons/section3/features/building.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <span><strong>Buildings</strong> are becoming intelligent.</span>
+      </p>
+
+      <p class="section-3-industry-item">
+        <span class="section-3-industry-icon" aria-hidden="true">
+          <img src="/assets/icons/section3/features/cities.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <span><strong>Cities</strong> are becoming intelligent.</span>
+      </p>
+
+      <p class="section-3-industry-item">
+        <span class="section-3-industry-icon" aria-hidden="true">
+          <img src="/assets/icons/section3/features/transport.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <span><strong>Transportation networks</strong> are becoming intelligent.</span>
+      </p>
+
+      <p class="section-3-industry-item">
+        <span class="section-3-industry-icon" aria-hidden="true">
+          <img src="/assets/icons/section3/features/machines.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <span><strong>Machines</strong> are becoming intelligent.</span>
+      </p>
+
+      <p class="section-3-industry-item">
+        <span class="section-3-industry-icon" aria-hidden="true">
+          <img src="/assets/icons/section3/features/critical-infrastructure.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <span><strong>Critical infrastructure</strong> are becoming intelligent.</span>
+      </p>
+    </div>
+
+    <!-- Bottom Statement -->
+    <div class="section-3-statement">
+      <p>
+        These systems require intelligence that can
+        <span class="brand-gradient-word brand-word--observe">observe</span>,
+        <span class="brand-gradient-word brand-word--understand">understand</span>,
+        <span class="brand-gradient-word brand-word--decide">decide</span> and
+        <span class="brand-gradient-word brand-word--act">act</span>.
+      </p>
+    </div>
+
+    <!-- Process Flow -->
+    <div class="section-3-flow">
+      <div class="section-3-flow__step section-3-flow__step--observe">
+        <span class="section-3-flow__inner">
+          <span class="section-3-flow__icon" aria-hidden="true">
+            <img src="/assets/icons/section3/process/observe.png" alt="" width="48" height="48" loading="lazy" decoding="async" />
+          </span>
+          <span class="section-3-flow__label section-3-flow__label--observe">Observe</span>
+        </span>
+      </div>
+
+      <span class="section-3-flow__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/>
+          <path d="M13 7l5 5-5 5"/>
+        </svg>
+      </span>
+
+      <div class="section-3-flow__step section-3-flow__step--understand">
+        <span class="section-3-flow__inner">
+          <span class="section-3-flow__icon" aria-hidden="true">
+            <img src="/assets/icons/section3/process/understand.png" alt="" width="48" height="48" loading="lazy" decoding="async" />
+          </span>
+          <span class="section-3-flow__label section-3-flow__label--understand">Understand</span>
+        </span>
+      </div>
+
+      <span class="section-3-flow__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/>
+          <path d="M13 7l5 5-5 5"/>
+        </svg>
+      </span>
+
+      <div class="section-3-flow__step section-3-flow__step--decide">
+        <span class="section-3-flow__inner">
+          <span class="section-3-flow__icon" aria-hidden="true">
+            <img src="/assets/icons/section3/process/decide.png" alt="" width="48" height="48" loading="lazy" decoding="async" />
+          </span>
+          <span class="section-3-flow__label section-3-flow__label--decide">Decide</span>
+        </span>
+      </div>
+
+      <span class="section-3-flow__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/>
+          <path d="M13 7l5 5-5 5"/>
+        </svg>
+      </span>
+
+      <div class="section-3-flow__step section-3-flow__step--act">
+        <span class="section-3-flow__inner">
+          <span class="section-3-flow__icon" aria-hidden="true">
+            <img src="/assets/icons/section3/process/act.png" alt="" width="48" height="48" loading="lazy" decoding="async" />
+          </span>
+          <span class="section-3-flow__label section-3-flow__label--act">Act</span>
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>  
+
+<!-- SECTION 4 — One Platform -->
+<section class="bg-white border-t border-gray-100" id="section-platform">
+  <div class="container mx-auto px-6 lg:px-12 max-w-7xl py-12 section-4-container">
+
+    <!-- Header -->
+    <div class="section-4-header">
+      <span class="section-2-eyebrow">Unified Edge Platform</span>
+      <h2 class="section-2-title">
+        One Platform<br>
+        Intelligence at Every Layer
+      </h2>
+      <p class="section-subtitle">
+        From silicon to cloud — Atomo delivers a complete, unified edge intelligence platform.
+      </p>
+    </div>
+
+    <!-- Cards Container - Compact Grid -->
+    <div class="section-4-grid grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+
+      <!-- Card 1 -->
+      <div class="section-4-card group relative bg-white rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-gray-100 hover:border-blue-200 shadow-sm">
+        <span class="section-4-card-icon" aria-hidden="true">
+          <img src="/assets/icons/section4/applications.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <h3 class="font-bold text-base text-gray-800">Applications</h3>
+        <p class="text-gray-500 text-xs leading-snug">Industry-specific computer vision, automation and intelligence workloads.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="section-4-card group relative bg-white rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-gray-100 hover:border-blue-200 shadow-sm">
+        <span class="section-4-card-icon" aria-hidden="true">
+          <img src="/assets/icons/section4/ai-services.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <h3 class="font-bold text-base text-gray-800">AI Services</h3>
+        <p class="text-gray-500 text-xs leading-snug">Real-time inference, event processing, analytics and local decision-making.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="section-4-card group relative bg-white rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-gray-100 hover:border-blue-200 shadow-sm">
+        <span class="section-4-card-icon" aria-hidden="true">
+          <img src="/assets/icons/section4/asnn-sdk.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <h3 class="font-bold text-base text-gray-800">ASNN SDK</h3>
+        <p class="text-gray-500 text-xs leading-snug">Developer tools for deploying, optimizing and managing AI workloads.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="section-4-card group relative bg-white rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-gray-100 hover:border-blue-200 shadow-sm">
+        <span class="section-4-card-icon" aria-hidden="true">
+          <img src="/assets/icons/section4/atomicos.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <h3 class="font-bold text-base text-gray-800">AtomicOS</h3>
+        <p class="text-gray-500 text-xs leading-snug">Lightweight operating environment optimized for edge AI and devices.</p>
+      </div>
+
+      <!-- Card 5 - Atomic Center -->
+      <div class="section-4-card group relative bg-white rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-gray-100 hover:border-blue-200 shadow-sm">
+        <span class="section-4-card-icon" aria-hidden="true">
+          <img src="/assets/icons/section4/atomic-center.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <h3 class="font-bold text-base text-gray-800">Atomic Center</h3>
+        <p class="text-gray-500 text-xs leading-snug">Centralized deployment, monitoring, alerts and device management.</p>
+        <div class="section-4-live">
+          <span class="section-4-live__dot" aria-hidden="true"></span>
+          Live Dashboard
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="section-4-card group relative bg-white rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-gray-100 hover:border-blue-200 shadow-sm">
+        <span class="section-4-card-icon" aria-hidden="true">
+          <img src="/assets/icons/section4/edge-hardware.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <h3 class="font-bold text-base text-gray-800">Edge Hardware</h3>
+        <p class="text-gray-500 text-xs leading-snug">Purpose-built Atomo Processing Units for physical environments.</p>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="section-4-card group relative bg-white rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-gray-100 hover:border-blue-200 shadow-sm">
+        <span class="section-4-card-icon" aria-hidden="true">
+          <img src="/assets/icons/section4/connected-systems.png" alt="" width="80" height="80" loading="lazy" decoding="async" />
+        </span>
+        <h3 class="font-bold text-base text-gray-800">Connected Systems</h3>
+        <p class="text-gray-500 text-xs leading-snug">Cameras, industrial equipment, machines, sensors and existing infrastructure.</p>
+      </div>
+
+      <!-- Card 8 - CTA card -->
+      <a href="/platform"
+         class="section-4-cta-card group relative rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border-0 flex flex-col items-start justify-between">
+        <span class="text-[10px] font-mono text-white/60 font-bold tracking-widest">EXPLORE</span>
+        <div>
+          <h3 class="font-bold text-base mb-1">Full Platform</h3>
+          <p class="text-xs leading-snug">See every layer in detail</p>
+        </div>
+        <span class="section-4-cta-card__arrow text-lg self-end">→</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 5 — Built for the Edge -->
+<section class="bg-white border-t border-gray-100" id="section-edge">
+  <div class="container mx-auto px-6 lg:px-12 max-w-[88rem] py-12 section-5-container">
+
+    <div class="section-5-layout">
+
+      <!-- Left — Headline -->
+      <div class="section-5-header flex flex-col justify-center">
+        <span class="section-2-eyebrow">Edge-Native Design</span>
+        <h2 class="section-2-title">
+          Built for the Edge<br>
+          from Day One
+        </h2>
+        <p class="section-subtitle">
+          Most solutions provide one layer. Atomo connects the full stack.
+        </p>
+        <div class="hidden lg:flex items-center gap-4 mt-8 pt-6 border-t border-gray-200/80">
+          <div class="flex -space-x-2">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md shadow-blue-200/60">
+              <i class="fa-solid fa-layer-group text-white text-xs"></i>
+            </div>
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md shadow-indigo-200/60">
+              <i class="fa-solid fa-microchip text-white text-xs"></i>
+            </div>
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-md shadow-cyan-200/60">
+              <i class="fa-solid fa-gauge-high text-white text-xs"></i>
+            </div>
+          </div>
+          <span class="section-5-footer-note">Full-stack edge intelligence</span>
+        </div>
+      </div>
+
+      <!-- Right — 3×2 grid -->
+      <div class="section-5-grid">
+
+        <div class="section-5-card group">
+          <span class="section-5-card-icon" aria-hidden="true">
+            <img src="/assets/icons/section5/integrated-hardware-software.png" alt="" width="84" height="84" loading="lazy" decoding="async" />
+          </span>
+          <h3>Integrated hardware and software</h3>
+          <p>One coordinated platform instead of fragmented tools from multiple vendors.</p>
+        </div>
+
+        <div class="section-5-card group">
+          <span class="section-5-card-icon" aria-hidden="true">
+            <img src="/assets/icons/section5/on-premise-ai.png" alt="" width="84" height="84" loading="lazy" decoding="async" />
+          </span>
+          <h3>On-premise AI</h3>
+          <p>Process video, sensor and operational data close to its source.</p>
+        </div>
+
+        <div class="section-5-card group">
+          <span class="section-5-card-icon" aria-hidden="true">
+            <img src="/assets/icons/section5/real-time-decisions.png" alt="" width="84" height="84" loading="lazy" decoding="async" />
+          </span>
+          <h3>Real-time decisions</h3>
+          <p>Reduce delay and enable faster operational response.</p>
+        </div>
+
+        <div class="section-5-card group">
+          <span class="section-5-card-icon" aria-hidden="true">
+            <img src="/assets/icons/section5/offline-resilient.png" alt="" width="84" height="84" loading="lazy" decoding="async" />
+          </span>
+          <h3>Offline and resilient operation</h3>
+          <p>Continue running critical intelligence even with limited connectivity.</p>
+        </div>
+
+        <div class="section-5-card group">
+          <span class="section-5-card-icon" aria-hidden="true">
+            <img src="/assets/icons/section5/multi-protocol-integration.png" alt="" width="84" height="84" loading="lazy" decoding="async" />
+          </span>
+          <h3>Multi-protocol integration</h3>
+          <p>Connect cameras, machines, sensors and industrial systems through one edge platform.</p>
+        </div>
+
+        <div class="section-5-card group">
+          <span class="section-5-card-icon" aria-hidden="true">
+            <img src="/assets/icons/section5/centralized-management.png" alt="" width="84" height="84" loading="lazy" decoding="async" />
+          </span>
+          <h3>Centralized management</h3>
+          <p>Deploy, monitor and manage distributed devices from one environment.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroVideoFiles = [
+        'industries_defect.webm',
+        'retail_mana.webm',
+        'robotic.webm',
+        'sam_Bread.mp4',
+        'sam_football.mp4',
+        'sam_occupied.mp4',
+        'sam_safety_harness.mp4',
+        'sam_Unknown.mp4',
+      ];
+
+      const video = document.getElementById('hero-video');
+      if (!video) return;
+
+      const isIOS =
+        /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+      const probe = document.createElement('video');
+      const supportsWebM =
+        probe.canPlayType('video/webm; codecs="vp9"') !== '' ||
+        probe.canPlayType('video/webm; codecs="vp8, vorbis"') !== '';
+
+      const compatibleFiles = heroVideoFiles.filter((file) => {
+        if (!file.endsWith('.webm')) return true;
+        return !isIOS && supportsWebM;
+      });
+
+      const orderedFiles = isIOS
+        ? [
+            ...compatibleFiles.filter((file) => file.endsWith('.mp4')),
+            ...compatibleFiles.filter((file) => !file.endsWith('.mp4')),
+          ]
+        : compatibleFiles;
+
+      const playlist = orderedFiles.map(
+        (file) => `/ai/${encodeURIComponent(file)}`
+      );
+
+      if (!playlist.length) return;
+
+      let currentIndex = 0;
+      let switching = false;
+      let readyListener = null;
+      let readyTimeout = null;
+
+      function clearReadyHandlers() {
+        if (readyListener) {
+          video.removeEventListener('loadeddata', readyListener);
+          video.removeEventListener('canplay', readyListener);
+          readyListener = null;
+        }
+        if (readyTimeout) {
+          clearTimeout(readyTimeout);
+          readyTimeout = null;
+        }
+      }
+
+      function configureVideoElement() {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        video.loop = false;
+        video.preload = isIOS ? 'metadata' : 'auto';
+        video.controls = false;
+      }
+
+      function setVideoSource(src) {
+        clearReadyHandlers();
+        video.pause();
+        video.removeAttribute('src');
+        while (video.firstChild) video.removeChild(video.firstChild);
+        video.load();
+        video.src = src;
+        video.load();
+      }
+
+      function nextIndex(index) {
+        return (index + 1) % playlist.length;
+      }
+
+      function tryPlay() {
+        video.muted = true;
+        return video.play().catch(() => Promise.reject());
+      }
+
+      function playWithRetry(attempt = 0) {
+        return tryPlay().catch(() => {
+          if (attempt >= 4) return Promise.reject();
+          return new Promise((resolve) => {
+            window.setTimeout(() => {
+              resolve(playWithRetry(attempt + 1));
+            }, 250 * (attempt + 1));
+          });
+        });
+      }
+
+      function playIndex(index) {
+        switching = true;
+        currentIndex = index;
+        setVideoSource(playlist[index]);
+
+        const startPlayback = () => {
+          clearReadyHandlers();
+          playWithRetry()
+            .then(() => {
+              switching = false;
+            })
+            .catch(() => {
+              switching = false;
+              advance();
+            });
+        };
+
+        if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+          startPlayback();
+          return;
+        }
+
+        readyListener = () => startPlayback();
+        video.addEventListener('loadeddata', readyListener);
+        video.addEventListener('canplay', readyListener);
+
+        readyTimeout = window.setTimeout(() => {
+          if (switching) startPlayback();
+        }, isIOS ? 3500 : 2000);
+      }
+
+      function advance() {
+        if (switching) return;
+        playIndex(nextIndex(currentIndex));
+      }
+
+      function resumePlayback() {
+        if (switching || document.hidden) return;
+        if (video.ended) {
+          advance();
+          return;
+        }
+        if (video.paused && video.readyState >= HTMLMediaElement.HAVE_METADATA) {
+          playWithRetry().catch(() => advance());
+        }
+      }
+
+      function unlockPlayback() {
+        resumePlayback();
+      }
+
+      configureVideoElement();
+
+      video.addEventListener('ended', advance);
+
+      video.addEventListener('error', () => {
+        if (!switching) advance();
+      });
+
+      video.addEventListener('stalled', () => {
+        if (!switching && !document.hidden) resumePlayback();
+      });
+
+      video.addEventListener('waiting', () => {
+        if (!switching && !document.hidden) {
+          window.setTimeout(resumePlayback, 400);
+        }
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) resumePlayback();
+      });
+
+      window.addEventListener('pageshow', (event) => {
+        if (event.persisted) resumePlayback();
+      });
+
+      window.addEventListener('focus', resumePlayback);
+
+      ['touchstart', 'touchend', 'click'].forEach((eventName) => {
+        document.addEventListener(eventName, unlockPlayback, {
+          once: true,
+          passive: true,
+        });
+      });
+
+      window.setInterval(resumePlayback, isIOS ? 2000 : 1500);
+
+      playIndex(0);
+    });
+  </script>

@@ -1,0 +1,19 @@
+<%- include('../partials/page-hero', { hero: page.hero }) %>
+<section class="section-light section-padding">
+  <div class="container-site">
+    <% const approved = recognitionItems.filter(function(i) { return i.verificationStatus === 'approved'; }); %>
+    <% if (approved.length > 0) { %>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <% approved.forEach(function(item) { %>
+      <article class="rounded-xl border border-[var(--color-border-light)] p-6">
+        <h3 class="font-semibold text-dark-text"><%= item.name %></h3>
+        <p class="mt-1 text-sm text-dark-text/60"><%= item.category %></p>
+        <p class="mt-3 text-base text-dark-text/75"><%= item.description %></p>
+      </article>
+      <% }); %>
+    </div>
+    <% } else { %>
+    <p class="text-dark-text/70">Recognition details are being verified for publication.</p>
+    <% } %>
+  </div>
+</section>

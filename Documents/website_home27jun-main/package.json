@@ -1,0 +1,23 @@
+{
+  "name": "website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run build:css && node server.js",
+    "start": "NODE_ENV=production npm run build:css && node server.js",
+    "build:css": "tailwindcss -i ./public/css/input.css -o ./public/css/styles.css --minify",
+    "build": "npm run build:css",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.22.2",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.1",
+    "prettier": "^3.8.4",
+    "tailwindcss": "^4",
+    "vitest": "^4.1.9"
+  }
+}

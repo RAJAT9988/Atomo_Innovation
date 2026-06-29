@@ -1,0 +1,21 @@
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="atomo-transport" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="0.35" stop-color="#6366F1"/>
+      <stop offset="0.65" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#atomo-transport)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M8 16h8"/>
+    <path d="M8 20h8"/>
+    <path d="M12 4v4"/>
+    <rect width="16" height="12" x="4" y="8" rx="2"/>
+    <path d="m4 12 2-2h12l2 2"/>
+    <path d="M8 12v4"/>
+    <path d="M16 12v4"/>
+    <circle cx="8" cy="18" r="2"/>
+    <circle cx="16" cy="18" r="2"/>
+  </g>
+</svg>

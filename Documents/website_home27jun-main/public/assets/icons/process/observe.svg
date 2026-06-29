@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="atomo-observe" x1="4" y1="8" x2="28" y2="24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="0.35" stop-color="#6366F1"/>
+      <stop offset="0.65" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+  <path d="M4 16c0 0 4.5-7.5 12-7.5s12 7.5 12 7.5" stroke="url(#atomo-observe)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M4 16c0 0 4.5 7.5 12 7.5s12-7.5 12-7.5" stroke="url(#atomo-observe)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="16" cy="16" r="4" stroke="url(#atomo-observe)" stroke-width="2"/>
+  <circle cx="16" cy="16" r="1.5" fill="url(#atomo-observe)"/>
+  <path d="M7.5 11.5c1.5-2 4-3.2 8.5-3.2" stroke="url(#atomo-observe)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+  <path d="M24.5 11.5c-1.5-2-4-3.2-8.5-3.2" stroke="url(#atomo-observe)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+  <path d="M7.5 20.5c1.5 2 4 3.2 8.5 3.2" stroke="url(#atomo-observe)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+</svg>

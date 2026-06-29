@@ -1,0 +1,14 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="atomo-act" x1="5" y1="4" x2="27" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="0.35" stop-color="#6366F1"/>
+      <stop offset="0.65" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+  <path d="M17.5 4L7 18.5h7.5l-1.2 8.5L26 14.5H17.8L17.5 4z" stroke="url(#atomo-act)" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M6 10l3 1.5" stroke="url(#atomo-act)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+  <path d="M5 14l4 .5" stroke="url(#atomo-act)" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+  <path d="M7 18l3-1" stroke="url(#atomo-act)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+</svg>

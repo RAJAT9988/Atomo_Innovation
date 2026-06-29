@@ -1,0 +1,11 @@
+<%- include('../partials/page-hero', { hero: page.hero }) %>
+<section class="section-light section-padding">
+  <div class="container-site grid gap-6 md:grid-cols-2">
+    <% solutions.forEach(function(s) { %>
+    <a href="/solutions/<%= s.slug %>" class="rounded-2xl border border-[var(--color-border-light)] p-8 hover:border-purple/30">
+      <h2 class="card-headline text-dark-text"><%= s.name %></h2>
+      <p class="mt-2 text-base text-dark-text/70"><%= s.headline %></p>
+    </a>
+    <% }); %>
+  </div>
+</section>

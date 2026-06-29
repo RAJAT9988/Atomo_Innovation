@@ -1,0 +1,66 @@
+<%- include('../partials/page-hero', { hero: { eyebrow: 'Atomo Processing Unit', headline: product.headline, description: product.supportingCopy, breadcrumbs, cta: { type: 'product' } } }) %>
+<section class="section-light section-padding">
+  <div class="container-site container-editorial">
+    <h2 class="section-headline-secondary text-dark-text">Intended environments</h2>
+    <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+      <% product.environments.forEach(function(env) { %><li class="rounded-lg bg-muted-light px-4 py-3 text-base"><%= env %></li><% }); %>
+    </ul>
+    <h2 class="section-headline-secondary mt-16 text-dark-text">Business outcomes</h2>
+    <ul class="mt-6 space-y-3">
+      <% product.outcomes.forEach(function(outcome) { %><li class="text-base text-dark-text/80">• <%= outcome %></li><% }); %>
+    </ul>
+  </div>
+</section>
+<section class="section-dark section-padding">
+  <div class="container-site">
+    <div class="relative mx-auto aspect-square max-w-lg overflow-hidden rounded-2xl bg-dark-panel">
+      <img src="<%= product.heroImage %>" alt="<%= product.name %>" class="h-full w-full object-contain p-8" />
+    </div>
+  </div>
+</section>
+<section class="section-light section-padding">
+  <div class="container-site container-editorial">
+    <h2 class="section-headline-secondary text-dark-text">Specifications</h2>
+    <div class="mt-8 overflow-x-auto">
+      <table class="w-full min-w-[320px] text-left text-base">
+        <caption class="sr-only"><%= product.name %> specifications</caption>
+        <tbody>
+          <% product.specs.forEach(function(spec) {
+            const value = spec.value.verificationStatus === 'approved' ? spec.value.value : null;
+            if (!value) return;
+          %>
+          <tr class="border-b border-[var(--color-border-light)]">
+            <th scope="row" class="py-3 pr-8 font-medium text-dark-text"><%= spec.label %></th>
+            <td class="py-3 text-dark-text/75"><%= value %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <h2 class="section-headline-secondary mt-16 text-dark-text">Platform compatibility</h2>
+    <ul class="mt-6 flex flex-wrap gap-3">
+      <% product.platformCompatibility.filter(function(f) { return f.verificationStatus === 'approved'; }).forEach(function(item) { %>
+      <li class="rounded-full bg-muted-light px-4 py-2 text-sm font-medium"><%= item.value %></li>
+      <% }); %>
+    </ul>
+    <div class="mt-12 flex flex-wrap gap-4">
+      <a href="/contact?interest=product" class="btn-primary">Discuss Your Deployment</a>
+      <a href="/products/compare" class="btn-secondary-light">Compare products</a>
+    </div>
+  </div>
+</section>
+<section class="section-light section-padding">
+  <div class="container-site max-w-3xl">
+    <h2 class="section-headline-secondary text-dark-text">Frequently asked questions</h2>
+    <dl class="mt-10 space-y-8">
+      <div>
+        <dt class="card-headline text-dark-text">What environments is <%= product.name %> designed for?</dt>
+        <dd class="mt-2 text-base text-dark-text/75"><%= product.environments.join(', ') %>.</dd>
+      </div>
+      <div>
+        <dt class="card-headline text-dark-text">How does this fit into the Atomo platform?</dt>
+        <dd class="mt-2 text-base text-dark-text/75"><%= product.name %> runs AtomicOS and integrates with ASNN SDK for AI deployment and fleet management through Atomic Center.</dd>
+      </div>
+    </dl>
+  </div>
+</section>

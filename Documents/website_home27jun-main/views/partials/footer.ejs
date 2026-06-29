@@ -1,0 +1,39 @@
+<footer class="section-near-black section-padding border-t border-white/10">
+  <div class="container-site">
+    <div class="mb-16 max-w-xl">
+      <p class="text-2xl font-semibold tracking-tight text-light-text md:text-3xl"><%= site.tagline %></p>
+      <p class="mt-4 text-silver"><%= site.legalName %></p>
+    </div>
+
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
+      <% footerColumns.forEach(function(column) { %>
+      <div>
+        <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-silver"><%= column.title %></h2>
+        <ul class="space-y-2">
+          <% column.links.forEach(function(link) { %>
+          <li><a href="<%= link.href %>" class="text-[15px] text-light-text/80 transition-colors hover:text-cyan"><%= link.label %></a></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% }); %>
+    </div>
+
+    <div class="mt-16 grid gap-8 border-t border-white/10 pt-10 md:grid-cols-2">
+      <% site.addresses.forEach(function(address) { %>
+      <address class="not-italic text-sm text-silver">
+        <strong class="block font-medium text-light-text"><%= address.label %></strong>
+        <% address.lines.forEach(function(line) { %><span class="block"><%= line %></span><% }); %>
+      </address>
+      <% }); %>
+    </div>
+
+    <div class="mt-10 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-sm text-silver">© <%= year %> <%= site.legalName %>. All rights reserved.</p>
+      <div class="flex flex-wrap gap-4">
+        <a href="<%= site.social.linkedin %>" class="text-sm text-silver hover:text-cyan" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+        <a href="<%= site.social.x %>" class="text-sm text-silver hover:text-cyan" rel="noopener noreferrer" target="_blank">X</a>
+        <a href="mailto:<%= site.email %>" class="text-sm text-silver hover:text-cyan"><%= site.email %></a>
+      </div>
+    </div>
+  </div>
+</footer>

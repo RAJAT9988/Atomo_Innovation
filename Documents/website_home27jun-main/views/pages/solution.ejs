@@ -1,0 +1,16 @@
+<%- include('../partials/page-hero', { hero: { eyebrow: 'Solutions', headline: solution.headline, description: solution.challenge, breadcrumbs, cta: { type: 'deployment' } } }) %>
+<section class="section-light section-padding">
+  <div class="container-site container-editorial">
+    <h2 class="section-headline-secondary text-dark-text">Why cloud-only is insufficient</h2>
+    <p class="mt-4 text-base text-dark-text/75"><%= solution.cloudLimitation %></p>
+    <h2 class="section-headline-secondary mt-12 text-dark-text">Atomo capabilities</h2>
+    <ul class="mt-4 space-y-3">
+      <% solution.capabilities.forEach(function(c) { %><li class="flex gap-3 text-base text-dark-text/75"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-purple"></span><%= c %></li><% }); %>
+    </ul>
+    <h2 class="section-headline-secondary mt-12 text-dark-text">Use cases</h2>
+    <ul class="mt-4 flex flex-wrap gap-2">
+      <% solution.useCases.forEach(function(u) { %><li class="rounded-full bg-muted-light px-4 py-2 text-sm"><%= u %></li><% }); %>
+    </ul>
+    <div class="mt-12"><a href="/contact?interest=enterprise" class="btn-primary">Plan a Deployment</a></div>
+  </div>
+</section>
