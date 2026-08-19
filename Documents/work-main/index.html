@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAJAT KUCHARA | Professional Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        /* Featured Projects Section Styles */
+    .project-video-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        background: #fff;
+    }
+    .project-video-container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: #fff;
+        z-index: 0.5;
+    }
+    .project-video-container .video-fallback {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+    .project-video-container video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        z-index: 1;
+        background: #fff;
+    }
+
+    
+    .project-nav-btn {
+        transition: all 0.3s ease;
+    }
+    
+    .project-nav-btn.active {
+        transform: scale(1.05);
+    }
+    
+    .gradient-overlay {
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    .project-content {
+        display: none;
+    }
+
+    .project-content.active {
+        display: block;
+    }
+
+    .all-projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .project-thumbnail {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .project-thumbnail:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+        /* Video styling */
+        video {
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+        /* Video loading indicator */
+        #video-loading {
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .video-loaded #video-loading {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Smooth video transitions */
+        video {
+            transition: opacity 0.3s ease;
+        }
+
+        /* Project card hover effect (optional - subtle) */
+        .project-card:hover video {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Sharp image rendering for clarity - prevents blur on scaled images */
+        .relative img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: auto;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid #fff;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-indigo-600">RAJAT KUCHARA</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-indigo-600 transition">About</a>
+                    <a href="#skills" class="text-gray-700 hover:text-indigo-600 transition">Skills</a>
+                    <a href="#platform" class="text-gray-700 hover:text-indigo-600 transition">Platform</a>
+                    <a href="#experience" class="text-gray-700 hover:text-indigo-600 transition">Experience</a>
+                    <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition">Projects</a>
+                    <a href="#contact"
+                        class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white pb-4 px-4 shadow-md">
+            <a href="#about" class="block py-2 text-gray-700 hover:text-indigo-600">About</a>
+            <a href="#skills" class="block py-2 text-gray-700 hover:text-indigo-600">Skills</a>
+            <a href="#platform" class="block py-2 text-gray-700 hover:text-indigo-600">Platform</a>
+            <a href="#experience" class="block py-2 text-gray-700 hover:text-indigo-600">Experience</a>
+            <a href="#projects" class="block py-2 text-gray-700 hover:text-indigo-600">Projects</a>
+            <a href="#contact"
+                class="block mt-2 bg-indigo-600 text-white px-4 py-2 rounded-md text-center hover:bg-indigo-700">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span class="text-yellow-300">RAJAT
+                        KUCHARA</span></h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6">Professional <span class="text-yellow-300">FULL
+                        STACK DEVELOPER</span></h2>
+                <p class="text-lg mb-8 max-w-lg">I create amazing digital experiences with a focus on quality and
+                    performance. Let's build something great together!</p>
+                <div class="flex space-x-4">
+                    <a href="#contact"
+                        class="bg-white text-indigo-600 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">Hire
+                        Me</a>
+                    <a href="#projects"
+                        class="border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-indigo-600 transition">View
+                        Work</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <img src="/public/WhatsApp Image 2026-01-05 at 12.34.18 AM.jpeg" alt="Profile Photo"
+                        class="rounded-full w-64 h-64 object-cover border-4 border-white shadow-xl">
+                    <div
+                        class="absolute -bottom-4 -right-4 bg-yellow-400 text-gray-900 px-4 py-2 rounded-full font-bold shadow-lg">
+                        Available
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">About <span class="text-indigo-600">Me</span></h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <img src="/public/my_image.jpeg" alt="About Photo"
+                        class="rounded-lg shadow-lg w-full max-w-xs">
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                        I'm a passionate Software Developer with expertise in modern web technologies, specializing in
+                        creating responsive, user-friendly applications with clean code and efficient architecture.
+                        Currently working as a Software Developer at Atomo Innovation PVT LTD, where I'm gaining
+                        hands-on experience with SvelteKit for both frontend and backend development.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div>
+                            <p class="font-medium">Name:</p>
+                            <p class="text-gray-600">RAJAT KUCHARA</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Email:</p>
+                            <p class="text-gray-600">tirthkuchara@gmail.com</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Phone:</p>
+                            <p class="text-gray-600">+91 99786 31923</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Location:</p>
+                            <p class="text-gray-600">Gandhinagar, India</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-indigo-600 hover:text-white transition">
+                            <i data-feather="github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/rajat9988/" target="_blank" rel="noopener noreferrer"
+                            class="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-indigo-600 hover:text-white transition">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <!-- Skills Section -->
+<section id="skills" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12">My <span class="text-indigo-600">Skills</span></h2>
+        
+        <!-- Legend for ratings -->
+        <div class="flex justify-center gap-6 mb-10 flex-wrap">
+            <div class="flex items-center gap-2">
+                <span class="text-green-500 text-xl">★★★★★</span>
+                <span class="text-gray-600 text-sm">Expert</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-blue-500 text-xl">★★★★☆</span>
+                <span class="text-gray-600 text-sm">Advanced</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-yellow-500 text-xl">★★★☆☆</span>
+                <span class="text-gray-600 text-sm">Intermediate</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-orange-500 text-xl">★★☆☆☆</span>
+                <span class="text-gray-600 text-sm">Beginner</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-red-500 text-xl">★☆☆☆☆</span>
+                <span class="text-gray-600 text-sm">Learning</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- HTML, CSS, JavaScript - EXPERT -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="code" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">HTML, CSS, JavaScript</h3>
+                <div class="flex items-center gap-1 text-green-500 text-lg mb-2">
+                    ★★★★★
+                    <span class="text-xs text-green-600 ml-2 font-semibold">Expert</span>
+                </div>
+                <p class="text-gray-600 text-sm">Core web technologies for building responsive websites</p>
+            </div>
+
+            <!-- React.js & Node.js - EXPERT -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="cpu" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">React.js & Node.js</h3>
+                <div class="flex items-center gap-1 text-green-500 text-lg mb-2">
+                    ★★★★★
+                    <span class="text-xs text-green-600 ml-2 font-semibold">Expert</span>
+                </div>
+                <p class="text-gray-600 text-sm">Full-stack JavaScript development</p>
+            </div>
+
+            <!-- SvelteKit & Tailwind CSS - ADVANCED -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="wind" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">SvelteKit & Tailwind</h3>
+                <div class="flex items-center gap-1 text-blue-500 text-lg mb-2">
+                    ★★★★☆
+                    <span class="text-xs text-blue-600 ml-2 font-semibold">Advanced</span>
+                </div>
+                <p class="text-gray-600 text-sm">Modern frameworks and utility-first CSS</p>
+            </div>
+
+            <!-- Next.js - EXPERT -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="arrow-right" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Next.js</h3>
+                <div class="flex items-center gap-1 text-green-500 text-lg mb-2">
+                    ★★★★★
+                    <span class="text-xs text-green-600 ml-2 font-semibold">Expert</span>
+                </div>
+                <p class="text-gray-600 text-sm">React framework for production</p>
+            </div>
+
+            <!-- Three.js - EXPERT -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="box" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Three.js</h3>
+                <div class="flex items-center gap-1 text-green-500 text-lg mb-2">
+                    ★★★★★
+                    <span class="text-xs text-green-600 ml-2 font-semibold">Expert</span>
+                </div>
+                <p class="text-gray-600 text-sm">3D graphics & digital twins in the browser</p>
+            </div>
+
+            <!-- DATABASES GROUPED TOGETHER -->
+            <!-- MySQL - EXPERT -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="database" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">MySQL</h3>
+                <div class="flex items-center gap-1 text-green-500 text-lg mb-2">
+                    ★★★★★
+                    <span class="text-xs text-green-600 ml-2 font-semibold">Expert</span>
+                </div>
+                <p class="text-gray-600 text-sm">Relational database management</p>
+            </div>
+
+            <!-- SQLite - EXPERT -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="database" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">SQLite</h3>
+                <div class="flex items-center gap-1 text-green-500 text-lg mb-2">
+                    ★★★★★
+                    <span class="text-xs text-green-600 ml-2 font-semibold">Expert</span>
+                </div>
+                <p class="text-gray-600 text-sm">Lightweight embedded database</p>
+            </div>
+
+            <!-- PostgreSQL - EXPERT -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="database" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">PostgreSQL</h3>
+                <div class="flex items-center gap-1 text-green-500 text-lg mb-2">
+                    ★★★★★
+                    <span class="text-xs text-green-600 ml-2 font-semibold">Expert</span>
+                </div>
+                <p class="text-gray-600 text-sm">Advanced relational database management</p>
+            </div>
+
+            <!-- MongoDB - LEARNING -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300 border-2 border-red-200">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="database" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">MongoDB</h3>
+                <div class="flex items-center gap-1 text-red-500 text-lg mb-2">
+                    ★☆☆☆☆
+                    <span class="text-xs text-red-500 ml-2 font-semibold">Learning</span>
+                </div>
+                <p class="text-gray-600 text-sm">NoSQL database - Currently learning</p>
+                <div class="mt-2 inline-block px-2 py-1 bg-red-100 text-red-600 text-xs rounded-full font-semibold">
+                    🎓 In Progress
+                </div>
+            </div>
+
+            <!-- Computer Vision - ADVANCED -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="eye" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Computer Vision</h3>
+                <div class="flex items-center gap-1 text-blue-500 text-lg mb-2">
+                    ★★★★☆
+                    <span class="text-xs text-gray-500 ml-2">Advanced</span>
+                </div>
+                <p class="text-gray-600 text-sm">ML model training & deployment with Roboflow</p>
+            </div>
+
+            <!-- Edge AI - ADVANCED -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="cpu" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Edge AI Computing</h3>
+                <div class="flex items-center gap-1 text-blue-500 text-lg mb-2">
+                    ★★★★☆
+                    <span class="text-xs text-gray-500 ml-2">Advanced</span>
+                </div>
+                <p class="text-gray-600 text-sm">AI models on Electron board with NPU</p>
+            </div>
+
+            <!-- LEARNING SECTION - UI/UX, Streamlit, Django -->
+            <!-- UI/UX Design (Learning) -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300 border-2 border-red-200">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="pen-tool" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">UI/UX Design</h3>
+                <div class="flex items-center gap-1 text-red-500 text-lg mb-2">
+                    ★☆☆☆☆
+                    <span class="text-xs text-red-500 ml-2 font-semibold">Learning</span>
+                </div>
+                <p class="text-gray-600 text-sm">Figma - Currently learning</p>
+                <div class="mt-2 inline-block px-2 py-1 bg-red-100 text-red-600 text-xs rounded-full font-semibold">
+                    🎓 In Progress
+                </div>
+            </div>
+
+            <!-- Streamlit (Learning) -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300 border-2 border-red-200">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="bar-chart-2" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Streamlit</h3>
+                <div class="flex items-center gap-1 text-red-500 text-lg mb-2">
+                    ★☆☆☆☆
+                    <span class="text-xs text-red-500 ml-2 font-semibold">Learning</span>
+                </div>
+                <p class="text-gray-600 text-sm">Data app development with Python</p>
+                <div class="mt-2 inline-block px-2 py-1 bg-red-100 text-red-600 text-xs rounded-full font-semibold">
+                    🎓 In Progress
+                </div>
+            </div>
+
+            <!-- Django (Learning) -->
+            <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300 border-2 border-red-200">
+                <div class="text-indigo-600 mb-2">
+                    <i data-feather="server" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-1">Django</h3>
+                <div class="flex items-center gap-1 text-red-500 text-lg mb-2">
+                    ★☆☆☆☆
+                    <span class="text-xs text-red-500 ml-2 font-semibold">Learning</span>
+                </div>
+                <p class="text-gray-600 text-sm">Python web framework for backend development</p>
+                <div class="mt-2 inline-block px-2 py-1 bg-red-100 text-red-600 text-xs rounded-full font-semibold">
+                    🎓 In Progress
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Platform Section -->
+    <section id="platform" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Platform <span class="text-indigo-600">Experience</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Windows -->
+                <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300 border border-gray-100">
+                    <div class="text-indigo-600 mb-4">
+                        <i data-feather="monitor" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Windows</h3>
+                    <p class="text-gray-600">Desktop development & daily workflow</p>
+                </div>
+
+                <!-- Ubuntu -->
+                <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300 border border-gray-100">
+                    <div class="text-indigo-600 mb-4">
+                        <i data-feather="terminal" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Ubuntu</h3>
+                    <p class="text-gray-600">Server deployment & CLI tools</p>
+                </div>
+
+                <!-- GitHub -->
+                <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300 border border-gray-100">
+                    <div class="text-indigo-600 mb-4">
+                        <i data-feather="github" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">GitHub</h3>
+                    <p class="text-gray-600">Version control & collaboration</p>
+                </div>
+
+                <!-- VS Code -->
+                <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300 border border-gray-100">
+                    <div class="text-indigo-600 mb-4">
+                        <i data-feather="code" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">VS Code</h3>
+                    <p class="text-gray-600">Primary code editor</p>
+                </div>
+
+                <!-- Vercel -->
+                <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300 border border-gray-100">
+                    <div class="text-indigo-600 mb-4">
+                        <i data-feather="cloud" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Vercel</h3>
+                    <p class="text-gray-600">Frontend deployment & hosting</p>
+                </div>
+
+                <!-- Roboflow -->
+                <div class="skill-card bg-white p-6 rounded-lg shadow-md transition duration-300 border border-gray-100">
+                    <div class="text-indigo-600 mb-4">
+                        <i data-feather="cpu" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Roboflow</h3>
+                    <p class="text-gray-600">Computer vision & ML model training</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Work <span class="text-indigo-600">Experience</span></h2>
+            <div class="relative">
+                <!-- Timeline -->
+                <div class="border-l-2 border-indigo-200 pl-8 space-y-12">
+                    <!-- Experience 1 -->
+                    <div class="timeline-item relative">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <h3 class="text-xl font-bold text-indigo-600">Senior software developer</h3>
+                                <span
+                                    class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2025
+                                    - Present</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Led a development team to design and deliver scalable client solutions using Node.js,
+                                React.js, and Next.js.
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>Developed full-stack web applications with REST APIs, ensuring secure and efficient
+                                    backend services. Built interactive 3D web experiences using Three.js, enhancing
+                                    user engagement and UI interactivity.</li>
+                                <li>Designed and maintained backend systems using Python (Django) for data-driven
+                                    applications. Created data visualization dashboards and internal tools using
+                                    Streamlit for rapid prototyping and analytics.</li>
+                                <li>Managed relational databases including MySQL and SQLite, optimizing queries to
+                                    improve application performance.</li>
+                                <li>Mentored junior developers and interns through code reviews, technical guidance, and
+                                    best coding practices.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience 2 - Computer Vision -->
+                    <div class="timeline-item relative">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <h3 class="text-xl font-bold text-indigo-600">Computer Vision & ML Model Training</h3>
+                                <span
+                                    class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2025
+                                    - Present</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Trained and deployed computer vision models for AI-powered detection systems using Roboflow.
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>Annotated images and built datasets for custom model training</li>
+                                <li>Trained computer vision models on Roboflow including: fire detection, car detection, smoke detection, person detection, parking detection, object detection, safety detection, and cow & horse detection</li>
+                                <li>Integrated trained models into production applications for real-time inference</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience 3 - Edge AI -->
+                    <div class="timeline-item relative">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <h3 class="text-xl font-bold text-indigo-600">Edge AI Computing</h3>
+                                <span
+                                    class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2025
+                                    - Present</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Experience running AI models on the Electron board locally—using its NPU, commands, and data sharing.
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>Worked with Electron board and its NPU to run AI models directly on the device</li>
+                                <li>Used commands to set up, run, and manage models locally without cloud</li>
+                                <li>Handled data sharing between the board and other systems</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Featured <span class="text-indigo-600">Projects</span></h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Explore my work with clear video demonstrations and detailed project insights
+            </p>
+        </div>
+
+        <!-- Featured Projects Column -->
+        <div class="space-y-16 mb-20">
+            <!-- Project 1 - Hand and Finger Detection -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="relative bg-white lg:order-1 order-2">
+                        <div class="aspect-video w-full project-video-container">
+                            <video id="video-0" class="w-full h-full " autoplay muted loop playsinline preload="auto">
+                                <source src="/public/hand_digital.mp4" type="video/mp4">
+                                Your browser does not support video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="p-8 lg:p-12 lg:order-2 order-1 flex flex-col justify-center">
+                        <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-sm font-semibold mb-6 w-fit">
+                            Featured Project #1
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Hand and Finger Detection</h3>
+                        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                            Hand and finger detection with live digital twin movement—real-time tracking visualized in a 3D digital twin.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 - Detection Dashboard -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="relative bg-white lg:order-1 order-2">
+                        <div class="aspect-video w-full project-video-container">
+                            <video id="video-0" class="w-full h-full " autoplay muted loop playsinline preload="auto">
+                                <source src="/public/main_dashboard.mp4" type="video/mp4">
+                                Your browser does not support video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="p-8 lg:p-12 lg:order-2 order-1 flex flex-col justify-center">
+                        <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-rose-500 to-amber-600 text-white text-sm font-semibold mb-6 w-fit">
+                            Featured Project #2
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Detection Dashboard</h3>
+                        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                            Digital twin with male/female detection, real-time graphs, and various detection video overviews.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 - Atomo Innovation -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <!-- Large Video Section -->
+                    <div class="relative bg-white lg:order-1 order-2">
+                        <div class="aspect-video w-full project-video-container">
+                            <video id="video-0" class="w-full h-full " autoplay muted loop playsinline preload="auto">
+                                <source src="/public/final_atomo.mp4" type="video/mp4">
+                                Your browser does not support video.
+                            </video>
+                        </div>
+                    </div>
+
+                    <!-- Project Details -->
+                    <div class="p-8 lg:p-12 lg:order-2 order-1 flex flex-col justify-center">
+                        <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold mb-6 w-fit">
+                            Featured Project #3
+                        </div>
+                        
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                            Atomo Innovation PVT. LTD.
+                        </h3>
+                        
+                        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                            Official website showcasing innovative devices like Electron, Proton, and Neutron, AtomicOS, A.I, AtomoLink, SmartHome and Airowl.
+                        </p>
+
+                        <!-- <div class="flex gap-4 mb-8">
+                            <a href="#" class="flex-1 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold text-center hover:shadow-lg hover:scale-105 transition-all duration-300">Live Demo →</a>
+                            <a href="#" class="flex-1 px-6 py-4 bg-gray-100 text-gray-700 rounded-xl font-semibold text-center hover:bg-gray-200 border border-gray-300 hover:scale-105 transition-all duration-300">View Code</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 - Digital twin -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="relative bg-white lg:order-1 order-2">
+                        <div class="aspect-video w-full project-video-container">
+                            <video id="video-0" class="w-full h-full " autoplay muted loop playsinline preload="auto">
+                                <source src="/public/digital_twin.mp4" type="video/mp4">
+                                Your browser does not support video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="p-8 lg:p-12 lg:order-2 order-1 flex flex-col justify-center">
+                        <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 to-cyan-600 text-white text-sm font-semibold mb-6 w-fit">
+                            Featured Project #4
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Digital twin</h3>
+                        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                            Created a fully functional digital twin of a virtual office using Three.js, featuring interactive and working lighting for realistic visualization.
+                        </p>
+                        <!-- <div class="mb-8">
+                            <h4 class="text-gray-500 text-sm font-semibold mb-3 uppercase tracking-wider">Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">RTSP</span>
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">WebRTC</span>
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">JavaScript</span>
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">Real-time</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 mb-8">
+                            <a href="#" class="flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl font-semibold text-center hover:shadow-lg hover:scale-105 transition-all duration-300">Live Demo →</a>
+                            <a href="#" class="flex-1 px-6 py-4 bg-gray-100 text-gray-700 rounded-xl font-semibold text-center hover:bg-gray-200 border border-gray-300 hover:scale-105 transition-all duration-300">View Code</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 - Fire Detection Digital Twin -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="relative bg-white lg:order-1 order-2">
+                        <div class="aspect-video w-full project-video-container">
+                            <video id="video-0" class="w-full h-full " autoplay muted loop playsinline preload="auto">
+                                <source src="/public/pdeu.mp4" type="video/mp4">
+                                Your browser does not support video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="p-8 lg:p-12 lg:order-2 order-1 flex flex-col justify-center">
+                        <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm font-semibold mb-6 w-fit">
+                            Featured Project #5
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Fire Detection Digital Twin</h3>
+                        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                            Designed a digital twin with AI-based fire detection using Python on live RTSP streams, dynamically visualizing fire events on a Three.js 3D model for real-time monitoring.
+                        </p>
+                        <!-- <div class="mb-8">
+                            <h4 class="text-gray-500 text-sm font-semibold mb-3 uppercase tracking-wider">Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-4 py-2 bg-orange-100 text-orange-800 rounded-lg text-sm font-medium">React.js</span>
+                                <span class="px-4 py-2 bg-orange-100 text-orange-800 rounded-lg text-sm font-medium">CSS</span>
+                                <span class="px-4 py-2 bg-orange-100 text-orange-800 rounded-lg text-sm font-medium">PDF Export</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 mb-8">
+                            <a href="#" class="flex-1 px-6 py-4 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl font-semibold text-center hover:shadow-lg hover:scale-105 transition-all duration-300">Live Demo →</a>
+                            <a href="#" class="flex-1 px-6 py-4 bg-gray-100 text-gray-700 rounded-xl font-semibold text-center hover:bg-gray-200 border border-gray-300 hover:scale-105 transition-all duration-300">View Code</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 - Movement Twin -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="relative bg-white lg:order-1 order-2">
+                        <div class="aspect-video w-full project-video-container">
+                            <video id="video-0" class="w-full h-full " autoplay muted loop playsinline preload="auto">
+                                <source src="/public/face_digital.mp4" type="video/mp4">
+                                Your browser does not support video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="p-8 lg:p-12 lg:order-2 order-1 flex flex-col justify-center">
+                        <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-600 text-white text-sm font-semibold mb-6 w-fit">
+                            Featured Project #6
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Movement Twin</h3>
+                        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                            A demo digital twin that visualizes a person's movement in real-time—showing where they are detected and the direction they're heading. This prototype will be applied to a major upcoming project.
+                        </p>
+                        <!-- <div class="mb-8">
+                            <h4 class="text-gray-500 text-sm font-semibold mb-3 uppercase tracking-wider">Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">RTSP</span>
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">WebRTC</span>
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">JavaScript</span>
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">Real-time</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 mb-8">
+                            <a href="#" class="flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl font-semibold text-center hover:shadow-lg hover:scale-105 transition-all duration-300">Live Demo →</a>
+                            <a href="#" class="flex-1 px-6 py-4 bg-gray-100 text-gray-700 rounded-xl font-semibold text-center hover:bg-gray-200 border border-gray-300 hover:scale-105 transition-all duration-300">View Code</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 - Godown Digital Twin -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="relative bg-white lg:order-1 order-2">
+                        <div class="aspect-video w-full project-video-container">
+                            <video id="video-0" class="w-full h-full " autoplay muted loop playsinline preload="auto">
+                                <source src="/public/pethapur.mp4" type="video/mp4">
+                                Your browser does not support video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="p-8 lg:p-12 lg:order-2 order-1 flex flex-col justify-center">
+                        <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-teal-500 to-indigo-600 text-white text-sm font-semibold mb-6 w-fit">
+                            Featured Project #7
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Godown Digital Twin</h3>
+                        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                            Digital twin of the godown with person detections and live RTSP multi-camera streaming for real-time monitoring and visualization.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 7 - Power Monitoring System -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="relative bg-white lg:order-1 order-2">
+                        <div class="aspect-video w-full project-video-container">
+                            <video id="video-0" class="w-full h-full " autoplay muted loop playsinline preload="auto">
+                                <source src="/public/new1234.webm" type="video/webm">
+                                Your browser does not support video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="p-8 lg:p-12 lg:order-2 order-1 flex flex-col justify-center">
+                        <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-yellow-500 to-cyan-600 text-white text-sm font-semibold mb-6 w-fit">
+                            Featured Project #8
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Power Monitoring System</h3>
+                        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                            Developed a real-time system to monitor current, voltage, and power, triggering email alerts above 15A and logging data to Google Sheets.
+                        </p>
+                        <!-- <div class="mb-8">
+                            <h4 class="text-gray-500 text-sm font-semibold mb-3 uppercase tracking-wider">Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">RTSP</span>
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">WebRTC</span>
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">JavaScript</span>
+                                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">Real-time</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 mb-8">
+                            <a href="#" class="flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl font-semibold text-center hover:shadow-lg hover:scale-105 transition-all duration-300">Live Demo →</a>
+                            <a href="#" class="flex-1 px-6 py-4 bg-gray-100 text-gray-700 rounded-xl font-semibold text-center hover:bg-gray-200 border border-gray-300 hover:scale-105 transition-all duration-300">View Code</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 8 - DSP Library Users Management -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="relative bg-white lg:order-1 order-2">
+                        <div class="aspect-video w-full project-video-container">
+                            <video id="video-dsp-library" class="w-full h-full" autoplay muted loop playsinline preload="auto">
+                                <source src="public/dsp.mp4" type="video/mp4">
+                                Your browser does not support video.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="p-8 lg:p-12 lg:order-2 order-1 flex flex-col justify-center">
+                        <div class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold mb-6 w-fit">
+                            Featured Project #9
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">DSP Library Users Management</h3>
+                        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                            Government portal to manage DSP Library membership data for students and police officers using the sqlite database.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+      
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-indigo-600 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Get In <span class="text-yellow-300">Touch</span></h2>
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                    <p class="mb-8">Feel free to reach out to me for any questions or opportunities. I'll get back to
+                        you as soon as possible!</p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="text-yellow-300 mr-4 mt-1">
+                                <i data-feather="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Email</h4>
+                                <p>tirthkuchara@gmail.com</p>
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="text-yellow-300 mr-4 mt-1">
+                                <i data-feather="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Phone</h4>
+                                <p>+91 99786 31923</p>
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="text-yellow-300 mr-4 mt-1">
+                                <i data-feather="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Location</h4>
+                                <p>Gandhinagar, India</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex space-x-4">
+                        <a href="https://github.com/raJAT9988/"
+                            class="bg-white text-indigo-600 p-3 rounded-full hover:bg-yellow-300 hover:text-indigo-600 transition">
+                            <i data-feather="github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/rajat9988/" target="_blank" rel="noopener noreferrer"
+                            class="bg-white text-indigo-600 p-3 rounded-full hover:bg-yellow-300 hover:text-indigo-600 transition">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2">
+                    <form action="https://formsubmit.co/tirthkuchara@gmail.com" method="POST" class="space-y-6">
+                        <input type="hidden" name="_subject" value="New message from Resume Portfolio">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <div>
+                            <label for="name" class="block mb-2 font-medium">Your Name</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full px-4 py-3 rounded-md bg-indigo-700 bg-opacity-30 border border-indigo-400 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:border-transparent placeholder-indigo-200"
+                                placeholder="John Doe">
+                        </div>
+
+                        <div>
+                            <label for="email" class="block mb-2 font-medium">Your Email</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full px-4 py-3 rounded-md bg-indigo-700 bg-opacity-30 border border-indigo-400 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:border-transparent placeholder-indigo-200"
+                                placeholder="john@example.com">
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block mb-2 font-medium">Subject</label>
+                            <input type="text" id="subject" name="subject"
+                                class="w-full px-4 py-3 rounded-md bg-indigo-700 bg-opacity-30 border border-indigo-400 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:border-transparent placeholder-indigo-200"
+                                placeholder="Project Inquiry">
+                        </div>
+
+                        <div>
+                            <label for="message" class="block mb-2 font-medium">Message</label>
+                            <textarea id="message" name="message" rows="5" required
+                                class="w-full px-4 py-3 rounded-md bg-indigo-700 bg-opacity-30 border border-indigo-400 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:border-transparent placeholder-indigo-200"
+                                placeholder="Your message here..."></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-yellow-300 text-indigo-800 px-6 py-3 rounded-md font-bold hover:bg-yellow-400 transition">Send
+                            Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-xl font-bold text-indigo-400">Resume</span>
+                    <p class="mt-2 text-gray-400">Crafting professional digital identities.</p>
+                </div>
+
+                <div class="flex flex-col items-center ">
+                    <div class="flex space-x-6 mb-4">
+                        <a href="https://github.com/raJAT9988/" class="text-gray-400 hover:text-white transition">
+                            <i data-feather="github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/rajat9988/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">© 2026 ResumeCraft. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Projects Show More/Less functionality
+        const showMoreBtn = document.getElementById('show-more-btn');
+        const moreProjects = document.getElementById('more-projects');
+        const showMoreIcon = document.getElementById('show-more-icon');
+
+        if (showMoreBtn && moreProjects) {
+            showMoreBtn.addEventListener('click', function () {
+                const isHidden = moreProjects.classList.contains('hidden');
+
+                if (isHidden) {
+                    // Show more projects
+                    moreProjects.classList.remove('hidden');
+                    showMoreBtn.innerHTML = 'Show Less Projects';
+                    feather.icons['chevron-up'].replaceFeather(showMoreIcon);
+                } else {
+                    // Hide projects
+                    moreProjects.classList.add('hidden');
+                    showMoreBtn.innerHTML = 'Show More Projects';
+                    feather.icons['chevron-down'].replaceFeather(showMoreIcon);
+                }
+
+                // Update the icon
+                feather.replace();
+            });
+        }
+        // Mobile menu toggle
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+
+            // Change icon based on menu state
+            const icon = this.querySelector('svg');
+            if (menu.classList.contains('hidden')) {
+                feather.icons.menu.replaceFeather(icon);
+            } else {
+                feather.icons.x.replaceFeather(icon);
+            }
+        });
+
+        // Replace all feather icons
+        feather.replace();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        const menuBtn = document.getElementById('menu-btn');
+                        feather.icons.menu.replaceFeather(menuBtn.querySelector('svg'));
+                    }
+                }
+            });
+        });
+        // Video loading and playback
+        document.querySelectorAll('video').forEach(video => {
+            const container = video.closest('.relative');
+            const loadingIndicator = container.querySelector('#video-loading');
+
+            // Hide loading indicator when video can play
+            video.addEventListener('canplay', function () {
+                if (loadingIndicator) {
+                    container.classList.add('video-loaded');
+                }
+            });
+
+            // Try to play video (with error handling)
+            video.play().catch(error => {
+                console.log("Video autoplay failed:", error);
+                if (loadingIndicator) {
+                    loadingIndicator.innerHTML = `
+                <div class="text-center p-4">
+                    <div class="text-white mb-2">
+                        <i data-feather="play-circle" class="w-8 h-8"></i>
+                    </div>
+                    <p class="text-white text-sm">Click to play video</p>
+                </div>
+            `;
+                    feather.replace();
+
+                    // Make it clickable to play
+                    loadingIndicator.style.cursor = 'pointer';
+                    loadingIndicator.addEventListener('click', function () {
+                        video.play();
+                        this.style.opacity = '0';
+                    });
+                }
+            });
+
+            // Loop the video
+            video.addEventListener('ended', function () {
+                this.currentTime = 0;
+                this.play();
+            });
+        });
+    </script>
+
+    <script>
+    // Project switching functionality
+    function showProject(index) {
+        // Hide all projects
+        const projects = document.querySelectorAll('.project-content');
+        projects.forEach(project => {
+            project.classList.remove('active');
+        });
+
+        // Show selected project
+        const selectedProject = document.getElementById(`project-${index}`);
+        selectedProject.classList.add('active');
+
+        // Update tab buttons
+        const tabs = document.querySelectorAll('.project-nav-btn');
+        tabs.forEach((tab, i) => {
+            if (i === index) {
+                tab.classList.add('active', 'bg-gradient-to-r', 'from-indigo-500', 'to-purple-600', 'text-white', 'shadow-lg');
+                tab.classList.remove('bg-gray-200', 'text-gray-700');
+            } else {
+                tab.classList.remove('active', 'bg-gradient-to-r', 'from-indigo-500', 'to-purple-600', 'text-white', 'shadow-lg');
+                tab.classList.add('bg-gray-200', 'text-gray-700');
+            }
+        });
+
+        // Replace feather icons
+        feather.replace();
+    }
+
+    // Video control functions
+    function togglePlay(videoId, button) {
+        const video = document.getElementById(videoId);
+        const icon = button.querySelector('i');
+        
+        if (video.paused) {
+            video.play();
+            feather.icons['pause'].replaceFeather(icon);
+        } else {
+            video.pause();
+            feather.icons['play'].replaceFeather(icon);
+        }
+        feather.replace();
+    }
+
+    function toggleFullscreen(videoId) {
+        const video = document.getElementById(videoId);
+        
+        if (!document.fullscreenElement) {
+            video.requestFullscreen().catch(err => {
+                console.log('Fullscreen error:', err);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    // Auto-play videos
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('video').forEach(video => {
+            video.play().catch(error => {
+                console.log("Video autoplay prevented:", error);
+            });
+        });
+    });
+</script>
+
+
+</body>
+
+</html>
